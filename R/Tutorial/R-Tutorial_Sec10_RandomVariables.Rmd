@@ -1,0 +1,215 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Random Variables
+
+```{r, echo=FALSE}
+
+rm(list = ls()) # delete everything in workspace/environment
+cat("\014")	# delete everything in console     
+
+
+```
+
+Statistical software like R can be used to draw random numbers from some specified distribution. These numbers are not truly random, but appear indistinguishable from actual random numbers. To make the analysis replicable, one must fix the so-called "seed", which ensures that every time the code is run, the same quasi-random numbers are drawn.
+
+```{r results=FALSE}
+
+
+# Fix seed:
+
+set.seed(50) # choose some (any) number here
+
+
+
+# ------------------------------------------------------------------------- #
+
+# PRE-DEFINED UNIVARIATE DISTRIBUTIONS 
+
+# ------------------------------------------------------------------------- #
+
+
+# Uniform distribution:
+
+runif(3) # generate 3 (independent) draws from U(0,1)
+runif(3,0,1) #same
+runif(3,-3,8) # generaate 3 (independent) draws from U(-3,8)
+
+dunif(1.3,-3,8) # evaluate pdf of U(-3,8) at x=1.3
+punif(1.3,-3,8) # evaluate cdf of U(-3,8) at x=1.3
+qunif(0.2,-3,8) # compute 20th percentile (point corresponding to cdf of 0.2)
+
+# see ?runif for documentation for all these commands pertaining to Uniform disttribution
+
+# note that these functions can also be applied to vectors
+
+
+# Normal distribution:
+
+rnorm(3) # generate 3 (independent) draws from standard Normal
+rnorm(3,2,1) # generate 3 (independent) draws from Normal with mean 2 and standard deviation 1
+
+dnorm(1.3,2,1) # return pdf at x=1.3
+pnorm(1.3,2,1) # return cdf at x=1.3
+qnorm(0.2,2,1) # compute 20th percentile
+
+# hence, to get critical values for two-sided 95% level test:
+qnorm(0.025) # 2.5th percentile of N(0,1)
+qnorm(0.975) # 97.5th percentile of N(0,1)
+
+# see ?rnorm for documentation for all these commands pertaining to Normal disttribution
+
+
+# t-distribution:
+
+rt(3, 32) # 3 draws, df=32
+
+# dt, pt, qt exist too; see ?rt
+
+
+# Chi-squared:
+
+dchisq(3,9) # 3 draws, df=9
+
+# dchisq, pchisq, qchisq exist too; see ?rchisq
+
+
+# Inverse Gamma:
+
+library(invgamma)
+rinvgamma(3,10,2) # 5 draws from IG with shape 10 and rate 2
+# can also specify shape and scale; see
+?rinvgamma
+
+# dinvgamma, pinvgamma, qinvgamma exist too; see ?rinvgamma
+
+
+
+# ------------------------------------------------------------------------- #
+
+# PRE-DEFINED MULTIVARIATE DISTRIBUTIONS 
+
+# ------------------------------------------------------------------------- #
+
+
+
+# Multivariate Normal:
+
+library(mvtnorm) 
+vMeans = c(0,2)
+mVariance = matrix(data=c(0.4,0.2,0.2,0.9),nrow=2,ncol=2)
+rmvnorm(3,vMeans,mVariance) # 3 draws from multivariate Normal with specified mean and variance
+
+# dmvnorm exists too; see ?rmvnorm
+
+
+
+# Inverse Wishart:
+
+library(MCMCpack)
+nu = 5
+mS = matrix(data=c(0.4,0.2,0.2,0.9),nrow=2,ncol=2)
+riwish(v = nu, S =  mS) #single draw
+
+# diwish exists too; see ?riwish
+
+
+# ------------------------------------------------------------------------- #
+
+# MULTINOMIAL DISTRIBUTION (MANUALLY DEFINED UNIVARIATE DISTRIBUTION)
+
+# ------------------------------------------------------------------------- #
+
+
+
+# Define a discrete distribution with the following possible realizations (outcomes):
+vOutcomes = c(3.4,5.3,3.2)
+
+# Sample 3 times from these elements/outcomes (with replacement):
+sample(vOutcomes, 3, replace = TRUE)
+# by default, R assumes that all elements have equal probabilities
+
+# alternatively supply vector of probabilities:
+vProbabilities = c(0.2,0.2,0.6)
+sample(vOutcomes, 3, replace = TRUE, prob= vProbabilities) 
+
+
+
+# Fit Kernel-density-estimate on vector "vOutcomes":
+
+density(vOutcomes) # assuming equal probabilities
+density(vOutcomes,weights=vProbabilities) # supplying vector of probabilities
+
+
+```
+
+
+
+
+
+
+
+
+

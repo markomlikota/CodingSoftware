@@ -1,0 +1,80 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+date: 'Created: January 2024. Last updated: April 2025'
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+
+# Introduction
+
+R is a rather flexible programming language. It allows you to easily implement methods, approaches and procedures that deviate from standard ones and are tailored to suit your specific needs. (This contrasts with e.g. Stata or EViews.)
+
+This script is meant to give an introduction to R and to collect useful commands for different programming tasks in one place. As such, it can be used as a lookup-table.
+Even people experienced with a programming language regularly consult google or previously written codes as part of their coding routine, even more so when they haven't used a programming language for a while or when switching back and forth between several languages.
+Not surprisingly, then, you won't memorize much when going through this tutorial. It is only through experience that one can learn a programming language  well. Nevertheless, this tutorial should facilitate the first steps.
+
+Each of the following sections is self-contained. You'll get most out of the tutorial by writing the commands you see here by yourself on your computer, running them, having a look at the results, and implementing simple changes to the code to see how the results change. Most of the code can be ran, but some is included only for illustration purposes; it cannot be ran since the necessary objects are not defined (e.g. some folder, dataset or excel-file).
+
+You can install R at https://cran.r-project.org. Then, install R Studio at https://posit.co. R Studio is an interface that facilitates working with the programming language R. You can execute R-code by writing directly into the console window, located in R Studio by default at the bottom-left. However, this should be done for simple commands only and/or for experimentation. Longer codes that you would like to re-use should be written in the script window on the top-left, as it can be stored as an .R-file for later re-use. The script (or parts thereof) can be ran to preduce output in the console. To do so, select the code you'd like to run and click on the "Run"-button on the top-right of the script-window. (On a Mac, you can do so even easier by selecting the code and pressing cmd+enter.) Objects you created (variables, matrices, plots, functions, etc.) are shown in the workspace/environment window on the top-right. The window on the bottom-right serves several purposes; it displays plots, contains a list of installed packages (and can be used to install new packages), and it shows the documentation page when help about a command is requested.
+
+

@@ -1,0 +1,597 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Econometrics
+
+```{r, echo=FALSE}
+
+rm(list = ls()) # delete everything in workspace/environment
+cat("\014")	# delete everything in console     
+
+
+```
+
+
+<br>
+
+## Linear Regressions
+
+```{r results=FALSE}
+
+# Load data for examples:
+data(mtcars) 
+
+```
+
+Run a linear regression: 
+
+```{r}
+
+# Regress hp on intercept, mpg and gear:
+lm(hp ~ mpg + gear, data= mtcars) 
+
+# Alternatively, we can simply use three vectors (not columns in a dataframe):
+lm(mtcars$hp ~ mtcars$mpg + mtcars$gear) 
+
+# Doing it manually is also easy (and one can be sure what the code is doing):
+mX = mtcars[,c("mpg","gear")]
+mX = as.matrix( cbind( rep(1,nrow(mX)), mX ) )
+mY = mtcars$hp
+vBetaHat = solve(t(mX) %*% mX) %*% ( t(mX) %*% mY)
+print(vBetaHat)
+
+```
+
+```{r results=FALSE}
+
+# Drop intercept:
+lm(hp ~ -1 + mpg + gear, data= mtcars) 
+
+# Include dummy for 8 cylinders:
+lm(hp ~  mpg + gear + cyl=="8", data= mtcars) 
+
+# Include dummy for each value of cylinders:
+lm(hp ~  mpg + gear + factor(cyl), data= mtcars)
+
+# Add mpg-squared:
+lm(hp ~  mpg + I(mpg^2) + gear, data= mtcars)
+
+# add dummy for wt larger than mean:
+lm(hp ~ -1 + mpg + gear + (wt>mean(wt)), data= mtcars) 
+
+#add as covariates all polynomials of "mpg" and "gear" up to order 2:
+library(stats)
+lm(hp ~ poly(as.matrix(mtcars[,c("mpg","gear")]), degree = 2, raw = TRUE),data=mtcars) 
+
+
+```
+
+Analyze the output of a linear regression:
+
+```{r results=FALSE}
+
+# Re-run first regression from above, but store to object:
+reg = lm(hp ~ -1 + mpg + gear, data= mtcars) 
+
+# Extract vector of residuals:
+reg$residuals 
+# Extract vector of estimated coefficients:
+reg$coefficients 
+# Extract vector of fitted values:
+reg$fitted.values 
+
+
+# Get all sorts of summary stats:
+summary(reg) 
+# Store this object:
+mySumReg = summary(reg) 
+# This allows you to extract even many more statistics.
+
+# Extract R-squared:
+mySumReg$r.squared
+# Extract Adjusted R-Squared:
+mySumReg$adj.r.squared
+# Extract matrix with estimated coefficients, SEs, t-vals and p-vals in columns:
+mySumReg$coefficients 
+
+```
+
+By default, the "lm()" command assumes homoskedasticity. 
+The following commands can be used to adjust standard errors in case of heteroskedasticity:
+
+```{r results=FALSE}
+
+library(sandwich)
+
+# Compute adjusted variance-covariance matrix of coefficients:
+mVarHskRob = vcovHC(reg, type = "HC")
+# Get robust SEs of individual coefficients by taking square root of diagonal:
+sqrt(diag( vcovHC(reg, type = "HC") )) 
+# Note: type = "HC0" has no DF correction whil type = "HC1" has the DF correction. 
+# Both are valid asymptotically, but a DF correction is preferable in small samples.
+
+# Print results with robust SEs:
+library(lmtest) 
+coeftest(reg, vcov. = mVarHskRob) 
+# alterantively:
+summary(reg, vcov = function(x) vcovHC(x, type="HC"))
+
+
+```
+
+Information criteria:
+
+```{r results=FALSE}
+
+# Compute Bayesian information criterion:
+BIC(reg) 
+
+# Compute Schwartz information criterion (manually):
+MSE = mean(reg$residuals^2)
+K = length(reg$coefficients) # K = # of regressors
+N = length(reg$residuals) # N = # of obs
+SIC = (K/N)*log(N)+log(MSE) 
+
+
+```
+
+The t-statistic for a t-test with the null hypothesis indicating a zero value for the parameter is conducted by default.
+Computing (manually) the t-statistic for testing whether a single coefficient equals some other value is trivial once the estimated parameter value and its SE are computed.
+
+We can also run other tests manually (e.g. F-test, Wald-test, etc.).
+For the F-test, we can also use the following package:
+
+```{r, eval=FALSE}
+
+# Test whether mpg and gear are jointly insignificant in our baseline regression,
+# using adjusted standard errors:
+library(car)
+linearHypothesis(reg,test="F", c("mpg=0","gear=0"), vcov. = vcovHC(reg, type = "HC"))
+
+
+# Manual alternative:
+# 1. run restricted regression, store R^2 (R2r)
+# 2. run unrestricted regression, store R^2 (R2u), number of regressors (k+1), number of restrictions (q),
+# and compute:
+Fstat = ( (R2u - R2r)/q ) / ( (1 - R2u)/(n - k - 1) )
+
+
+# Apparently, this package can also be used to run Wald-tests;
+?linearHypothesis
+
+
+```
+
+While there are packages for many more econometrics-related computations in R, I strongly advocate for using these standard commands only to run preliminary regressions as part of your initial data analysis, but not for the final output in a paper or otherwise important document. 
+If the output is really important, you should take your time to code the estimates, compute the standard errors, conduct hypothesis tests, etc., yourself. 
+Only then you know exactly how your results have been obtained and what the assumptions behind them are.
+
+Running regressions in a loop:
+
+```{r results=FALSE}
+
+# The first argument of "lm" is of the form " Y ~ x1 + x2 ... + xK " and is called a formula. 
+# Sometimes we want to specify this formula in a loop, in which case generating it from a string can be useful.
+# The following code will regress hp on three different dummies for the number of cylinders, one at a time:
+
+# Create dummies for each value of "cyl" and add to dataframe:
+library(fastDummies)
+mtcars = dummy_cols(mtcars,select_columns=c("cyl"))
+
+# Regress hp on the number of cylinders (without intercept),
+# (i.e. this computes mean horse power by different numbers of cylinders)
+for (hh in c(4,6,8)){
+	reg = lm(formula( paste("hp ~ -1 + cyl_",hh,sep="") ),data=mtcars)
+	print(reg)
+}
+
+# Note: we can store all these regressions into a single list!
+# See also section on "Workspace Management"
+
+
+```
+
+
+<br>
+
+## Other Cross-Sectional Methods
+
+Probit Model:
+
+```{r results=FALSE}
+
+# Regress dummy on having hp above average on mpg and gear:
+reg = glm((hp>mean(mtcars$hp)) ~ mpg + gear, family = binomial(link="probit"), data = mtcars) 
+summary(reg)
+
+```
+
+IV Regression:
+
+```{r results=FALSE}
+
+# Run an IV regression with 
+# mpg being endogenous regressor
+# gear being exogenous regressor
+# and cyl and disp being IVs:
+
+library(ivreg)
+ivreg(hp ~ mpg + gear  | gear + cyl + disp, data=mtcars) 
+# i.e. hp is dependent variable, 
+# after "~" come all regressors (endogenous and exogenous), 
+# and then after "|" come the exogenous regressors and IVs
+
+```
+
+Least-Absolute Deviations (LAD) regression:
+
+```{r results=FALSE}
+
+library(quantreg)
+lad_two = rq(hp ~ mpg + gear, data=mtcars) 
+summary(lad_two)
+
+
+```
+
+
+
+<br>
+
+## Panel-Data Methods
+
+
+```{r results=FALSE}
+
+# Load data for examples:
+library(AER) 
+data(Fatalities)
+
+```
+
+```{r results=FALSE}
+
+
+# Preliminary Things
+
+# Declare dataframe "Fatalities" as panel data:
+library(plm)
+pdata = pdata.frame(Fatalities, index = c("state", "year"), drop.index = F, row.names = T) 
+
+# Compute ratio of number of fatal accidents to population:
+pdata[,"fatalToPop"] = pdata$fatal / pdata$pop 
+
+
+
+# Run Regressions
+# regress fatal accidents per capita 
+# on income, drinking age and latter's interaction with percentage of young drivers:
+
+# Pooled OLS:
+plm(fatalToPop ~ income + drinkage + drinkage*youngdrivers, data=pdata, model="pooling")
+# Random Effects:
+plm(fatalToPop ~ income + drinkage + drinkage*youngdrivers, data=pdata, model="random")
+# Fixed Effects - Within:
+plm(fatalToPop ~ income + drinkage + drinkage*youngdrivers, data=pdata, model="within", index=c("state","year")) 
+# Fixed Effects - First-Difference:
+plm(fatalToPop ~ income + drinkage + drinkage*youngdrivers, data=pdata, model="fd", index=c("state","year")) 
+
+# Compute clusterd standard errors for FE-W regression:
+regFEW = plm(fatalToPop ~ income + drinkage + drinkage*youngdrivers, data=pdata, model="within", index=c("state","year")) 
+
+vcovHC(regFEW, cluster = "group", type = "sss")
+# Note: there are many ways to cluster your standard errors... 
+# That's why it's best if you code this yourself.
+
+# Print output with adjusted SEs:
+coeftest(regFEW, vcovHC(regFEW, cluster = "group", type = "sss")) 
+
+# Conduct F-test for income, drinkage and drinkage*youngdrivers being jointly insignificant:
+linearHypothesis(regFEW,test="F", c("income=0","drinkage=0","drinkage:youngdrivers=0"), vcov. = vcovHC(regFEW, cluster = "group",type="sss"))
+
+# Joint significance test on the individual (not time) fixed effects of a panel regression
+regPOLS = plm(fatalToPop ~ income + drinkage + drinkage*youngdrivers, data=pdata, model="pooling")
+pFtest(regFEW,regPOLS)
+
+
+
+# The following functions are useful when doing PD F.E. regressions manually:
+
+#compute FDs of a variable for each unit:
+library(doBy)
+fFDColumnByUnit = function(mX,indUnit,indCol){
+  mHelp = summaryBy(list(c(colnames(mX)[indCol]), c(colnames(mX)[indUnit])) , FUN=function(x){x[-1]-x[-length(x)]}, data=mX )
+  as.vector(t(as.matrix(mHelp[,-1])))
+}
+# compute time-demeaned values of a variable for each unit:
+fDemeanColumnByUnit = function(mX,indUnit,indCol){
+  mHelp = summaryBy(list(c(colnames(mX)[indCol]), c(colnames(mX)[indUnit])) , FUN=function(x){x-mean(x)}, data=mX )
+  as.vector(t(as.matrix(mHelp[,-1])))
+}
+
+# Apply:
+# compute FDs of fourth column (the unit (here: state) is specified in first column):
+fFDColumnByUnit(pdata,1,4) 
+# compute time-demeaned fourth column:
+fDemeanColumnByUnit(pdata,1,4) 
+
+
+```
+
+
+<br>
+
+## Time-Series Methods
+
+```{r, results=FALSE}
+
+# Load data for examples:
+data("USAccDeaths")
+data("UKDriverDeaths")
+
+```
+
+The above discussion on linear regressions also applies for time series data.
+However, there are benefits of declaring your time series data as an "xts" object, 
+as this facilitates certain manipulations.
+
+Create "xts" object:
+
+```{r, results=FALSE}
+
+library(xts)
+
+
+# First put both time series from matrix to vector format:
+vUKdeaths = as.vector(t(UKDriverDeaths))
+vUSdeaths = as.vector(t(USAccDeaths))
+
+# Now create xts objects from these numeric vectors:
+# first create vector of dates:
+vDatesUK = seq(as.Date("1969-01-01"), length=length(vUKdeaths), by="months")
+# then create xts-vector of your TS:
+vUKdeaths = xts(x=vUKdeaths, order.by=vDatesUK)
+
+# Same for USdeaths:
+vDatesUS = seq(as.Date("1973-01-01"), length=length(vUSdeaths), by="months")
+vUSdeaths = xts(x=vUSdeaths, order.by=vDatesUS)
+
+# Combine the two datasets by dates:
+merge(vUSdeaths,vUKdeaths, all=TRUE)
+
+
+# Here's how to create an xts-matrix, with multiple variables at once:
+library(carData)
+data(Hartnagel)
+vDates = seq(as.Date("1931-01-01"), length=nrow(Hartnagel), by="years")
+mTheft = xts(x=Hartnagel[,c("mtheft","ftheft")], order.by=vDates)
+
+
+# Let's combine the two monthly time series above, by date:
+mDeaths = merge(vUSdeaths,vUKdeaths,all=TRUE)
+colnames(mDeaths) = c("US","UK")
+mDeaths = mDeaths[is.na(mDeaths$US)==FALSE,] # trim to non-missing dates
+
+# note that this stays an xts object
+
+```
+
+Easy manipulations with "xts" objects:
+
+```{r, results=FALSE, fig.show='hide'}
+
+# Turn monthly into quartlery series by keeping only beginning-of-quarter months:
+vUKdeathsQ = apply.quarterly(vUKdeaths, last)
+# similarly for taking averages
+
+# Compute differences:
+diff(vUKdeaths,1) # first differences
+diff(vUKdeaths,4) # fourth differences (y_t - y_{t-4})
+
+
+# Compute lags & leads:
+lag(vUKdeaths,1) # first lag
+lag(vUKdeaths,2) # second lag
+
+# Use lags in regression: 
+# fit AR(2) model on inflation:
+reg = lm(vUKdeaths ~ lag(vUKdeaths,1) + lag(vUKdeaths,2)) 
+
+# Note: lag() works only for xts objects! for ts objects it doesn't, but you get no error message!!!
+
+# compute percentage growth (log differences):
+vUSdeathsGrowth = diff(log(mDeaths$US))[-1] 
+vUKdeathsGrowth = diff(log(mDeaths$UK))[-1]
+# (we drop first observations as it is equal to NA; can only start growth rates from second entry)
+
+
+# Compute ACF and PACF:
+acf(vUKdeaths[-1]) 
+pacf(vUKdeaths[-1])
+
+
+# Compute cross-correlations of two series (here up to 3 leads and lags):
+ccf(as.numeric(vUSdeathsGrowth),as.numeric(vUKdeathsGrowth),3,plot=FALSE) 
+
+
+
+# Working with dates in xts objects:
+
+library(lubridate)
+
+# access vector of dates corresponding to xts-object "vUSdeathsGrowth":
+index(vUSdeathsGrowth) 
+# see the month for each date:
+month(index(vUSdeathsGrowth)) 
+
+
+# Note:: plot of xts object is different than simply plotting a vector:
+plot(vUSdeathsGrowth)
+plot(as.numeric(vUSdeathsGrowth))
+# (R recognizes by default that the x-axis are dates, that we want a line, etc.)
+# But more on plotting in the separate section.
+
+```
+
+
+With the package "quantmod", we can download time series data directly from the FRED Database (and other sources, e.g. Yahoo Finance). It comes in "xts" format:
+
+```{r, results=FALSE}
+
+library(quantmod)
+
+# download monthly US CPI data:
+getSymbols("CPIAUCSL", src = "FRED", auto.assign = FALSE) 
+# by default, it is stored by creating an xts object of the same name, CPIAUCSL
+
+# download monthly US CPI data and store it as object "cpi":
+cpi = getSymbols("CPIAUCSL", src = "FRED", auto.assign = FALSE) 
+
+
+# download quarterly GDP deflator:
+getSymbols('GDPDEF',src='FRED')
+
+# adjust the dates:
+GDPDEF = GDPDEF["1960-01-01/2025-01-01"]
+# if several series have to be trimmed to same dates,
+# it makes sense to define this as a function:
+sStartDate = "1960-01-01"
+sEndDate = "2025-01-01"
+fMyTimeRange = function(x){ x[paste(sStartDate,sEndDate,sep="/")] }
+
+# Compute annualized inflation:
+vInfl = 100 * 4 * diff(log(GDPDEF))[-1]
+
+
+# compute GDP growth for same dates:
+getSymbols('GDP',src='FRED')
+GDP = fMyTimeRange(GDP)
+vGDPg = 100 * 4 * diff(log(GDP))[-1]
+
+```
+
+For some things, like fitting ARMA models and forecasting with them, it's easier to work with "ts"-objects rather than "xts"-objects:
+
+```{r, results=FALSE, fig.show='hide'}
+
+# Create ts-object:
+vUSdeathsGrowthTS = ts(vUSdeathsGrowth,start = c(19373,2), frequency = 12) 
+
+
+# ARIMA estimation:
+
+# Estimate AR(1) process
+model = arima(vUSdeathsGrowthTS, order = c(1,0,0)) 
+# Estimate ARMA(2,1) process
+model = arima(vUSdeathsGrowthTS, order = c(2,0,1)) 
+# the middle argument stands for integration order (ARIMA process)
+summary(model)
+
+
+# Forecasting:
+
+library(forecast)
+# Forecast up to 10 periods ahead and compute two-sided 90% and 95% CIs:
+mForecasts = forecast(model,h = 10, level = c(90,95)) 
+# Plot these forecasts with fanchart:
+plot(mForecasts,PI = TRUE,showgap = FALSE,shaded = TRUE)
+
+```
+
+Work with reduced-form VARs:
+
+```{r, results=FALSE}
+
+library(vars)
+mData = data.frame(US=vUSdeathsGrowth, UK=vUKdeathsGrowth)
+
+# Estimate a VAR(p):
+modelVAR = VAR(mData, p=2) # add type="trend" to allow for trend
+summary(modelVAR)
+
+vResids = residuals(modelVAR) 
+sumModelVAR = summary(modelVAR)
+mSigma = sumModelVAR$covres # variance-covariance matrix of errors
+coef(modelVAR) # coefficients (Phi's)
+
+# Forecast with VAR(p):
+predict(modelVAR,n.ahead = 5, level = c(90,95))
+# Could plot forecasts with below command, but it's better idea to create nice plots yourself!
+#fanchart( predict(modelVAR,n.ahead = 5, level = c(90,95)) )
+
+```
+
+Simulate ARIMA models:
+
+```{r, results=FALSE}
+
+arima.sim(list("ar"=c(0.7,0.2)), n = 50*4, rand.gen = rnorm) 
+# can also supply innovations manually; see ? arima.sim
+# but could also code whole ARIMA simulation manually...
+
+```
+
+
+

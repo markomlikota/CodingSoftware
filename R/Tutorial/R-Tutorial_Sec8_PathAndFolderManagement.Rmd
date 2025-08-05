@@ -1,0 +1,135 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Path-/Folder-Management
+
+```{r, echo=FALSE}
+
+rm(list = ls()) # delete everything in workspace/environment
+cat("\014")	# delete everything in console     
+
+
+```
+
+A path is the location on your computer (think of a folder) which R uses to look for datasets you call and to store things you tell it to store. Here's how we can define and change the path (note that, in order to run this code, you need to insert paths that work for your own computer):
+
+```{r, eval=FALSE}
+
+
+# Have a look at the folder (path) that R is currently in:
+
+getwd() # "get working directory"
+
+
+# Change the path: 
+
+setwd("/Users/markomlikota/Documents/MySpecialFolder")
+
+# If you regularly go between different paths/folders, it makes sense to define them first:
+sMyPath = "/Users/markomlikota/Documents/MySpecialFolder" 
+setwd(sMyPath)
+ 
+
+# Change the path to a sub-folder inside "MySpecialFolder":
+
+setwd( paste(sMyPath,"/MySubFolder",sep="") )
+
+# again, it might make sense to store this path:
+sMySubPath = paste(sMyPath,"/MySubFolder",sep="")
+setwd(sMySubPath)
+
+
+
+# Paths are computer-specific. 
+# However, if you collaborate with others via Dropbox, 
+# you can define the path relative to the Dropbox folder, 
+# so that everyone can use the same path definition and hence run the same code:
+setwd('~/Dropbox/OurSpecialFolder') 
+# (This works provided that everyone has "OurSpecialFolder" in the same location inside their Dropbox.)
+
+
+```
+
+We can also use R to create and delete folders in our path (i.e. on our computer):
+
+```{r, eval=FALSE}
+
+# List all folders in the current path:
+dir() 
+
+# Create a folder "abc" in the current path:
+dir.create("abc") 
+
+# Verify whether folder "abc" exists in current path:
+dir.exists("abc")
+
+# Delete folder "abc" in current path: (need computer's permission for that)
+unlink("abc")
+
+
+```
+
+
+

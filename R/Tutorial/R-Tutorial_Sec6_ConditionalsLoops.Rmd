@@ -1,0 +1,168 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Conditionals & Loops
+
+```{r, echo=FALSE}
+
+rm(list = ls()) # delete everything in workspace/environment
+cat("\014")	# delete everything in console     
+
+
+```
+
+A conditional is a piece of code that only gets evaluated if a certain condition is true:
+
+```{r}
+
+a = 5
+
+if (a < 2) {
+  print("a is smaller than 2") 
+}
+
+if (a < 2) {
+  print("a is smaller than 2") 
+} else if (a > 2) {
+  print("a is larger than 2") 
+}
+
+
+if (a == 2) {
+  print("a equals 2") 
+} else if (a == 3) {
+  print("a does not equal 2 but 3")
+} else {
+  print("a neither equals 2 nor 3")
+}
+
+```
+
+
+A for loop is a chunk of code that gets executed many times, each time for a different value of a so-called "index-variable", named "ii" in the following. It is useful if you need to repeat a procedure for, say, different countries in your data sample.
+
+```{r}
+
+a = 0
+for (ii in 1:10){
+  a = a + ii
+}
+print(a)
+
+
+for (ii in c("a", "b")){
+  print(ii)
+}
+
+# Note that 1:10 and " c("a","b") " are both vectors. 
+# We can also use the othe ways to create vectors from above, e.g.:
+for (ii in seq(-3,3,by=1.5)){
+  print(ii)
+}
+
+```
+
+A while loop keeps executing a chunk of code only as long as some condition is true:
+
+```{r}
+
+while(a < 130){
+  a = a + 3
+}
+print(a)
+
+
+```
+
+Useful commands for working with for- and while-loops are "next" and "break()". The former tells R to stop executing the code for the current iteration and proceed to the next one, while the latter tells R to stop the for- or while-loop altogether. 
+
+```{r}
+
+a = 0
+for (ii in 1:10){
+  if( ii%%2 == 0){ 
+    #if ii is even (modulus of ii/2 is null), go to next iteration (i.e. skip this one)
+  	next
+  }
+  a = a + ii
+}
+print(a)
+
+
+while(a < 130){
+  a = a + 3
+  
+  if(a == 88 | a == 89){
+  	break()
+  }
+  
+}
+print(a)
+
+
+
+```
+
+

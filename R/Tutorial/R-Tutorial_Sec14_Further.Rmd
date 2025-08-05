@@ -1,0 +1,255 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Further
+
+```{r, echo=FALSE}
+
+rm(list = ls()) # delete everything in workspace/environment
+cat("\014")	# delete everything in console     
+
+```
+
+
+<br>
+
+## Error Handling
+
+Sometimes, it is inevitable that some code returns an error under some conditions, but we still want the code to continue running, i.e. we attempt at doing one thing, but if it doesn't work, we try another thing. For such code-chunks,we can use "tryCatch":
+
+```{r, eval=FALSE}
+
+# Try evaluating "fLL()" (log-likelihood of some model) at vTheta, and return -99 if it doesn't work:
+tryCatch( fLL(vTheta) , error = function(e){ -99 } ) 
+
+
+# Try computing log-determinant of mA, and return NA if it doesn't work:
+tryCatch( log(det(mA)) , error = function(e){ NA } ) 
+
+
+```
+
+
+<br>
+
+## Timing
+
+Sometimes, we want to record the time that R needs to execute a certain chunk of code:
+
+```{r, results=FALSE}
+
+# Record the time at a given point: 
+# (typically before the code starts that you want to time)
+timeStart = Sys.time()
+
+# ... do operations ...
+
+# Compute the time elapsed since " timeStart" :
+timeTotal = Sys.time() - timeStart 
+
+
+# To record the time needed to execute a single command/function:
+# (here we record the time needed to draw 100 times from N(0,1))
+system.time( rnorm(100) )
+
+
+# Let R "sleep" for 4 seconds, i.e. do nothing:
+Sys.sleep(4) 
+
+
+```
+
+
+<br>
+
+## Linear Interpolation
+
+We can use linear interpolation to impute missing values (NAs) in a vector:
+
+```{r results=FALSE}
+
+library(zoo)
+
+vx = c(2, NA, 3, 2, 5)
+
+na.approx(vx) # imputes NA values in vx by linear interpolation
+
+
+```
+
+We can also use linear interpolation to evaluate a function at some intermediate value for its argument:
+
+```{r results=FALSE}
+
+vx = c(1,2,3)
+vy = c(1,4,9)
+
+# We can interpret this as a function y=f(x), for which we have "observations" (1,1), (2,4), (3,9),
+# and find f(2.5) by linear interpolation:
+approx(vx, vy, xout=2.5) 
+
+
+```
+
+<br>
+
+## Optimization
+
+For optimization of a function w.r.t. a scalar argument, it is easiest to use "optimize":
+
+```{r results=FALSE}
+
+fFunToOpt = function(v){ (v-3)^2 }
+myOptimRes = optimize(fFunToOpt,interval=c(-5,5))
+myOptimRes$minimum # minimizer ("argmin")
+myOptimRes$objective # function value at minimum ("min")
+
+```
+
+For optimization of a (scalar-valued) function w.r.t. a vector-valued argument, can use "optim":
+
+```{r, eval=FALSE}
+
+fFunToOpt = function(v){ 
+  (v[1]-3)^2 + v[2]^3
+}
+
+vTheta0 = c(0,0) # initial value
+myOptimRes = optim(vTheta0, fFunToOpt, method = "BFGS") 
+myOptimRes$par # minimizer ("argmin")
+myOptimRes$value # function value at minimum ("min")
+
+# function can support several different methods, see ?optim
+
+```
+
+
+<br>
+
+## Complex Numbers
+
+```{r, eval=FALSE}
+
+# Define a complex number:
+b = 3 + 2i 
+
+Mod(b) #modulus of b
+Re(b) #real part of b
+
+# As you can see, "i" is already defined by default in R.
+# That's why it's a good idea to avoid creating a variable "i" yourself, 
+# as it would overwrite the variable "i" that exists in R by default. 
+# Same for "pi".
+
+```
+
+
+<br>
+
+## Further Useful Packages
+
+In the course of this tutorial, we encountered many useful packages. Here are some more.
+
+Package "imfr": download data directly from IMF databases:
+
+```{r, eval=FALSE}
+
+library(imfr) 
+
+# see all datasets:
+imf_ids(TRUE)
+
+# Have a look at database "IFS":
+a = imf_codelist(database_id='IFS')
+# See what indicators are available in it:
+a1 = imf_codes(codelist='CL_INDICATOR_IFS')
+
+# Download specified indicators from this database 
+# for specified countries, a specified year range, at specified frequency:
+m_RGDP_Q_raw = imf_data(database_id='IFS',
+                        indicator=c('NGDP_R_SA_XDC','ENDA_XDC_USD_RATE'),
+                        country=c("AT","AU"),
+                        start='2021',end='2022',freq='Q',print_url=TRUE)
+
+```
+
+Package "countrycode": translate between different official countrycodes:
+
+```{r}
+
+library(countrycode)
+
+vsC_cc2 = c("AT","AU")
+
+# from iso2 to iso3:
+countrycode(vsC_cc2,"iso2c","iso3c") 
+
+# from iso2 to country names (in different languages):
+countrycode(vsC_cc2,"iso2c","country.name") 
+countrycode(vsC_cc2,"iso2c","country.name.de") 
+countrycode(vsC_cc2,"iso2c","country.name.fr") 
+
+```
+

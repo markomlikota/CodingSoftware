@@ -1,0 +1,520 @@
+---
+title: 'R: Tutorial & Collection of Useful Commands'
+subtitle: '(for applications in economics)'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+    css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Lists & Dataframes
+
+```{r, echo=FALSE}
+
+rm(list = ls()) # delete everything in workspace/environment
+cat("\014")	# delete everything in console     
+
+
+```
+
+<br>
+
+## Lists
+
+A list is like a vector whose elements can be of different types. For example:
+
+```{r}
+
+# Create list:
+list(1,2,3,"a") 
+
+# In contrast, this creates a vector of characters; 
+# i.e. each number is converted to a character
+c(1, 2, 3, "a")
+
+```
+
+```{r}
+
+lMyList = list(1, "a", c(1:3)) 
+
+typeof(lMyList)
+is.list(lMyList)
+
+```
+
+Lists are useful for saving a collection of objects, like matrices or plots, into one object, rather than creating many separate ones. They are also useful for keeping the workspace tidy in longer codes. Both of these things are discussed below under "Workspace Management".
+
+Indexing:
+
+```{r results=FALSE}
+
+# Again, as before with vectors, there are three ways to index this list:
+
+# "Directly"
+lMyList[3] # take third element
+
+# Using logicals:
+lMyList[c(FALSE,FALSE,TRUE)]
+
+# Using named elements:
+names(lMyList) = c("first","second","third")  # name the elements in list
+
+lMyList["third"]
+
+
+names(lMyList) # return the names
+
+```
+
+Modify list:
+
+```{r results=FALSE}
+
+# change first element:
+lMyList[1] = 2
+
+# add (append) element to list:
+append(lMyList,"7") 
+
+```
+
+
+<br>
+
+## Dataframes
+
+Another important object in R is a dataframe. Just like a list is akin to a vector that can contain elements of different types, a dataframe is akin to a matrix that can contain columns of different types. This makes dataframes suitable to store datasets:
+
+
+```{r}
+
+dfA = data.frame(a = c(10,20,30), b = c("RA", "RB", "RC"))
+
+print(dfA)
+
+```
+
+```{r}
+
+# note that dataframes are lists:
+typeof(dfA) 
+
+# but not every list is a data frame:
+is.data.frame(dfA) 
+is.data.frame(lMyList)
+
+```
+
+```{r results=FALSE}
+
+
+# Access column-/row-names:
+
+colnames(dfA)
+rownames(dfA) 
+
+
+# Modify row names:
+
+rownames(dfA) = c("first","second","third")
+
+
+# How many rows & columns do we have?
+
+dim(dfA)
+
+nrow(dfA)
+dim(dfA)[1] # same
+
+ncol(dfA)
+dim(dfA)[2] #same
+
+```
+
+Indexing dataframes is akin to indexing matrices:
+
+```{r results=FALSE}
+
+# access second column,
+#i.e. column "b":
+
+dfA[,2] 
+
+dfA[,"b"] # same
+
+dfA$b # same
+# note, if column had a number as its name, would need to write e.g. dfA$`2023`;
+# that's why it's a good idea to stick to strings as row and column names (use e.g. "y2023")
+
+dfA[,c(FALSE,TRUE)] # same
+
+
+# access element (3,2), 
+# i.e. third element in column "b", 
+# i.e. element in row "third" and column "b":
+
+dfA[3,2]
+
+dfA["third","b"] # same
+
+dfA[3,"b"] # same
+
+dfA$b[3] # same
+
+dfA[3,c(FALSE,TRUE)] #same
+
+dfA[c(FALSE,FALSE,TRUE),c(FALSE,TRUE)] # same
+
+# (and many more possibilities!)
+
+```
+
+Modification:
+
+```{r results=FALSE}
+
+# Adding/deleting rows:
+
+dfA[4,] = c(9,"RA") # add row
+rownames(dfA)[nrow(dfA)] = "fourth" # name the newly added row
+
+dfA = rbind(dfA,c(5,"RC")) # same; add another row
+
+
+dfA = dfA[-5,] # delete row 5
+dfA = dfA[-4,] # delete row 4
+
+
+# Adding/deleting columns:
+
+dfA[,"c"] = c(8,9,4) # add a column "c"
+
+dfA$d = c(1,0,1) # add a column "d"
+
+dfA = data.frame(dfA,e=c(3,3,4)) # add a column "e"
+
+dfA   = cbind(dfA,c(3,3,4)) # add another column (yet unnamed) ...
+colnames(dfA)[ncol(dfA)] = "f" # ... and name it "f"
+
+
+
+# delete column "d" by keeping all others:
+dfA[,c("a","b","c")] 
+subset( dfA, select = c(a,b,c) ) # same
+dfA[,colnames(dfA) %in% c("a","b","c")] # same
+
+# delete column "d" explicitly:
+subset( dfA, select = -c(d) ) 
+dfA[,!colnames(dfA) %in% c("d")] 
+#(note that writing " dfA[,-c("c","d")] " gives an error)
+
+
+```
+
+
+To introduce further commands to deal with dataframes, we load a dataset (dataframe) that is pre-stored in R. It contains various measures for 32 different cars.
+
+
+```{r results=FALSE}
+
+# Load dataset:
+
+data(mtcars)
+
+
+# Describe data (i.e. each column/variable):
+
+summary(mtcars) 
+
+# alternative:
+library(psych) 
+describe(mtcars) 
+
+
+# Store column-/row-names as vectors:
+
+vsVariables = colnames(mtcars)
+vsCars = rownames(mtcars) 
+
+
+```
+
+
+```{r results=FALSE}
+
+mean(mtcars$hp) # compute mean horse power
+
+min(mtcars$hp) # compute minimum horse power
+
+
+# How many cars have an hp higher than average?
+
+# step 1: create vector of logicals, indicating for each car whether its hp is above average
+# step 2: sum up its elements (number of ones/TRUEs)
+vIsHPhigh = mtcars$hp > mean(mtcars$hp) 
+sum( vIsHPhigh )
+
+# alternative: create a sub-dataframe containing only the cars with above-average hp, and count its rows:
+nrow( mtcars[ vIsHPhigh, ] )
+
+
+# Find cars with hp above 190 and 5 gears:
+
+mtcars[mtcars$hp > 190 & mtcars$gear == 5, ]
+# if interested only in their number of cylinders and horse power:
+mtcars[mtcars$hp > 190 & mtcars$gear == 5, c("cyl","hp")]
+
+
+# Find cars with 4 or 6 cylinders and hp above 120:
+
+vRightCyl = mtcars$cyl %in% c(4,6)
+vRightHP = mtcars$hp > 120
+mtcars[vRightCyl & vRightHP,]
+
+
+# Find all Mercedes (their names start with "Merc"):
+
+mtcars[ grepl( "Merc" , vsCars ) , ]
+
+
+# Sort dataset first according to number of cylinders, then according to horsepower:
+
+mtcars[order(mtcars$cyl,mtcars$hp),]
+
+
+# Create dummies for each value of "cyl" and "gear", and add to dataframe:
+
+library(fastDummies)
+data = dummy_cols(mtcars,select_columns=c("cyl","gear"))
+
+
+```
+
+Let's see how to merge different datasets, transform them into different formats and apply a function to different observations at once (different units, years, etc.). For this, consider the following example involving (made up) grades for famous basketball players:
+
+```{r results=FALSE, error=TRUE}
+
+dfExamMidterm2022 <- data.frame(familyName = c("Jokic", "Doncic", "Jovic", "Bogdanovic", "Bogdanovic"), 
+                    firstName= c("Nikola", "Luka", "Nikola", "Bogdan","Bojan"),
+                    year = rep(2022,5),
+                    grade1 = c(4.5, 3, 4.5, 6, 5))
+
+dfExamFinal2022 <- data.frame(familyName = c("Jokic", "Doncic", "Jovic", "Bogdanovic", "Bogdanovic"), 
+                    firstName= c("Nikola", "Luka", "Nikola", "Bogdan","Bojan"), 
+                    year = rep(2022,5),
+                    grade2 = c(5, 3.5, 5, 5.5, 4.5))
+
+dfExamMidterm2023 <- data.frame(familyName = c("Jokic", "Doncic", "Jovic", "Bogdanovic"), 
+                    firstName= c("Nikola", "Luka", "Nikola", "Bogdan"), 
+                    year = rep(2023,4),
+                    grade1 = c(5.5, 4, 4, 4.5))
+
+```
+
+```{r results=FALSE, error=TRUE}
+
+# Combine datasets:
+
+# Could combine two datasets with the same observations (rows) but different variables (columns) by "cbind":
+cbind(dfExamMidterm2022, grade2 = dfExamFinal2022$grade2)
+# but these don't work if one of them has different observations (rows):
+cbind(dfExamMidterm2022, grade2 = dfExamFinal2022$grade2, grade3 = dfExamMidterm2023$grade1)
+
+
+# Can combine datasets also using the command "merge", which requires two datasets (not three):
+dfExams2022 = merge(dfExamMidterm2022,dfExamFinal2022)
+
+dfExamsAll = merge(dfExams2022,dfExamMidterm2023, all=TRUE) # all=TRUE ensures that we keep all rows (observations) 
+# without this option, we would only keep observations that exist in both dataframes:
+merge(dfExams2022,dfExamMidterm2023) # (in this case, there are no such observations)
+
+dfExamsMidterms = merge(dfExamMidterm2022,dfExamMidterm2023, all=TRUE)
+
+```
+
+```{r results=FALSE, error=TRUE}
+
+# Reshape dataset from/to long/short format:
+
+library(reshape2) # contains commands melt and dcast
+
+# dfExams2022 is in so-called "short format".
+
+# put dfExams2022 into long format:
+dfExams2022_long = melt(dfExams2022, id.vars=c("familyName", "firstName", "year"), measure.vars=c("grade1", "grade2")) 
+# note that any variable not specified as id-variable or measure-variable gets dropped:
+melt(dfExams2022, id.vars=c("familyName", "firstName"), measure.vars=c("grade1", "grade2")) 
+# this can create trouble if the specified id-variables do not perfectly define an observation:
+melt(dfExams2022, id.vars=c("familyName"), measure.vars=c("grade1", "grade2")) 
+
+
+# put dfExams2022_long back into short format:
+dfExams2022_short = dcast(dfExams2022_long, firstName + familyName + year ~ variable) 
+
+
+# dfExamsMidterms is in "long format".
+
+# put it into short format:
+dfExamsMidterms_short = dcast(dfExamsMidterms, firstName + familyName ~ year)
+# note that the name of the variable "grade1" got lost, but we typically know what variable we are looking at
+
+# put it back into long format:
+dfExamsMidterms_long = melt(dfExamsMidterms_short, id.vars=c("familyName", "firstName"), measure.vars=c("2022", "2023")) 
+# compared to the original dfExamsMidterms, this dataframe has an entry for the player who didn't take the exam in 2023: Bojan Bogdanovic.
+# it also has different column names, but we can supply the original ones again:
+colnames(dfExamsMidterms_long)[3:4] = c("year","grade1")
+
+
+# dfExamsAll is in "short format" regarding the grades, but in "long format" regarding the years.
+
+# put it into short format with years across columns, for midterm grades:
+dfExamsMidterms = dcast(dfExamsAll, firstName + familyName ~ year, value.var = "grade1")
+# for final grades:
+dfExamsFinals = dcast(dfExamsAll, firstName + familyName ~ year, value.var = "grade2")
+# (can do that only using one variable at once)
+
+
+# put it into long format with grade-types across rows:
+dfExamsAll_long = melt(dfExamsAll, id.vars=c("familyName", "firstName", "year"), measure.vars=c("grade1", "grade2")) 
+
+# put the resulting dataset into short format with years across columns:
+dfExamsAll_v2 = dcast(dfExamsAll_long, firstName + familyName + variable ~ year)
+
+# comparing dfExamsAll_v2 with dfExamsAll, we transformed a dataset with years across rows and grade-types across columns
+# into one with years across columns and grade-types across rows
+
+
+```
+
+```{r results=FALSE, error=TRUE}
+
+# Do something for given subset of observations:
+
+dfExams2022_long
+
+# for each "familyName" and "firstName" by rows, and for each value for "year" by columns, show mean of remaining variables:
+# (i.e. show mean of grades in each year by player)
+acast(dfExamsAll_long, familyName + firstName ~ year, mean)
+
+# same, but this time ignore the NA entries when computing the mean:
+# (i.e. for 2023, return the midterm grade, as the final grade is not available yet)
+acast(dfExamsAll_long, familyName + firstName ~ year, function(x){mean(x,na.rm=TRUE)})
+
+# compute number of observations per player and year:
+acast(dfExamsAll_long, familyName + firstName ~ year, length)
+
+# compute number of non-missings per player and year:
+acast(dfExamsAll_long, familyName + firstName ~ year, function(x){sum(is.na(x)==FALSE)})
+
+
+
+# Alternative:
+
+library(doBy) 
+#contains command "summaryBy", 
+# which repeats a command for each entry of a variable (e.g. for each country, or each year, or both)
+
+# do the same as above:
+summaryBy(value ~ familyName + firstName + year, FUN=mean, data=dfExamsAll_long)
+summaryBy(value ~ familyName + firstName + year, FUN=function(x){mean(x,na.rm=TRUE)}, data=dfExamsAll_long)
+
+summaryBy(value ~ familyName + firstName + year, FUN=length, data=dfExamsAll_long)
+summaryBy(value ~ familyName + firstName + year, FUN=function(x){sum(is.na(x)==FALSE)}, data=dfExamsAll_long)
+
+
+```
+
+
+Deal with missing values:
+
+```{r results=FALSE}
+
+# Find observations/rows with missings:
+
+# vector of logicals indicating whether row is complete:
+vIsObsComplete = complete.cases(dfExamsAll_v2)
+# vector of logicals indicating whether row has missings:
+vObsHasMissings = !vIsObsComplete
+
+
+# Find rows which have missings in a particular column:
+vObsHasMissings = is.na(dfExamsAll_v2$`2023`)
+# (if your missing is coded as ".", write " dfExamsAll_v2$`2023` == "." ", or first re-code the missings to NA)
+
+
+# remove rows/observations with missings:
+dfExamsAll_v2[vIsObsComplete,]
+
+
+
+# Find variables/columns with missings:
+
+# vector of logicals indicating whether column has missings:
+vColHasMissings = apply(dfExamsAll_v2, 2, function(x){any(is.na(x))})
+# vector of logicals indicating whether column is complete:
+vColIsComplete = !vColHasMissings
+
+# remove variables with missings:
+dfExamsAll_v2[,vColIsComplete]
+
+
+```
+
+
