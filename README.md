@@ -7,7 +7,7 @@ This repository contains resources for coding with Julia and with R (as useful f
 
 The folder "R" contains
 
-* folder "Tutorial", 
+* folder "TutorialCodecollection", 
     + with the R-tutorial divided into sections, each of which is written as an .Rmd-file and published as an .html-file
     + with the files "R-Tutorial_AllCodesExceptPlotting.R" and "R-Tutorial_AllCodesPlotting.R" that contain all the codes from the R-tutorial
 
