@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -73,7 +73,6 @@ cat("\014")	# delete everything in console
 
 ```
 
-
 <br>
 
 ## Linear Regressions
@@ -85,9 +84,9 @@ data(mtcars)
 
 ```
 
-Run a linear regression: 
-
 ```{r}
+
+# Run a linear regression:
 
 # Regress hp on intercept, mpg and gear:
 lm(hp ~ mpg + gear, data= mtcars) 
@@ -128,9 +127,9 @@ lm(hp ~ poly(as.matrix(mtcars[,c("mpg","gear")]), degree = 2, raw = TRUE),data=m
 
 ```
 
-Analyze the output of a linear regression:
-
 ```{r results=FALSE}
+
+# Analyze the output of a linear regression:
 
 # Re-run first regression from above, but store to object:
 reg = lm(hp ~ -1 + mpg + gear, data= mtcars) 
@@ -158,10 +157,10 @@ mySumReg$coefficients
 
 ```
 
-By default, the "lm()" command assumes homoskedasticity. 
-The following commands can be used to adjust standard errors in case of heteroskedasticity:
-
 ```{r results=FALSE}
+
+# By default, the "lm()" command assumes homoskedasticity. 
+# The following commands can be used to adjust standard errors in case of heteroskedasticity:
 
 library(sandwich)
 
@@ -181,9 +180,9 @@ summary(reg, vcov = function(x) vcovHC(x, type="HC"))
 
 ```
 
-Information criteria:
-
 ```{r results=FALSE}
+
+# Information criteria:
 
 # Compute Bayesian information criterion:
 BIC(reg) 
@@ -197,13 +196,15 @@ SIC = (K/N)*log(N)+log(MSE)
 
 ```
 
-The t-statistic for a t-test with the null hypothesis indicating a zero value for the parameter is conducted by default.
-Computing (manually) the t-statistic for testing whether a single coefficient equals some other value is trivial once the estimated parameter value and its SE are computed.
+```{r, eval=FALSE}
+
+# The t-statistic for a t-test with the null hypothesis indicating a zero value 
+# for the parameter is conducted by default.
+# Computing (manually) the t-statistic for testing whether a single coefficient 
+# equals some other value is trivial once the estimated parameter value and its SE are computed.
 
 We can also run other tests manually (e.g. F-test, Wald-test, etc.).
 For the F-test, we can also use the following package:
-
-```{r, eval=FALSE}
 
 # Test whether mpg and gear are jointly insignificant in our baseline regression,
 # using adjusted standard errors:
@@ -222,15 +223,18 @@ Fstat = ( (R2u - R2r)/q ) / ( (1 - R2u)/(n - k - 1) )
 ?linearHypothesis
 
 
+# While there are packages for many more econometrics-related computations in R, 
+# I strongly advocate for using these standard commands only to run preliminary regressions 
+# as part of your initial data analysis, but not for the final output in a paper or otherwise important document. 
+# If the output is really important, you should take your time to code the estimates, 
+# compute the standard errors, conduct hypothesis tests, etc., yourself. 
+# Only then you know exactly how your results have been obtained and what the assumptions behind them are.
+
 ```
 
-While there are packages for many more econometrics-related computations in R, I strongly advocate for using these standard commands only to run preliminary regressions as part of your initial data analysis, but not for the final output in a paper or otherwise important document. 
-If the output is really important, you should take your time to code the estimates, compute the standard errors, conduct hypothesis tests, etc., yourself. 
-Only then you know exactly how your results have been obtained and what the assumptions behind them are.
-
-Running regressions in a loop:
-
 ```{r results=FALSE}
+
+# Running regressions in a loop:
 
 # The first argument of "lm" is of the form " Y ~ x1 + x2 ... + xK " and is called a formula. 
 # Sometimes we want to specify this formula in a loop, in which case generating it from a string can be useful.
@@ -253,14 +257,13 @@ for (hh in c(4,6,8)){
 
 ```
 
-
 <br>
 
 ## Other Cross-Sectional Methods
 
-Probit Model:
-
 ```{r results=FALSE}
+
+# Probit Model:
 
 # Regress dummy on having hp above average on mpg and gear:
 reg = glm((hp>mean(mtcars$hp)) ~ mpg + gear, family = binomial(link="probit"), data = mtcars) 
@@ -268,9 +271,9 @@ summary(reg)
 
 ```
 
-IV Regression:
-
 ```{r results=FALSE}
+
+# IV Regression:
 
 # Run an IV regression with 
 # mpg being endogenous regressor
@@ -285,9 +288,9 @@ ivreg(hp ~ mpg + gear  | gear + cyl + disp, data=mtcars)
 
 ```
 
-Least-Absolute Deviations (LAD) regression:
-
 ```{r results=FALSE}
+
+# Least-Absolute Deviations (LAD) regression:
 
 library(quantreg)
 lad_two = rq(hp ~ mpg + gear, data=mtcars) 
@@ -295,8 +298,6 @@ summary(lad_two)
 
 
 ```
-
-
 
 <br>
 
@@ -391,15 +392,15 @@ fDemeanColumnByUnit(pdata,1,4)
 data("USAccDeaths")
 data("UKDriverDeaths")
 
+# The above discussion on linear regressions also applies for time series data.
+# However, there are benefits of declaring your time series data as an "xts" object, 
+# as this facilitates certain manipulations.
+
 ```
 
-The above discussion on linear regressions also applies for time series data.
-However, there are benefits of declaring your time series data as an "xts" object, 
-as this facilitates certain manipulations.
-
-Create "xts" object:
-
 ```{r, results=FALSE}
+
+# Create "xts" object:
 
 library(xts)
 
@@ -438,9 +439,9 @@ mDeaths = mDeaths[is.na(mDeaths$US)==FALSE,] # trim to non-missing dates
 
 ```
 
-Easy manipulations with "xts" objects:
-
 ```{r, results=FALSE, fig.show='hide'}
+
+# Easy manipulations with "xts" objects:
 
 # Turn monthly into quartlery series by keeping only beginning-of-quarter months:
 vUKdeathsQ = apply.quarterly(vUKdeaths, last)
@@ -495,10 +496,11 @@ plot(as.numeric(vUSdeathsGrowth))
 
 ```
 
-
-With the package "quantmod", we can download time series data directly from the FRED Database (and other sources, e.g. Yahoo Finance). It comes in "xts" format:
-
 ```{r, results=FALSE}
+
+# With the package "quantmod", we can download time series data directly from 
+# the FRED Database (and other sources, e.g. Yahoo Finance). 
+# It comes in "xts" format:
 
 library(quantmod)
 
@@ -532,9 +534,10 @@ vGDPg = 100 * 4 * diff(log(GDP))[-1]
 
 ```
 
-For some things, like fitting ARMA models and forecasting with them, it's easier to work with "ts"-objects rather than "xts"-objects:
-
 ```{r, results=FALSE, fig.show='hide'}
+
+# For some things, like fitting ARMA models and forecasting with them, 
+# it's easier to work with "ts"-objects rather than "xts"-objects:
 
 # Create ts-object:
 vUSdeathsGrowthTS = ts(vUSdeathsGrowth,start = c(19373,2), frequency = 12) 
@@ -560,9 +563,9 @@ plot(mForecasts,PI = TRUE,showgap = FALSE,shaded = TRUE)
 
 ```
 
-Work with reduced-form VARs:
-
 ```{r, results=FALSE}
+
+# Work with reduced-form VARs:
 
 library(vars)
 mData = data.frame(US=vUSdeathsGrowth, UK=vUKdeathsGrowth)
@@ -583,9 +586,9 @@ predict(modelVAR,n.ahead = 5, level = c(90,95))
 
 ```
 
-Simulate ARIMA models:
-
 ```{r, results=FALSE}
+
+# Simulate ARIMA models:
 
 arima.sim(list("ar"=c(0.7,0.2)), n = 50*4, rand.gen = rnorm) 
 # can also supply innovations manually; see ? arima.sim

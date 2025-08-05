@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -77,9 +77,9 @@ cat("\014")	# delete everything in console
 
 ## Lists
 
-A list is like a vector whose elements can be of different types. For example:
-
 ```{r}
+
+# A list is like a vector whose elements can be of different types. For example:
 
 # Create list:
 list(1,2,3,"a") 
@@ -97,13 +97,18 @@ lMyList = list(1, "a", c(1:3))
 typeof(lMyList)
 is.list(lMyList)
 
+
+# Lists are useful for saving a collection of objects, like matrices or plots, into one object, 
+# rather than creating many separate ones. 
+# They are also useful for keeping the workspace tidy in longer codes. 
+# Both of these things are discussed below under "Workspace Management".
+
 ```
 
-Lists are useful for saving a collection of objects, like matrices or plots, into one object, rather than creating many separate ones. They are also useful for keeping the workspace tidy in longer codes. Both of these things are discussed below under "Workspace Management".
-
-Indexing:
 
 ```{r results=FALSE}
+
+# Indexing:
 
 # Again, as before with vectors, there are three ways to index this list:
 
@@ -123,9 +128,9 @@ names(lMyList) # return the names
 
 ```
 
-Modify list:
-
 ```{r results=FALSE}
+
+# Modify list:
 
 # change first element:
 lMyList[1] = 2
@@ -135,15 +140,17 @@ append(lMyList,"7")
 
 ```
 
-
 <br>
 
 ## Dataframes
 
-Another important object in R is a dataframe. Just like a list is akin to a vector that can contain elements of different types, a dataframe is akin to a matrix that can contain columns of different types. This makes dataframes suitable to store datasets:
-
 
 ```{r}
+
+# Another important object in R is a dataframe. 
+# Just like a list is akin to a vector that can contain elements of different types, 
+# a dataframe is akin to a matrix that can contain columns of different types. 
+# This makes dataframes suitable to store datasets:
 
 dfA = data.frame(a = c(10,20,30), b = c("RA", "RB", "RC"))
 
@@ -188,9 +195,9 @@ dim(dfA)[2] #same
 
 ```
 
-Indexing dataframes is akin to indexing matrices:
-
 ```{r results=FALSE}
+
+# Indexing dataframes is akin to indexing matrices:
 
 # access second column,
 #i.e. column "b":
@@ -226,9 +233,9 @@ dfA[c(FALSE,FALSE,TRUE),c(FALSE,TRUE)] # same
 
 ```
 
-Modification:
-
 ```{r results=FALSE}
+
+# Modification:
 
 # Adding/deleting rows:
 
@@ -268,11 +275,10 @@ dfA[,!colnames(dfA) %in% c("d")]
 
 ```
 
-
-To introduce further commands to deal with dataframes, we load a dataset (dataframe) that is pre-stored in R. It contains various measures for 32 different cars.
-
-
 ```{r results=FALSE}
+
+# To introduce further commands to deal with dataframes, 
+# we load a dataset (dataframe) that is pre-stored in R. It contains various measures for 32 different cars.
 
 # Load dataset:
 
@@ -347,9 +353,11 @@ data = dummy_cols(mtcars,select_columns=c("cyl","gear"))
 
 ```
 
-Let's see how to merge different datasets, transform them into different formats and apply a function to different observations at once (different units, years, etc.). For this, consider the following example involving (made up) grades for famous basketball players:
-
 ```{r results=FALSE, error=TRUE}
+
+# Let's see how to merge different datasets, transform them into different formats 
+# and apply a function to different observations at once (different units, years, etc.). 
+# For this, consider the following example involving (made up) grades for famous basketball players:
 
 dfExamMidterm2022 <- data.frame(familyName = c("Jokic", "Doncic", "Jovic", "Bogdanovic", "Bogdanovic"), 
                     firstName= c("Nikola", "Luka", "Nikola", "Bogdan","Bojan"),
@@ -482,9 +490,9 @@ summaryBy(value ~ familyName + firstName + year, FUN=function(x){sum(is.na(x)==F
 ```
 
 
-Deal with missing values:
-
 ```{r results=FALSE}
+
+# Deal with missing values:
 
 # Find observations/rows with missings:
 

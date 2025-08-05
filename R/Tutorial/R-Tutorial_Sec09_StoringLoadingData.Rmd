@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -73,9 +73,9 @@ cat("\014")	# delete everything in console
 
 ```
 
-The following commands are useful for writing a dataframe to a file:
-
 ```{r, eval=FALSE}
+
+# The following commands are useful for writing a dataframe to a file:
 
 dfA = data.frame(a = c(10,20,30), b = c("RA", "RB", "RC"))
 dfB = data.frame(a = c(10,20,30), b = c("RA", "RB", "RC"))
@@ -110,9 +110,10 @@ saveWorkbook(wb, "myfile.xlsx", overwrite = TRUE)
 
 ```
 
-The following commands are useful for reading-in files (datasets) into R:
-
 ```{r, eval=FALSE}
+
+
+# The following commands are useful for reading-in files (datasets) into R:
 
 
 # Read in .csv file:
@@ -150,10 +151,14 @@ download.file("https://api.census.gov/data/1994/cps/basic/jan?tabulate=weight(PW
 
 ```
 
-
-In my experience, due to type conversion issues, it's much easier to work with csv files than with excel (xlsx) files in R. So you might want to convert any xlsx files you need first manually into csv files. (You can also do basic adjustments (like deleting unnecessary rows) manually in the xlsx/csv file, though this is discouraged, as you would like others to be able to replicate your whole data-manipulation process and therefore verify your work.)
-
 ```{r, eval=FALSE}
+
+# In my experience, due to type conversion issues, 
+# it's much easier to work with csv files than with excel (xlsx) files in R. 
+# So you might want to convert any xlsx files you need first manually into csv files. 
+# (You can also do basic adjustments (like deleting unnecessary rows) manually in the xlsx/csv file, 
+# though this is discouraged, as you would like others to be able to replicate 
+# your whole data-manipulation process and therefore verify your work.)
 
 # If you have to load an xlsx file and some of its columns are not recognized as a numeric by R (but as a factor), 
 # this can be useful:

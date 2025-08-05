@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -73,9 +73,13 @@ cat("\014")	# delete everything in console
 
 ```
 
-A path is the location on your computer (think of a folder) which R uses to look for datasets you call and to store things you tell it to store. Here's how we can define and change the path (note that, in order to run this code, you need to insert paths that work for your own computer):
-
 ```{r, eval=FALSE}
+
+
+# A path is the location on your computer (think of a folder) 
+# which R uses to look for datasets you call and to store things you tell it to store. 
+# Here's how we can define and change the path 
+# (note that, in order to run this code, you need to insert paths that work for your own computer):
 
 
 # Have a look at the folder (path) that R is currently in:
@@ -112,9 +116,9 @@ setwd('~/Dropbox/OurSpecialFolder')
 
 ```
 
-We can also use R to create and delete folders in our path (i.e. on our computer):
-
 ```{r, eval=FALSE}
+
+# We can also use R to create and delete folders in our path (i.e. on our computer):
 
 # List all folders in the current path:
 dir() 

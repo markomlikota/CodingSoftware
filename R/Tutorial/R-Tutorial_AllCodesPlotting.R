@@ -1,79 +1,15 @@
----
-title: 'R: Tutorial & Command-Collection'
-subtitle: '(for applications in economics)'
-author: "Marko Mlikota, https://markomlikota.github.io"
-output:
-  html_document: 
-    fig_width: 6
-    fig_height: 3.75
-    fig_caption: true
-    highlight: zenburn
-    toc: false
-    toc_depth: 1
-    toc_float: true
-    number_sections: false
-    css: style.css
-  pdf_document:
-    fig_width: 6
-    fig_height: 3.75
-    fig_caption: true
-    highlight: zenburn
----
+# R: Tutorial & Code-Collection
+# (all codes in single .R-file)
+
+# Marko Mlikota, https://markomlikota.github.io
 
 
-<style type="text/css">
-body, td {
-   font-size: 18px;
-}
-code.r{
-  font-size: 16px;
-}
-pre {
-  font-size: 16px
-}
-h1 {
-  font-size: 35px;
-  margin: 60px 0px 30px 0px;
-}
-h2 {
-  font-size: 25px;
-}
-#TOC {
-  color: black; 
-}
-
-</style>
-
-<script>
-  var height=$('#primary').height(); // Calculate primary wrapper height
-  $('#secondary').height(height); // Set the height it to sidebar
-</script>
+# ------------------------------------------------------------------------------
 
 
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(results=TRUE)
-knitr::opts_chunk$set(warning=FALSE)
-knitr::opts_chunk$set(message=FALSE)
-knitr::opts_chunk$set(tidy=TRUE)
-knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
-#knitr::opts_chunk$set(fig.width=5, fig.height=3)
-```
-
-
-# Plotting
-
-```{r, echo=FALSE}
-
-rm(list = ls()) # delete everything in workspace/environment
-cat("\014")	# delete everything in console     
-
-
-```
-
-```{r, results=FALSE}
+# ------------------------------------------------------------------------------
+# 12 PLOTTING
+# ------------------------------------------------------------------------------
 
 # A primary reason behind the popularity of R is the fact that one can create plots very flexibly. 
 # Before we discuss more advanced plotting-techniques based on the package "ggplot2", 
@@ -102,12 +38,9 @@ library(carData)
 data(Hartnagel)
 data(mtcars)
 
-```
 
+# --- Simple Plots Based on Built-In-Functions ---------------------------------
 
-## Simple Plots Based on Built-In-Functions
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Plot single line:
 
@@ -148,9 +81,7 @@ plot(vx, vNormPDF, type='l', yaxt='n')
 plot(vx, vNormPDF, type='l', xaxt='n') 
 # (these commands make more sense if the corresponding axis-label is also deleted)
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # With package "latex2exp", we can add math to labels (x-lab, y-lab, title):
 
@@ -162,9 +93,7 @@ plot(vx, vNormPDF, type='l', xlab=sXlab,ylab="",main=sTitle)
 # The latex-part of the expression starts and ends with a dollar sign.
 # The code is just as in latex, except that one has to use two backlashes to call latex-symbols.
 
-```
 
-```{r}
 
 # Taken together, nice single-line plot:
 
@@ -172,9 +101,7 @@ plot(vx, vNormPDF, type='l', col='blue', lwd=4,
      main="my pretty plot of N(4,4)", xlab="", ylab="", yaxt='n',
      ylim=c(0,0.22), xlim=c(-1,8)) 
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # We can easily add further lines to such an existing plot:
 
@@ -192,9 +119,7 @@ abline(v=3,col='green')  # add vertical line at x=3
 abline(h=0.08,col='gray') # add horizontal line at y=0.08
 abline(a = -0.2, b = 0.1, col = "orange") # add line with specific intercept and slope
 
-```
 
-```{r}
 
 # Taken together, nice lines plot:
 
@@ -203,9 +128,7 @@ plot(vx, vNormPDF, type='l', col='blue', lwd=4,
      ylim=c(0,0.3), xlim=c(-1,8)) 
 lines(vx, vChi2PDF, type='l', col='red', lwd=4) 
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Note that we can also directly plot a function, 
 # without first manually specifying a grid of x-values and evaluating the function at those values:
@@ -221,10 +144,8 @@ plot(exp, xlim=c(1,3))
 
 # Of course, all of the options discussed above can also be applied for these plots.
 # They also work for all of the plots discussed below (scatter, histogram, boxplot, ...).
-```
 
 
-```{r, eval=FALSE}
 
 # Saving a plot as a .png or .pdf file:
 
@@ -248,12 +169,10 @@ dev.off()
 # Note that it is not possible, without rather complicated adjustments, to save such a plot as an object.
 # This is different for plots created via "ggplot2".
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Scatter-Plot:
-	
+
 # To obtain a scatter plot, simply specify two vectors (as before) 
 # and use dots rather than a line as markers:
 plot(mNormDraws[,1],mNormDraws[,2])
@@ -275,9 +194,7 @@ abline(lm(mNormDraws[,3] ~ mNormDraws[,1]), col = 'red')
 
 # Should enlarge x- and y-axis to make this more appealing.
 
-```
 
-```{r}
 
 # Taken together, nice scaatter-plot:
 
@@ -288,9 +205,7 @@ points(mNormDraws[,1],mNormDraws[,3], col='red', pch=4, lwd=2)
 abline(lm(mNormDraws[,2] ~ mNormDraws[,1]), col = 'blue')
 abline(lm(mNormDraws[,3] ~ mNormDraws[,1]), col = 'red')
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Histogram:
 
@@ -314,18 +229,14 @@ hist(mNormDraws[,1],breaks=seq(-2,6,by=0.5))
 hist(mNormDraws[,1],breaks=8)
 # (doesn't work perfectly; R uses it only as suggestion; see ?hist)
 
-```
 
-```{r}
 
 # Taken together, nice histogram:
 
 hist(mNormDraws[,1],breaks=seq(-1,5,by=0.5), col='blue', border='white',
      main="my pretty histogram of Normal draws", xlab="", ylab="")
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Boxplot:
 
@@ -346,18 +257,14 @@ boxplot(mNormDraws)
 boxplot(hp ~ cyl, data=mtcars, xlab="cyls",ylab="",main="Boxplot of HP by #cyls") 
 # (rather than first manually creating vectors that show hp for each value of cyl)
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # QQ-Plot:
 
 qqnorm(vtPDF, xlab = "N(0,1)", ylab = "t(10)", col = "blue")
 qqline(vtPDF, col="red")
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Display multiple plots as panels in a single figure:
 
@@ -390,18 +297,12 @@ abline(lm(mNormDraws[,2] ~ mNormDraws[,1]), col = 'blue')
 mtext("Bivariate Normal Draws", outer = TRUE, cex = 1.5)
 par(mfrow = c(1, 1))
 
-```
 
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Empty plot: (useful when creating e.g. a plot with 3 x 3 subplots and you have only 8 plots)
 plot(c(0,0),type='n',ylab="",xlab="",axes=FALSE)
 
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 
 # Plotting xts objects:
@@ -435,13 +336,8 @@ plot(cbind(vInfl,vGDPg), main = "Inflation & GDP Growth")
 # plot(vInfl, main = "Inflation & GDP Growth", yaxis.right = FALSE)
 # lines(vGDPg, col='red', yaxis.right = FALSE)
 
-```
 
-
-## Plots Based on "ggplot2"
-
-```{r, results=FALSE, fig.show='hide'}
-
+# --- Plots Based on "ggplot2" -------------------------------------------------
 
 # With the package "ggplot2", one has much more flexibility in creating plots.
 
@@ -453,22 +349,14 @@ plot(cbind(vInfl,vGDPg), main = "Inflation & GDP Growth")
 # (A further popular package for plotting in R is "plotly". 
 # However, in my view "ggplot2" is better in all aspects except for creating interactive plots.)
 
-```
 
-
-### Single-Line Plot
-
-```{r, results=FALSE, fig.show='hide'}
-
+# ------ Single-Line Plot ------------------------------------------------------
 
 
 library(ggplot2)
 
 mData = data.frame(xvar=vx,norm=vNormPDF)
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Plot single line based on two vectors:
 
@@ -490,16 +378,13 @@ ggplot(data=mData) + geom_line(aes(x=xvar, y = norm), color='blue', size=0.9, li
 # Add further options with pluses: 
 ggplot(data=mData) + geom_line(aes(x=xvar, y = norm), color='blue', size=0.9) +
 	labs(x="my x-lab", y="my y-lab", title= "my title") +
-  theme_bw() + theme(aspect.ratio=5/8)
+	theme_bw() + theme(aspect.ratio=5/8)
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Save plot to object:
 
 pp1 = ggplot(data=mData) + geom_line(aes(x=xvar, y = norm), color='blue', size=0.9) +
-  labs(x="my x-lab", y="my y-lab", title= "my title") 
+	labs(x="my x-lab", y="my y-lab", title= "my title") 
 
 # Then, can add further options to already existing plot:
 pp1 + theme_bw() + theme(aspect.ratio=5/8)
@@ -512,18 +397,16 @@ pp = pp1 + theme_bw() + theme(aspect.ratio=5/8)
 # Instead of typing them every time, store them as a list and call them at once all together:
 
 plotOptions = list(
-  theme_bw(), 
-  theme(aspect.ratio=5/8) 
-  )
+	theme_bw(), 
+	theme(aspect.ratio=5/8) 
+)
 
 # Show the plot "pp" with these options:
 pp1 + plotOptions
 # Add these options to plot "pp1":
 pp1 = pp1 + plotOptions
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Save plot as .png or .pdf file:
 
@@ -539,9 +422,6 @@ ggsave("myprettyplot.png",width=15,height=15*(8/5),units="cm")
 # Note: for inclusion in latex-document, save plot best as pdf
 
 
-```
-
-```{r, results=FALSE, fig.show='hide'}
 
 # As before, can have latex-code for labels: 
 
@@ -550,22 +430,17 @@ library(latex2exp)
 sXlab = TeX("$\\theta_t $ (I made it up)")
 sTitle = TeX("$ f(\\theta_t) $")
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 pp1 + labs(x=sXlab, y="", title=sTitle)
 
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # There are many more options to customize the x-axis, y-axis and title:
 
 # Adjust limits and ticks of x-axis and limits of y-axis: 
 pp + 
-  scale_x_continuous(breaks=seq(-1,8,3), limits=c(-1,8)) +
+	scale_x_continuous(breaks=seq(-1,8,3), limits=c(-1,8)) +
 	scale_y_continuous(limits=c(0,0.25))
 
 # Equivalent to the latter option:
@@ -625,9 +500,6 @@ pp + theme( plot.title = element_text(family = "sans", size = 14, margin=margin(
 # (instead of margin, can also specify vjust and hjust)
 
 
-```
-
-```{r, results=FALSE, fig.show='hide'}
 
 # If you have time on the x-axis, use the option "scale_x_date()" rather than "scale_x_manual()":
 
@@ -651,23 +523,23 @@ mDataTS = data.frame(date=index(vGDPg), GDPgrowth=as.numeric(vGDPg), inflation=a
 
 # Plot GDP growth:
 ppTS = ggplot(mDataTS) + geom_line(aes(x=date,y=GDPgrowth),size=0.9) +
-          scale_x_date(date_labels = "%Y", 
-                       date_breaks="2 years", 
-                       limits=as.Date(c("2000-01-01", "2020-01-01")))
+	scale_x_date(date_labels = "%Y", 
+		     date_breaks="2 years", 
+		     limits=as.Date(c("2000-01-01", "2020-01-01")))
 
 
 # Sometimes, the breaks don't appear as desired. e.g.
 ppTS = ggplot(mDataTS) + geom_line(aes(x=date,y=GDPgrowth),size=0.9) +
-          scale_x_date(date_labels = "%Y", 
-                       date_breaks="5 years", 
-                       limits=as.Date(c("2000-01-01", "2025-01-01")))
+	scale_x_date(date_labels = "%Y", 
+		     date_breaks="5 years", 
+		     limits=as.Date(c("2000-01-01", "2025-01-01")))
 # In such cases, it's a good idea to set "breaks" rather than "date_breaks",
 # for which it's useful to load package "lubridate":
 library(lubridate)
 ppTS = ggplot(mDataTS) + geom_line(aes(x=date,y=GDPgrowth),size=0.9) +
-          scale_x_date(date_labels = "%Y", 
-                       breaks = seq(ymd("2000/01/01"), ymd("2025/01/01"), by = "5 years"),
-                       limits=as.Date(c("2000-01-01", "2025-01-01"))) 
+	scale_x_date(date_labels = "%Y", 
+		     breaks = seq(ymd("2000/01/01"), ymd("2025/01/01"), by = "5 years"),
+		     limits=as.Date(c("2000-01-01", "2025-01-01"))) 
 
 
 # The comments from the section on string-dates above apply;
@@ -675,10 +547,6 @@ ppTS = ggplot(mDataTS) + geom_line(aes(x=date,y=GDPgrowth),size=0.9) +
 # you must first change them to this format using the command "as.Date()". e.g.
 as.Date("31.01.2020", "%d.%m.%Y") 
 
-
-```
-  
-```{r, eval=FALSE, fig.show='hide'}
 
 
 # Further useful options: 
@@ -692,7 +560,7 @@ pp + theme(panel.border = element_blank())
 
 # Remove panel border but add x- and y-axis lines:
 pp + theme(panel.border = element_blank()) +
-     theme(axis.line = element_line(color = "black",size=0.2)) 
+	theme(axis.line = element_line(color = "black",size=0.2)) 
 
 
 # Add margins of 1cm all around plot:
@@ -705,8 +573,8 @@ pp +  theme(plot.margin = unit(c(1,1,1,1), "cm"))
 pp + geom_ribbon(aes(ymin=vNormPDF*0.9, ymax=vNormPDF*1.1, x=vx), alpha=0.2, fill='blue')
 # Note. can add several layers:
 pp + 
-  geom_ribbon(aes(ymin=vNormPDF*0.9, ymax=vNormPDF*1.1, x=vx), alpha=0.2, fill='blue') +
-  geom_ribbon(aes(ymin=vNormPDF*0.8, ymax=vNormPDF*1.2, x=vx), alpha=0.2, fill='blue')
+	geom_ribbon(aes(ymin=vNormPDF*0.9, ymax=vNormPDF*1.1, x=vx), alpha=0.2, fill='blue') +
+	geom_ribbon(aes(ymin=vNormPDF*0.8, ymax=vNormPDF*1.2, x=vx), alpha=0.2, fill='blue')
 
 
 # Annotate text at given (x,y)-point:
@@ -720,9 +588,7 @@ ppTS + annotate("text",label="abc",x=as.Date("2003-01-31"),y=0.1)
 # Flip axes:
 pp + coord_flip()
 
-```
 
-```{r, eval=FALSE}
 
 # Note that the options can be combined, 
 # and they must be if they belong to the same option-command;
@@ -737,53 +603,45 @@ theme( panel.border = element_blank(), axis.title.x = element_text(size=12) )
 # Sometimes when the same option is called several times, 
 # the order how they are called can change the outcome.
 
-```
 
-```{r}
 
 # Taken together, nice single-line plots:
 
 plotOptions = list(
-  theme_bw(), 
-  theme(aspect.ratio=5/8,
-          axis.title.x = element_text(size=12), 
-          axis.title.y = element_text(size=12),
-          axis.text.x = element_text(size=12), 
-          axis.text.y = element_text(size=12),
-          panel.grid.major = element_blank(), 
-          panel.grid.minor = element_blank(),
-          plot.title = element_text(family = "sans", size = 14)
-        )
-  )
+	theme_bw(), 
+	theme(aspect.ratio=5/8,
+	      axis.title.x = element_text(size=12), 
+	      axis.title.y = element_text(size=12),
+	      axis.text.x = element_text(size=12), 
+	      axis.text.y = element_text(size=12),
+	      panel.grid.major = element_blank(), 
+	      panel.grid.minor = element_blank(),
+	      plot.title = element_text(family = "sans", size = 14)
+	)
+)
 
 ggplot(data=mData) + plotOptions +
-  geom_line(aes(x=xvar, y = norm), color='blue', size=0.9) +
-	  labs(x=sXlab, y="", title= sTitle) +
-    scale_x_continuous(breaks=seq(-1,8,3), limits=c(-1,8)) +
-	  scale_y_continuous(limits=c(0,0.25)) + 
-      geom_ribbon(aes(ymin=vNormPDF*0.9, ymax=vNormPDF*1.1, x=vx), alpha=0.2, fill='blue') +
-      geom_ribbon(aes(ymin=vNormPDF*0.8, ymax=vNormPDF*1.2, x=vx), alpha=0.2, fill='blue') 
+	geom_line(aes(x=xvar, y = norm), color='blue', size=0.9) +
+	labs(x=sXlab, y="", title= sTitle) +
+	scale_x_continuous(breaks=seq(-1,8,3), limits=c(-1,8)) +
+	scale_y_continuous(limits=c(0,0.25)) + 
+	geom_ribbon(aes(ymin=vNormPDF*0.9, ymax=vNormPDF*1.1, x=vx), alpha=0.2, fill='blue') +
+	geom_ribbon(aes(ymin=vNormPDF*0.8, ymax=vNormPDF*1.2, x=vx), alpha=0.2, fill='blue') 
 
 ggplot(mDataTS) + plotOptions +
-  geom_line(aes(x=date,y=GDPgrowth),color="blue", size=0.9) +
-    labs(x="", y="", title="US GDP Growth (quarterly, annualized)") +
-          scale_y_continuous(breaks=seq(-30,30,by=10)) +
-          scale_x_date(date_labels = "%Y", 
-                       breaks = seq(ymd("2000/01/01"), ymd("2025/01/01"), by = "5 years"),
-                       limits=as.Date(c("2000-01-01", "2025-01-01"))) 
-
-```
+	geom_line(aes(x=date,y=GDPgrowth),color="blue", size=0.9) +
+	labs(x="", y="", title="US GDP Growth (quarterly, annualized)") +
+	scale_y_continuous(breaks=seq(-30,30,by=10)) +
+	scale_x_date(date_labels = "%Y", 
+		     breaks = seq(ymd("2000/01/01"), ymd("2025/01/01"), by = "5 years"),
+		     limits=as.Date(c("2000-01-01", "2025-01-01"))) 
 
 
-### Scatter-Plot
+# ------ Scatter-Plot ----------------------------------------------------------
 
-```{r, results=FALSE, fig.show='hide'}
 
 mData = data.frame(norm1=mNormDraws[,1],norm2=mNormDraws[,2])
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 
 # A scatter plot is created analogously to a line plot. 
@@ -803,12 +661,12 @@ ggplot(data=mData) + geom_point(aes(x=norm1, y = norm2))
 # Change marker appearance:
 
 pp1 = ggplot(data=mData) + 
-  geom_point(aes(x=norm1, y = norm2), size=1.5, shape=4, color="blue")
+	geom_point(aes(x=norm1, y = norm2), size=1.5, shape=4, color="blue")
 # see http://sape.inf.usi.ch/quick-reference/ggplot2/shape for shapes available
 
 # Some markers (21 - 25) allow for filling:
 pp2 = ggplot(data=mData) + 
-  geom_point(aes(x=norm1, y = norm2), size=1.5, shape=21, color="blue", fill="blue")
+	geom_point(aes(x=norm1, y = norm2), size=1.5, shape=21, color="blue", fill="blue")
 
 
 # Can of course add all other options from above, e.g.
@@ -840,25 +698,18 @@ pp1 + geom_smooth(aes(x=norm1, y=norm2), method=lm, se=FALSE, size=1, color = "b
 pp1 + geom_smooth(aes(x=norm1, y=norm2), method=lm, se=TRUE, level=0.9, size=1, color = "black", linetype="dotted")
 # (note: single linear regression with homoskedasticity...)
 
-```
 
-```{r}
 
 # Taken together, nice scatter plot:
 
 ggplot(data=mData) +
-  geom_point(aes(x=norm1, y = norm2), size=2, shape=21, color="blue", fill="blue") + 
-  geom_smooth(aes(x=norm1, y=norm2), method=lm, se=FALSE, size=0.5, color = "darkblue", linetype="solid") + 
-  labs(x="first Normal",y="second Normal",title="Scatter of Bivariate Normal Draws") + 
-  plotOptions
+	geom_point(aes(x=norm1, y = norm2), size=2, shape=21, color="blue", fill="blue") + 
+	geom_smooth(aes(x=norm1, y=norm2), method=lm, se=FALSE, size=0.5, color = "darkblue", linetype="solid") + 
+	labs(x="first Normal",y="second Normal",title="Scatter of Bivariate Normal Draws") + 
+	plotOptions
 
 
-```
-
-
-### Plot With Multiple Lines
-
-```{r, results=FALSE, fig.show='hide'}
+# ------ Plot With Multiple Lines ----------------------------------------------
 
 
 # Rather than supplying several vectors, 
@@ -869,31 +720,22 @@ mData = data.frame(xvar=vx, norm=vNormPDF,chi2=vChi2PDF, t=vtPDF)
 # Note: the names of the different variables will be the line-labels. 
 # They are a bit more difficult to change than the labels of the x- and y-axes.
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
-
 
 # TWO LINES
 
 
 ggplot(mData, aes(x=xvar)) + 
-  geom_line(aes(y=norm)) +
-  geom_line(aes(y=t))
+	geom_line(aes(y=norm)) +
+	geom_line(aes(y=t))
 
 # we should distinguish the different lines by color or shape or linetype; 
 # e.g.
 ggplot(mData, aes(x=xvar)) + 
-  geom_line(aes(y=norm), color="blue") +
-  geom_line(aes(y=t), color="red")
-
-```
-
-```{r, results=FALSE, fig.show='hide'}
+	geom_line(aes(y=norm), color="blue") +
+	geom_line(aes(y=t), color="red")
 
 
 # MANY (>=3) LINES
-
 
 # In this case, it's best to first put the dataframe into long format,
 # (as there could be many lines, 
@@ -905,9 +747,6 @@ mDat = melt(mData, id.vars="xvar")
 # the different variables are now distinguished in the column "variable", 
 # and their values are shown in the column "value"
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Plot the three lines, distinguishing them by color:
 ggplot(mDat, aes(x=xvar, y=value, group=variable)) +
@@ -929,7 +768,7 @@ ggplot(mDat, aes(x=xvar, y=value, group=variable)) +
 # Of course, we can also just add the same markers for all lines:
 ggplot(mDat, aes(x=xvar, y=value, group=variable)) +
 	geom_line(aes(color=variable), size=0.9) +
-  geom_point(aes(color=variable),shape=1)
+	geom_point(aes(color=variable),shape=1)
 
 
 # Set linetypes manually:
@@ -948,7 +787,7 @@ ppL + scale_linetype_manual(values=c("solid", "dashed", "dotdash"))
 # When setting linetypes manually, 
 # can specify/change line labels:
 ppL + scale_linetype_manual(values=c("solid", "dashed", "dotdash"), 
-                            labels=c("mycurve1", "mycurve2", "mycurve3"))
+			    labels=c("mycurve1", "mycurve2", "mycurve3"))
 
 
 # Set colors manually:
@@ -960,11 +799,8 @@ ppC + scale_color_manual(values=c("blue","red","purple"))
 
 # again can specify/change line labels:
 ppC + scale_color_manual(values=c("blue","red","purple"),
-                         labels=c("mycurve1", "mycurve2", "mycurve3"))
+			 labels=c("mycurve1", "mycurve2", "mycurve3"))
 
-```
-
-```{r, results=FALSE, fig.show='hide'}
 
 # more choice of colors is given by package "colorspace":
 library(colorspace)  
@@ -972,24 +808,16 @@ library(colorspace)
 # take three colors (evenly spaced) from palette "Blues 2":
 vMyColors = sequential_hcl(3, palette = "Blues 2") 
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 ppC + scale_color_manual(values=vMyColors)
 
-```
-
-```{r, results=FALSE, fig.show='hide'}
 
 # to avoid too light first color, construct a vector with more colors,
 # and then take the few ones you need from 
 # the beginning and middle of the colorspace:
 vMyColors = sequential_hcl(7, palette = "Blues 2")[c(1,3,5)]
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 ppC + scale_color_manual(values=vMyColors)
 
@@ -999,7 +827,7 @@ ppC + scale_color_manual(values=vMyColors)
 ppCM = ggplot(mDat, aes(x=xvar, y=value, group=variable)) +
 	geom_line(aes(color=variable),size=0.5) +
 	geom_point(aes(color=variable),size=1) +
-  plotOptions
+	plotOptions
 
 ppCM + scale_color_manual(values=vMyColors)
 
@@ -1009,18 +837,15 @@ ppCM + scale_color_manual(values=vMyColors)
 ppM = ggplot(mDat, aes(x=xvar, y=value, group=variable)) +
 	geom_line(aes(color=variable),size=0.5) +
 	geom_point(aes(color=variable, shape=variable),size=1) +
-  plotOptions
+	plotOptions
 
 ppM + scale_shape_manual(values=c(7,9,24))
 
 ppM + scale_shape_manual(values=c(7,9,24),
-                         labels=c("mycurve1", "mycurve2", "mycurve3"))
+			 labels=c("mycurve1", "mycurve2", "mycurve3"))
 # see http://sape.inf.usi.ch/quick-reference/ggplot2/shape for shapes available
 
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Legend options:
 
@@ -1064,24 +889,17 @@ ppC + theme( legend.position=c(0.5, 0.5))
 ppC + theme( legend.position=c(0.5, 0.5), legend.background=element_rect(fill = alpha("white", 0.0)) ) 
 
 
-```
-
-```{r}
 
 # Taken together, nice multiple-line plot:
 
 ggplot(mDat, aes(x=xvar, y=value, group=variable)) +
 	geom_line(aes(color=variable), size=0.9) + plotOptions + 
-  scale_color_manual(values=vMyColors) +
-  theme( legend.title=element_blank(), legend.position=c(0.8, 0.75) ) +
-  labs(x="",y="",title="Three Important Distributions")
+	scale_color_manual(values=vMyColors) +
+	theme( legend.title=element_blank(), legend.position=c(0.8, 0.75) ) +
+	labs(x="",y="",title="Three Important Distributions")
 
-```
+# ------ Scatter-plot with multiple variables ----------------------------------
 
-
-### Scatter-plot with multiple variables
-
-```{r, results=FALSE, fig.show='hide'}
 
 # Analogous to above, just with geom_point instead of geom_line option.
 
@@ -1092,14 +910,11 @@ colnames(mData) = c("norm1","norm2","norm3")
 
 # Melt to long format:
 mDat = melt(mData,id.vars = "norm1") 
- 
+
 # Note: variable taken here as id.var will be on x-axis.
 # In a scatter plot, this could in principle be any variable.
 # (In contrast, under the line plot, it was clear what the x-axis is.)
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Plot, distinguishing variables by markers:
 
@@ -1121,7 +936,7 @@ ggplot(mDat, aes(x=norm1, y=value, group=variable)) +
 
 ppMS = ggplot(mDat, aes(x=norm1, y=value, group=variable)) +
 	geom_point(aes(color=variable, shape=variable), size=2) +
-  plotOptions
+	plotOptions
 
 
 # Specify marker-shapes and colors manually:
@@ -1130,7 +945,7 @@ ppMS + scale_color_manual(values=vMyColors) + scale_shape_manual(values=c(1,4))
 
 # Also re-label variables:
 ppMS + scale_color_manual(values=vMyColors, labels=c("1st Normal","2nd Normal")) + 
-  scale_shape_manual(values=c(1,4), labels=c("1st Normal","2nd Normal"))
+	scale_shape_manual(values=c(1,4), labels=c("1st Normal","2nd Normal"))
 # (note: just doing it in one of the two options will produce two legends)
 
 # Note: when distinguishing by color,
@@ -1147,28 +962,20 @@ ggplot(mDat, aes(x=norm1, y=value, group=variable)) +
 	geom_point(aes(color=variable,fill=variable), size=2, shape=24)
 
 
-```
-
-```{r}
 
 # Nice, final scatter-plot with multiple variables:
 
 ggplot(mDat, aes(x=norm1, y=value, group=variable)) +
 	geom_point(aes(color=variable), size=2) +
-  scale_color_manual(values=c("blue","red"), labels=c("2nd Normal","3rd Normal")) +
-  plotOptions +
-  scale_y_continuous(limits=c(0,12),breaks=c(0,4,8,12)) +
-  theme( legend.title=element_blank(), legend.position=c(0.8, 0.15) ) +
-  labs(x="1st Normal",y="",title="Multivariate Normal Draws (k=3)")
+	scale_color_manual(values=c("blue","red"), labels=c("2nd Normal","3rd Normal")) +
+	plotOptions +
+	scale_y_continuous(limits=c(0,12),breaks=c(0,4,8,12)) +
+	theme( legend.title=element_blank(), legend.position=c(0.8, 0.15) ) +
+	labs(x="1st Normal",y="",title="Multivariate Normal Draws (k=3)")
 
 
 
-```
-
-
-### "Grouped" Scatter-Plot
-
-```{r, eval=FALSE, fig.show='hide'}
+# ------ "Grouped" Scatter-Plot ------------------------------------------------
 
 
 # Above, we plotted three variables in a single scatter plot, 
@@ -1191,9 +998,6 @@ ggplot(mDat, aes(x=norm1, y=value, group=variable)) +
 ggplot(mtcars, aes(x=mpg, y=hp, group=cyl)) +
 	geom_point(aes(color=cyl))
 
-```
-
-```{r, results=FALSE, fig.show='hide'}
 
 # Note that R thinks of cyl as a continuous variable, even though it takes only three values.
 # To fix that, code it as type "character" rather than "numeric":
@@ -1201,17 +1005,15 @@ ggplot(mtcars, aes(x=mpg, y=hp, group=cyl)) +
 mtcars2 = mtcars # create new dataframe..
 mtcars2$cyl = as.character(mtcars2$cyl) #.. in which cyl is of type character
 
-```
 
-```{r, eval=FALSE, fig.show='hide'}
 
 ppMS = ggplot(mtcars2, aes(x=mpg, y=hp, group=cyl)) +
 	geom_point(aes(color=cyl))
 
 # We can change the colors as above; e.g.
 ppMS + scale_color_manual(values=vMyColors, 
-                          labels=c("4 cyl.","6 cyl.","8 cyl."))
-  
+			  labels=c("4 cyl.","6 cyl.","8 cyl."))
+
 
 # Also, could of course distinguish points for different numbers of cylinders 
 # by markers rather than colors (or both).
@@ -1235,32 +1037,25 @@ ppMS + scale_color_gradient(low="white",high="blue")
 # (if marker-shapes are specified that can be filled):
 ppMS = ggplot(mtcars, aes(x=mpg, y=hp, group=qsec)) +
 	geom_point(aes(color=qsec),shape=21) +
-  scale_color_gradient(low="white",high="blue") +
-  scale_fill_gradient(low="white",high="blue")
+	scale_color_gradient(low="white",high="blue") +
+	scale_fill_gradient(low="white",high="blue")
 
 
-```
-
-```{r}
 
 # Nice, final grouped scatter-plot:
 
 ggplot(mtcars, aes(x=mpg, y=hp, group=qsec)) +
 	geom_point(aes(color=qsec,fill=qsec),size=3,shape=21) + 
-  scale_color_gradient(low="white",high="blue") +
-  scale_fill_gradient(low="white",high="blue") +
-  plotOptions +
-  scale_y_continuous(limits=c(0,300),breaks=seq(0,300,by=100)) +
-  theme( legend.position="none" ) +
-  labs(title="A Nice Grouped-Scatter Plot")
+	scale_color_gradient(low="white",high="blue") +
+	scale_fill_gradient(low="white",high="blue") +
+	plotOptions +
+	scale_y_continuous(limits=c(0,300),breaks=seq(0,300,by=100)) +
+	theme( legend.position="none" ) +
+	labs(title="A Nice Grouped-Scatter Plot")
 
 
-```
+# ------ Histogram -------------------------------------------------------------
 
-
-### Histogram
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # SINGLE HISTOGRAM
 
@@ -1297,8 +1092,8 @@ ggplot(data=mData) + geom_histogram(aes(x=norm2,y=..density..), color="black", f
 # (here: add actual pdf of N(5,1))
 vThisNormPDF = dnorm(vx,5,1)
 ggplot() + 
-  geom_histogram(aes(x=mNormDraws[,2],y=..density..))+
-  geom_line(aes(x=vx,y=vThisNormPDF))
+	geom_histogram(aes(x=mNormDraws[,2],y=..density..))+
+	geom_line(aes(x=vx,y=vThisNormPDF))
 
 # Could also do this with dataframe, but then we need same number of draws
 # as "elements" in the vector that represents the line (here: function evaluations)
@@ -1309,102 +1104,78 @@ ggplot() +
 
 
 ggplot(data=mData) + 
-  geom_histogram(aes(x=norm2,y=..density..),color="blue",fill="blue",alpha=0.2) + 
-  geom_histogram(aes(x=norm3,y=..density..),color="red",fill="red",alpha=0.2) 
+	geom_histogram(aes(x=norm2,y=..density..),color="blue",fill="blue",alpha=0.2) + 
+	geom_histogram(aes(x=norm3,y=..density..),color="red",fill="red",alpha=0.2) 
 
 
 # A separate histogram of one variable for each value of some third variable:
 # e.g. a separate histogram of hp for each value of cyl, each with different color:
 
 ggplot(mtcars2, aes(x=hp, fill=cyl)) + 
-  geom_histogram(aes(x=hp, y = ..density.., color=cyl), position = 'identity')
+	geom_histogram(aes(x=hp, y = ..density.., color=cyl), position = 'identity')
 
 # Should make bars a bit transparent:
 ggplot(mtcars2, aes(x=hp, fill=cyl)) + 
-  geom_histogram(aes(x=hp, y = ..density.., color=cyl), position = 'identity', alpha=0.6)
-  
-
-```
+	geom_histogram(aes(x=hp, y = ..density.., color=cyl), position = 'identity', alpha=0.6)
 
 
-```{r}
 
 # Taken together, nice histogram plots:
 
 vThisNormPDF = dnorm(vx,5,1)
 
 ggplot() + plotOptions +
-  geom_histogram(aes(x=mNormDraws[,2],y=..density..), color="blue",fill="blue",alpha=0.2)+
-  geom_line(aes(x=vx,y=vThisNormPDF),color="purple") +
-  labs(x="",y="",title="Histogram of N(5,1) draws") +
-  theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
+	geom_histogram(aes(x=mNormDraws[,2],y=..density..), color="blue",fill="blue",alpha=0.2)+
+	geom_line(aes(x=vx,y=vThisNormPDF),color="purple") +
+	labs(x="",y="",title="Histogram of N(5,1) draws") +
+	theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
 
 ggplot(mtcars2, aes(x=hp, fill=cyl)) + plotOptions +
-  geom_histogram(aes(x=hp, y = ..density.., color=cyl), position = 'identity', alpha=0.6) +
-  theme( legend.title=element_blank(), legend.position=c(0.8, 0.75)) +
-  labs(x="",y="",title="Histogram of hp by cyl.") +
-  theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
+	geom_histogram(aes(x=hp, y = ..density.., color=cyl), position = 'identity', alpha=0.6) +
+	theme( legend.title=element_blank(), legend.position=c(0.8, 0.75)) +
+	labs(x="",y="",title="Histogram of hp by cyl.") +
+	theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
 
 
-```
+# ------ Bar-Plot --------------------------------------------------------------
 
-
-### Bar-Plot
-
-```{r, results=FALSE, fig.show='hide'}
 
 # Compute mean of Normal draws for each 
 # column of mNormDraws (dimension of multiv. Normal): 
 
 mDataBP = data.frame(norms=c(1,2,3),means=apply(mNormDraws,2,mean))
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # Illustrate: 
 
 ggplot(data=mDataBP, aes(x=norms, y=means)) +
-  geom_bar(stat="identity")
+	geom_bar(stat="identity")
 
 # Adjust appearance of bars:
 ggplot(data=mDataBP, aes(x=norms, y=means)) +
-  geom_bar(stat="identity",color="blue",fill="blue",alpha=0.2) 
+	geom_bar(stat="identity",color="blue",fill="blue",alpha=0.2) 
 
-```
-
-```{r, results=FALSE, fig.show='hide'}
 
 # To change x-axis, it is best to first make R realize that 
 # it is a discrete rather than continuous variable:
 mDataBP$norms = as.character(mDataBP$norms)
 
-```
-
-```{r, eval=FALSE, fig.show='hide'}
 
 ggplot(data=mDataBP, aes(x=norms, y=means)) +
-  geom_bar(stat="identity",color="blue",fill="blue",alpha=0.2) + 
-  scale_x_discrete(labels=c("1st","2nd","3rd"))
+	geom_bar(stat="identity",color="blue",fill="blue",alpha=0.2) + 
+	scale_x_discrete(labels=c("1st","2nd","3rd"))
 
-```
-
-
-```{r}
 
 # Taken together, nice bar-plot:
 
 ggplot(data=mDataBP, aes(x=norms, y=means)) + plotOptions +
-  geom_bar(stat="identity",color="blue",fill="blue",alpha=0.2) + 
-  scale_x_discrete(labels=c("1st","2nd","3rd")) +
-  labs(x="",y="",title="Mean of Normal Draws")
-  
-```
+	geom_bar(stat="identity",color="blue",fill="blue",alpha=0.2) + 
+	scale_x_discrete(labels=c("1st","2nd","3rd")) +
+	labs(x="",y="",title="Mean of Normal Draws")
 
 
-### Plot-Combinations Into Single Figure
+# ------ Plot-Combinations Into Single Figure ----------------------------------
 
-```{r, eval=FALSE, fig.show='hide'}
 
 # Note: when producing a latex document with these plots,
 # it is a better idea to produce the plots individually and assemble them in latex.
@@ -1412,21 +1183,21 @@ ggplot(data=mDataBP, aes(x=norms, y=means)) + plotOptions +
 
 # Three plots for illustration:
 plotOptionsCommonHere = 
-  list(plotOptions,
-       ylim(c(0,6)),
-       scale_x_continuous(limits=c(-2,10),breaks=seq(-2,10,by=2))
-       )
+	list(plotOptions,
+	     ylim(c(0,6)),
+	     scale_x_continuous(limits=c(-2,10),breaks=seq(-2,10,by=2))
+	)
 pp1 = ggplot(data=mData) + plotOptionsCommonHere +
-        geom_histogram(aes(x=norm1),color="blue",fill="blue",alpha=0.2) + 
-        labs(x="",y="",title="norm1") 
-  
+	geom_histogram(aes(x=norm1),color="blue",fill="blue",alpha=0.2) + 
+	labs(x="",y="",title="norm1") 
+
 pp2 = ggplot(data=mData) + plotOptionsCommonHere +
-        geom_histogram(aes(x=norm2),color="blue",fill="blue",alpha=0.2) + 
-        labs(x="",y="",title="norm2") 
+	geom_histogram(aes(x=norm2),color="blue",fill="blue",alpha=0.2) + 
+	labs(x="",y="",title="norm2") 
 
 pp3 = ggplot(data=mData) + plotOptionsCommonHere +
-        geom_histogram(aes(x=norm3),color="blue",fill="blue",alpha=0.2) + 
-        labs(x="",y="",title="norm3") 
+	geom_histogram(aes(x=norm3),color="blue",fill="blue",alpha=0.2) + 
+	labs(x="",y="",title="norm3") 
 
 
 # It might be useful to create an empty plot:
@@ -1437,6 +1208,7 @@ ggplot() + theme_void()
 
 
 # FIRST APPROACH
+
 
 
 library(gridExtra) 
@@ -1467,7 +1239,6 @@ grid.arrange(pp1, pp2, ncol=2, top=title, widths = c(2,2), layout_matrix = rbind
 # as they are common to both and already shown in the left plot.
 
 
-
 # SECOND APPROACH
 
 
@@ -1493,7 +1264,7 @@ ggsave("myplot2.pdf",width=40,height=25,units="cm")
 
 # 2 x 3 plots:
 (pp1 | pp1 | pp1) /
-  (pp1 | pp1 | pp1)
+	(pp1 | pp1 | pp1)
 
 # Can have even more flexible plot-arrangement:
 layout = "
@@ -1511,11 +1282,8 @@ ggsave("myplot2.pdf",width=40,height=25,units="cm")
 ppTotal + plot_layout(guides = "collect") + theme(legend.position = 'bottom')
 
 
-```
+# ------ Further ---------------------------------------------------------------
 
-### Further
-
-```{r, eval=FALSE, fig.show='hide'}
 
 # There are many more things that ggplot2 can do. 
 # For example, to create a grid-plot, use "geom_raster()" or "geom_rect()", 
@@ -1530,8 +1298,3 @@ ppTotal + plot_layout(guides = "collect") + theme(legend.position = 'bottom')
 # Otherwise, ggplot creates the plot only once the loop is finished, which may lead to unexpected behavior. 
 # See this post:
 # https://stackoverflow.com/questions/52671480/adding-multiple-ribbons-in-ggplot.
-
-```
-
-
-

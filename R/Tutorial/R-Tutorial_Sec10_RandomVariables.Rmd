@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -73,9 +73,12 @@ cat("\014")	# delete everything in console
 
 ```
 
-Statistical software like R can be used to draw random numbers from some specified distribution. These numbers are not truly random, but appear indistinguishable from actual random numbers. To make the analysis replicable, one must fix the so-called "seed", which ensures that every time the code is run, the same quasi-random numbers are drawn.
-
 ```{r results=FALSE}
+
+# Statistical software like R can be used to draw random numbers from some specified distribution. 
+# These numbers are not truly random, but appear indistinguishable from actual random numbers. 
+# To make the analysis replicable, one must fix the so-called "seed", 
+# which ensures that every time the code is run, the same quasi-random numbers are drawn.
 
 
 # Fix seed:
@@ -84,12 +87,7 @@ set.seed(50) # choose some (any) number here
 
 
 
-# ------------------------------------------------------------------------- #
-
 # PRE-DEFINED UNIVARIATE DISTRIBUTIONS 
-
-# ------------------------------------------------------------------------- #
-
 
 # Uniform distribution:
 
@@ -147,12 +145,7 @@ rinvgamma(3,10,2) # 5 draws from IG with shape 10 and rate 2
 
 
 
-# ------------------------------------------------------------------------- #
-
 # PRE-DEFINED MULTIVARIATE DISTRIBUTIONS 
-
-# ------------------------------------------------------------------------- #
-
 
 
 # Multivariate Normal:
@@ -176,12 +169,8 @@ riwish(v = nu, S =  mS) #single draw
 # diwish exists too; see ?riwish
 
 
-# ------------------------------------------------------------------------- #
 
 # MULTINOMIAL DISTRIBUTION (MANUALLY DEFINED UNIVARIATE DISTRIBUTION)
-
-# ------------------------------------------------------------------------- #
-
 
 
 # Define a discrete distribution with the following possible realizations (outcomes):

@@ -1,13 +1,8 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
-  pdf_document:
-    fig_width: 6
-    fig_height: 3.75
-    fig_caption: true
-    highlight: zenburn
   html_document: 
     fig_width: 6
     fig_height: 3.75
@@ -18,6 +13,11 @@ output:
     toc_float: true
     number_sections: false
     css: style.css
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
 ---
 
 
@@ -65,64 +65,63 @@ knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 
 # Basics & Scalars
 
-Include these two commands at the beginning of your script. The first deletes everything in the workspace/environment, the second deletes everything in the console.
-
 ```{r}
 
+# Include these two commands at the beginning of your script. 
+# The first deletes everything in the workspace/environment, 
+# the second deletes everything in the console.
+
 rm(list = ls()) # delete everything in workspace/environment
-cat("\014")	# delete everything in console     
+cat("\014")	# delete everything in console   
+
+
+# To run a chunk of code, select it and press "cmd+enter" on a Mac 
+# or click on the "Run" button on top of the script-window. 
+
+# Comments are chunks of code (or text) that R ignores when running. 
+# They start with a hashtag, as above. 
+# To comment-out a chunk of code or text, on a Mac, select it and press "cmd+shift+c".
+
+# To request help with a command, type the command with a question mark in front in the console. 
+# For example, "?sqrt" shows the help page for the command "sqrt".
 
 ```
-
-To run a chunk of code, select it and press "cmd+enter" on a Mac or click on the "Run" button on top of the script-window. 
-
-Comments are chunks of code (or text) that R ignores when running. They start with a hashtag, as above. To comment-out a chunk of code or text, on a Mac, select it and press "cmd+shift+c".
-
-To request help with a command, type the command with a question mark in front in the console. For example, "?sqrt" shows the help page for the command "sqrt".
-
 
 <br>
 
 ## Object Creation & Removal: Scalar Numbers (type "numeric")
 
-To create an object (a variable) called "a" that is equal to three, use one of the following three commands:
-
 ```{r}
+
+# To create an object (a variable) called "a" that is equal to three, 
+# use one of the following three commands:
 
 a = 3
 a <- 3 
 assign("a",3)
 
 
-```
-
-In the workspace window, you can see that a variable was created. To display it in the console, type 
-
-```{r}
+# In the workspace window, you can see that a variable was created. 
+# To display it in the console, type 
 
 show(a) #or:
 print(a)
 
 
-```
-
-To delete it, type
-
-```{r}
+# To delete it, type
 
 rm(a) # rm stands for remove
 
 
 ```
 
-
 <br>
 
 ## Basic Operations with (Numeric) Scalars
 
-You can perform basic arithmetic operations with numbers as well as defined objects/variables:
-
 ```{r}
+
+# You can perform basic arithmetic operations with numbers as well as defined objects/variables:
 
 3 + 8
 7^2
@@ -133,11 +132,7 @@ a + b # displays the result in console
 c = a + b # saves the result to a new variable, "c"
 
 
-```
-
-Many standardly used functions are already implemented by default in R. For example:
-
-```{r results=FALSE}
+# Many standardly used functions are already implemented by default in R. For example:
 
 sqrt(a) # square-root
 
@@ -155,34 +150,29 @@ ceiling(3.4) # returns 4, the smallest integer larger than 3.4
 floor(3.4) # returns 3, the largest integer smaller than 3.4
 b %% a #computes the modulus; remainder of b/a
 
-```
 
-One can easily combine functions:
-
-```{r results=FALSE}
+# One can easily combine functions:
 
 sqrt(ceiling(8.9))
 
 log(exp(a))
 
-```
 
-To round a number to a desired number of digits:
-
-```{r results=FALSE}
+# To round a number to a desired number of digits:
 
 round(342.347,digits=2)
 
 ```
 
-
 <br>
 
 ## Special Values for Scalars
 
-A variable can also take on the value "Inf" or "-Inf" (positive or negative infinity). Any further operation with this variable gives again "Inf" or "-Inf". For example,
-
 ```{r results=FALSE}
+
+# A variable can also take on the value "Inf" or "-Inf" (positive or negative infinity). 
+# Any further operation with this variable gives again "Inf" or "-Inf". 
+# For example,
 
 a = Inf
 
@@ -191,11 +181,10 @@ sqrt(a) # gives Inf
 -Inf + 4 # gives -Inf
 
 
-```
-
-A variable can also take on the value "NA" or "NaN" (not-a-number). (This happens, for example, if one loads an excel file with an empty cell into R, as the value in such a cell needs to be distinguished from, say, zero.) Again, any operation with an NA returns NA:
-
-```{r results=FALSE}
+# A variable can also take on the value "NA" or "NaN" (not-a-number). 
+# (This happens, for example, if one loads an excel file with an empty cell into R, 
+# as the value in such a cell needs to be distinguished from, say, zero.) 
+# Again, any operation with an NA returns NA:
 
 a = NA
 
@@ -203,19 +192,18 @@ sqrt(a) # gives NA
 
 NA + 4 # gives NA
 
+# (The same results are obtained when a is "NaN" instead of "NA".)
 
 ```
-
-(The same results are obtained when a is "NaN" instead of "NA".)
-
 
 <br>
 
 ## Object Types
 
-Objects you create are stored by R as different "types". Numbers like the ones created above are of type "double" and "numeric":
-
 ```{r}
+
+# Objects you create are stored by R as different "types". 
+# Numbers like the ones created above are of type "double" and "numeric":
 
 a = 3
 b = 8
@@ -224,11 +212,9 @@ typeof(a) # tells you the type of variable/object "a"
 is.double(a) # verifies whether a is of type double
 is.numeric(a) # verifies whether a is a numeric
 
-```
 
-The difference between a double and a numeric is typically irrelevant. (You can think of "numeric" being a larger category that encompasses both "double" and "integer" objects.)
-
-```{r results=FALSE}
+# The difference between a double and a numeric is typically irrelevant. 
+# (You can think of "numeric" being a larger category that encompasses both "double" and "integer" objects.)
 
 # to verify whether a is Inf or -Inf:
 is.infinite(a) 
@@ -238,31 +224,30 @@ is.na(a)
 is.nan(a)
 
 
+# Throughout this tutorial, we'll discuss the types of different objects we create.
+# It is important to be aware that there are different types that R uses to store objects 
+# because sometimes a command only works for a specific type (or gives different results for different types), 
+# in which case one needs to convert the object to the right type.
+
 ```
-
-Throughout this tutorial, we'll discuss the types of different objects we create.
-It is important to be aware that there are different types that R uses to store objects because sometimes a command only works for a specific type (or gives different results for different types), in which case one needs to convert the object to the right type.
-
 
 <br>
 
 ## Logicals
 
-A logical is an object-type that can take on the values "TRUE", "FALSE" or "NA". It indicates whether some condition is true or false (or cannot even be evaluated).
-
-Logicals are (usually) created using logical operators:
-
 ```{r}
+
+# A logical is an object-type that can take on the values "TRUE", "FALSE" or "NA". 
+# It indicates whether some condition is true or false (or cannot even be evaluated).
+
+# Logicals are (usually) created using logical operators:
+  
 
 isAlargerB = a > b
 show(isAlargerB)
 
 
-```
-
-Other logical operators: 
-
-```{r results=FALSE}
+# Other logical operators: 
 
 a < b
 a >= b
@@ -270,30 +255,21 @@ a <= b
 a == b # equal to
 a != b # not equal to
 
-```
 
-Comparisons with Inf and NA: 
-
-```{r results=FALSE}
+# Comparisons with Inf and NA: 
 
 a < Inf # comparisons with Inf work
 a < NA # but comparisons with NA yield NA 
 
-```
 
-Logicals can be used in standard computations, whereby "TRUE" indicates a 1 and "FALSE" indicates a 0:
-
-```{r results=FALSE}
+# Logicals can be used in standard computations, whereby "TRUE" indicates a 1 and "FALSE" indicates a 0:
 
 TRUE + 3 # gives 4
 TRUE == 1 # gives TRUE
 
 
-```
-
-Nevertheless, the "double"-object 1 and the "logical"-object TRUE are not the same thing because their type differs, i.e. R stores them differently:
-
-```{r}
+# Nevertheless, the "double"-object 1 and the "logical"-object TRUE are not the same thing 
+# because their type differs, i.e. R stores them differently:
 
 a = TRUE
 b = 1
@@ -301,11 +277,8 @@ b = 1
 typeof(a)
 typeof(b)
 
-```
 
-To check whether some object is a logical or a double, type:
-
-```{r results=FALSE}
+# To check whether some object is a logical or a double, type:
 
 isAlargerC <- 1
 
@@ -317,23 +290,17 @@ is.logical(isAlargerC)
 
 is.double(isAlargerC)
 
-```
 
-To convert numbers of type double to logicals or vice versa:
-
-```{r results=FALSE}
+# To convert numbers of type double to logicals or vice versa:
 
 as.logical(1) # convert number/double 1 into logical TRUE
 as.double(TRUE) # opposite: convert logical TRUE into number/double 1
 as.numeric(TRUE) # same
 
-```
 
-
-
-Based on existing logicals (i.e. variables indicating whether a condition is true or false), further logicals can be created that combine these underlying conditions using special operators. For example:
-
-```{r results=FALSE}
+# Based on existing logicals (i.e. variables indicating whether a condition is true or false), 
+# further logicals can be created that combine these underlying conditions using special operators. 
+# For example:
 
 isXtrue = TRUE
 isYtrue = FALSE
@@ -349,32 +316,32 @@ isOneTrue = isXtrue | isYtrue
 isExactlyOneTrue = xor(isXtrue,isYtrue) 
 
 
+# (Note that these commands work even if you defined isXtrue and isYtrue as the double-types 1 and 0, respectively. 
+# Therefore, in this particular case, the object type is irrelevant.)
+
+# Further below, we will discuss vectors of logicals 
+# (i.e. vectors whose elements are logicals rather than numbers (of type double)). 
+
+# Moreover, logicals will be important when we talk about indexing different objects 
+# in which data is stored (a vector, matrix, array, list or dataframe). 
+
+
 ```
-
-(Note that these commands work even if you defined isXtrue and isYtrue as the double-types 1 and 0, respectively. Therefore, in this particular case, the object type is irrelevant.)
-
-Further below, we will discuss vectors of logicals (i.e. vectors whose elements are logicals rather than numbers (of type double)). 
-Moreover, logicals will be important when we talk about indexing different objects in which data is stored (a vector, matrix, array, list or dataframe). 
-
-
 
 <br>
 
 ## Strings
 
-A string is an object that contains text. It is stored as type "character" in R. 
-
 ```{r}
+
+# A string is an object that contains text. It is stored as type "character" in R. 
 
 a = "banana"
 typeof(a) # returns "character"
 is.character(a)
 
-```
 
-There are many commands that are specific to strings:
-
-```{r results=FALSE}
+# There are many commands that are specific to strings:
 
 nchar(a) # number of characters in string
 
@@ -402,11 +369,8 @@ paste(1,"mouse") # if option "sep" is not specified, a space is put as separator
 gsub("i", "X", "Mississippi") #replace i with X
 
 
-```
 
-Strings allow for advanced printing commands, beyond "print()":
-
-```{r results=FALSE}
+# Strings allow for advanced printing commands, beyond "print()":
 
 print(a)
 
@@ -419,39 +383,42 @@ sprintf("%.0f", 1e8) # to avoid scientific notation
 
 cat("hello\nworld\n") # prints the string, adding line-breaks at \n
 
+
+# Further below, we will discuss vectors of strings 
+# (i.e. vectors whose elements are strings rather than numbers (of type double) or logicals). 
+# Moreover, strings will be important when we talk about indexing different objects in which data is stored 
+# (a vector, matrix, array, list or dataframe). 
+# They will also be important when we talk about representing dates.
+
 ```
-
-
-Further below, we will discuss vectors of strings (i.e. vectors whose elements are strings rather than numbers (of type double) or logicals). 
-Moreover, strings will be important when we talk about indexing different objects in which data is stored (a vector, matrix, array, list or dataframe). They will also be important when we talk about representing dates.
-
-
 
 <br>
 
 ## Packages
 
-R is an open-source language, which means that there are many developers who write their own packages that define specific commands (functions) not included in R by default. To highlight which commands belong to which packages, we will load the packages only once these commands are needed. However, in actual applications, it is best practice to have an initial section where you load all packages. To load a package, it first needs to be installed. You can install a package by using the "Packages" panel in bottom-right window, or by typing e.g.
-
 ```{r eval = FALSE}
+
+# R is an open-source language, which means that there are many developers 
+# who write their own packages that define specific commands (functions) not included in R by default. 
+# To highlight which commands belong to which packages, 
+# we will load the packages only once these commands are needed. 
+# However, in actual applications, it is best practice to have an initial section where you load all packages. 
+# To load a package, it first needs to be installed. 
+# You can install a package by using the "Packages" panel in bottom-right window, 
+# or by typing e.g.
 
 install.packages('ggplot2') # to install package "ggplot2"
 
 
-```
+# A package needs to be installed only once on a given computer 
+# (though you may want to re-install packages when a new version is available). 
+# In contrast, you have to load the package every time a script is ran anew. 
+# To load the package, type
 
-A package needs to be installed only once on a given computer (though you may want to re-install packages when a new version is available). In contrast, you have to load the package every time a script is ran anew. To load the package, type
-
-```{r, eval=FALSE}
 
 library(ggplot2) # to load package "ggplot2"
 
 
 ```
-
-
-
-
-
 
 

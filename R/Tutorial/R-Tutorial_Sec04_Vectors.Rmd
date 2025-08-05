@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -70,40 +70,41 @@ knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 rm(list = ls()) # delete everything in workspace/environment
 cat("\014")	# delete everything in console     
 
-
 ```
 
-Vectors allow us to store many scalar-elements in a single object. Thereby, it is important that all scalars are of the same type (double, logical or string). Later, we will discuss lists, which do not have this requirement.
+```{r}
 
+# Vectors allow us to store many scalar-elements in a single object. 
+# Thereby, it is important that all scalars are of the same type (double, logical or string). 
+# Later, we will discuss lists, which do not have this requirement.
+
+```
 
 <br>
 
 ## Creation
 
-There are many ways to create a vector in R:
-
 ```{r}
+
+# There are many ways to create a vector in R:
 
 vx = 1:3  # or:
 vx = c(1,2,3) 
 
 show(vx)
 
-```
 
-By default, these commands create a vertical vector (3x1 in these examples).
-This is not apparent when displaying the vector, but you realize it when performing matrix algebra (see below).
+# By default, these commands create a vertical vector (3x1 in these examples).
+# This is not apparent when displaying the vector, 
+# but you realize it when performing matrix algebra (see below).
 
-To transpose the vector vx, type:
+# To transpose the vector vx, type:
 
-```{r}
 t(vx) 
 
-```
 
-Note that this vector is of type "double" (and not of type "logical" or "character" (i.e. string)):
-
-```{r}
+# Note that this vector is of type "double" 
+# (and not of type "logical" or "character" (i.e. string)):
 
 # This vector with 
 typeof(vx)
@@ -112,11 +113,10 @@ is.double(vx)
 is.logical(vx)
 is.character(vx)
 
-```
 
-Nevertheless, it is also a vector (as opposed to a matrix), and it is also of type "numeric" (the difference between a double and a numeric is typically irrelevant):
-
-```{r}
+# Nevertheless, it is also a vector (as opposed to a matrix), 
+# and it is also of type "numeric" 
+# (the difference between a double and a numeric is typically irrelevant):
 
 is.vector(vx)
 is.matrix(vx)
@@ -124,11 +124,7 @@ is.matrix(vx)
 is.numeric(vx)
 
 
-```
-
-We can analogously also create vectors of strings or logicals:
-
-```{r}
+# We can analogously also create vectors of strings or logicals:
 
 vy = c("a", "b") # vector of strings
 
@@ -172,9 +168,10 @@ as.numeric(c("1","3"))
 
 ```
 
-Advanced ways to create vectors:
-
 ```{r results=FALSE}
+
+# Advanced ways to create vectors:
+
 
 seq(-4, 4, by=.8) # a vector going from -4 to 4 in increments of 0.8
 
@@ -203,14 +200,13 @@ c(vx,vy)# create new vector by stacking two vectors
 
 ```
 
-
 <br>
 
 ## Basic Operations 
 
-We can perform standard algebraic operations using vectors:
-
 ```{r results=FALSE}
+
+# We can perform standard algebraic operations using vectors:
 
 vx = c(1,4,3)
 vy = c(1,5,7)
@@ -233,9 +229,9 @@ vx %*% t(vy) # matrix multiplication
 
 ```
 
-We can also use vectors to conduct comparisons, yielding logicals:
-
 ```{r results=FALSE}
+
+# We can also use vectors to conduct comparisons, yielding logicals:
 
 # Element-wise comparison
 
@@ -250,11 +246,12 @@ identical(vx,vy) # returns single logical
 
 ```
 
-Many of the functions we applied to scalars can also be applied to vectors.
-(This is not surprising once you realize that R treats a number like a 1x1-vector; type "is.vector(3)" to see.)
-When applied to a vector, these functions are applied to each element individually:
 
 ```{r results=FALSE}
+
+# Many of the functions we applied to scalars can also be applied to vectors.
+# (This is not surprising once you realize that R treats a number like a 1x1-vector; type "is.vector(3)" to see.)
+# When applied to a vector, these functions are applied to each element individually:
 
 sqrt(vx) # compute square root of each element in vx
 exp(vx)
@@ -265,9 +262,9 @@ cos(vx)
 ```
 
 
-There are many functions that make sense only for vectors (not numbers):
-
 ```{r results=FALSE}
+
+# There are many functions that make sense only for vectors (not numbers):
 
 vx = c(1.2, 3.3, 4.2, 2.7, 5.0)
 vy = c(3.4, 5.5, 3.2, 8.9, 0.8)
@@ -299,9 +296,11 @@ quantile(vx, seq(0, 1, 0.125))
 
 ```
 
-A vector can contain NA elements. In this case, the above functions return NA. However, one can tell the functions to ignore the NA-entries:
-
 ```{r results=FALSE}
+
+# A vector can contain NA elements. 
+# In this case, the above functions return NA. 
+# However, one can tell the functions to ignore the NA-entries:
 
 vx = c(1.2, NA, 4.2, 2.7, 5.0)
 
@@ -311,10 +310,11 @@ mean(vx,na.rm=TRUE) # returns mean of remaining elements, ignoring NA-entries
 
 ```
 
-
-CAUTION! Some functions in R do not prevent you from performing operations with two vectors of different length, but they recycle the shorter one so that the two match in length:
-
 ```{r error=TRUE}
+
+# CAUTION! 
+# Some functions in R do not prevent you from performing operations with two vectors of different length, 
+# but they recycle the shorter one so that the two match in length:
 
 vx = c(1,3,4,2)
 vy = c(1,3,5)
@@ -334,23 +334,23 @@ cor(vx,vy)
 
 ```
 
-
-
 <br>
 
 ## Indexing 
 
-We can access a subset of a vector. This is referred to as "indexing", and there are different ways to do so.
-
 ```{r results=FALSE}
+
+# We can access a subset of a vector. This is referred to as "indexing", 
+# and there are different ways to do so.
+
 
 vx = c(5,1,7)
 
 ```
 
-"Direct" indexing:
-
 ```{r results=FALSE}
+
+# "Direct" indexing:
 
 vx[2] # take second element
 
@@ -362,9 +362,9 @@ vx[-c(1, 3)] # take all but first and third element
 
 ```
 
-Indexing using logicals:
-
 ```{r results=FALSE}
+
+# Indexing using logicals:
 
 vx[c(FALSE, TRUE, FALSE)] # take again second element (all but first and third element)
 
@@ -373,9 +373,9 @@ vx[vx >= 2] # take all elements larger or equal to 2
 
 ```
 
-Indexing using entry names (=strings):
-
 ```{r results=FALSE}
+
+# Indexing using entry names (=strings):
 
 names(vx) = c("a","b","c") # name vector entries
 
@@ -387,9 +387,9 @@ vx[c("a","c")] # take first and third element
 ```
 
 
-Using indexing, we can change specific entries of a vector, leaving the rest untouched:
-
 ```{r}
+
+# Using indexing, we can change specific entries of a vector, leaving the rest untouched:
 
 vx[2] = 4 # change second element to 4
 
@@ -398,9 +398,7 @@ vx[c(2,3)] = c(3,9) # change second and third elements to 3 and 9, respectively
 
 vx = vx[-1] # delete first element
 
-
 ```
-
 
 <br>
 
@@ -430,9 +428,9 @@ order(vx, decreasing=TRUE)
 
 ## Element Identification
 
-Identify elements that match certain condition in a single vector:
-
 ```{r results=FALSE}
+
+# Identify elements that match certain condition in a single vector:
 
 which( vx == 2) # returns the indices of all entries equal to 2
 
@@ -444,10 +442,9 @@ which.min(vx) # returns index of minimum (smallest entry)
 
 ```
 
-
-Identify elements from one vector in another vector:
-
 ```{r results=FALSE}
+
+# Identify elements from one vector in another vector:
 
 
 # Are elements from vy in vx? 
@@ -462,14 +459,15 @@ match(vy, vx)
 
 ```
 
-
 <br>
 
 ## Set Operations
 
-We can also perform set operations with vectors, as they denote essentially a set of elements (numbers, logicals or strings):
-
 ```{r results=FALSE}
+
+# We can also perform set operations with vectors, 
+# as they denote essentially a set of elements (numbers, logicals or strings):
+
 
 vz = c(2, 8, 4, 7, 5)
 
@@ -485,14 +483,14 @@ setdiff(vx,vy) # "vx complement vy"; all elements in vx that are not in vy
 
 ```
 
-
 <br>
 
 ## Operations for/with String-Vectors:
 
-String creation and modification:
-
 ```{r results=FALSE}
+
+
+# String creation and modification:
 
 # Previously, we introduced the function "paste()".
 # It creates a string by combining a number (double) and a string, e.g.:
@@ -515,9 +513,10 @@ strsplit("Mississippi","i")
 
 ```
 
-Identification of elements in strings:
 
 ```{r results=FALSE}
+
+# Identification of elements in strings:
 
 vsCountries = c("Zimbabwe","Cameroon","Kenya","Rwanda","Djibouti")
 # return logical-vector saying which string-entries contain "w":
@@ -527,9 +526,9 @@ vsCountries[ grepl( "w" , vsCountries ) ]
 
 ```
 
-Working with dates:
-
 ```{r error=TRUE}
+
+# Working with dates:
 
 library(lubridate)
 
@@ -565,7 +564,10 @@ cut(as.Date(vDates),"week")
 month.abb[1:4] 
 
 
+# Some more useful things for working with dates will be discussed later 
+# when talking about time series methods and about plotting.
+
 ```
 
-Some more useful things for working with dates will be discussed later when talking about time series methods and about plotting.
+
 

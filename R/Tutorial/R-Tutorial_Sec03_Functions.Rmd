@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -72,9 +72,11 @@ cat("\014")	# delete everything in console
 
 ```
 
-Up to now, we used functions that are pre-programmed in R or contained in a package we load. The user can of course also define own functions. For example:
 
 ```{r}
+
+# Up to now, we used functions that are pre-programmed in R or contained in a package we load. 
+# The user can of course also define own functions. For example:
 
 fMultiplyXY = function(x,y){
 	x*y
@@ -82,21 +84,17 @@ fMultiplyXY = function(x,y){
 
 fMultiplyXY(3,4)
 
-```
 
-When a function uses many arguments, it can be hard to remember the argument order. In that case, it is useful to specify the argument names when calling the function, because then the order becomes irrelevant:
-
-```{r results=FALSE}
+# When a function uses many arguments, it can be hard to remember the argument order. 
+# In that case, it is useful to specify the argument names when calling the function, 
+# because then the order becomes irrelevant:
 
 # Both give same result:
 fMultiplyXY(x=3,y=4) 
 fMultiplyXY(y=4,x=3) 
 
-```
 
-One can also specify some arguments to be optional. For example:
-
-```{r results=FALSE}
+# One can also specify some arguments to be optional. For example:
 
 # Here, the third argument ("z") is optional. By default, the function takes z=2.
 fMultiplyXYZ = function(x, y, z=2) { 

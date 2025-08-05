@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -73,9 +73,9 @@ cat("\014")	# delete everything in console
 
 ```
 
-A conditional is a piece of code that only gets evaluated if a certain condition is true:
-
 ```{r}
+
+# A conditional is a piece of code that only gets evaluated if a certain condition is true:
 
 a = 5
 
@@ -100,10 +100,11 @@ if (a == 2) {
 
 ```
 
-
-A for loop is a chunk of code that gets executed many times, each time for a different value of a so-called "index-variable", named "ii" in the following. It is useful if you need to repeat a procedure for, say, different countries in your data sample.
-
 ```{r}
+
+# A for loop is a chunk of code that gets executed many times, 
+# each time for a different value of a so-called "index-variable", named "ii" in the following. 
+# It is useful if you need to repeat a procedure for, say, different countries in your data sample.
 
 a = 0
 for (ii in 1:10){
@@ -124,9 +125,9 @@ for (ii in seq(-3,3,by=1.5)){
 
 ```
 
-A while loop keeps executing a chunk of code only as long as some condition is true:
-
 ```{r}
+
+# A while loop keeps executing a chunk of code only as long as some condition is true:
 
 while(a < 130){
   a = a + 3
@@ -136,9 +137,12 @@ print(a)
 
 ```
 
-Useful commands for working with for- and while-loops are "next" and "break()". The former tells R to stop executing the code for the current iteration and proceed to the next one, while the latter tells R to stop the for- or while-loop altogether. 
-
 ```{r}
+
+# Useful commands for working with for- and while-loops are "next" and "break()". 
+# The former tells R to stop executing the code for the current iteration and proceed to the next one, 
+# while the latter tells R to stop the for- or while-loop altogether. 
+
 
 a = 0
 for (ii in 1:10){

@@ -1,5 +1,5 @@
 ---
-title: 'R: Tutorial & Collection of Useful Commands'
+title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
@@ -65,18 +65,21 @@ knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 
 # Workspace Management
 
-If you have a big project, it makes sense to break up your code into several R-scripts. From one script, you can call another using the following command:
-
 
 ```{r, eval=FALSE}
+
+# If you have a big project, it makes sense to break up your code into several R-scripts. 
+# From one script, you can call another using the following command:
 
 source("mySeparateScript.R") # load/run external script
 
 ```
 
-You can also store all objects (the whole current workspace) to an .RData-file, which you can load in other scripts:
-
 ```{r, eval=FALSE}
+
+# You can also store all objects (the whole current workspace) to an .RData-file, 
+# which you can load in other scripts:
+
 
 # Save all objects from the current workspace to an ".RData"-file:
 save.image(file="myWorkspace.RData") 
@@ -86,12 +89,12 @@ load("myWorkspace.RData")
 
 ```
 
-
-
-To keep the workspace tidy/lean even in a longer code, one can use lists to store a collection of objects in a single object; a list. 
-If in each iteration of a loop a plot is created, we can save all these plots into one list using the following commands:
-
 ```{r}
+
+# To keep the workspace tidy/lean even in a longer code, 
+# one can use lists to store a collection of objects in a single object; a list. 
+# If in each iteration of a loop a plot is created, we can save all these plots 
+# into one list using the following commands:
 
 lMyPlots = list() # create empty list before loop
 
@@ -115,18 +118,17 @@ for (ii in 1:10){
 	
 }
 
+# The same code can be used to store different regressions into a single list. 
+# See the section "Econometrics/Linear Regressions" for how to run regressions in a loop.
+
 ```
 
-The same code can be used to store different regressions into a single list. 
-See the section "Econometrics/Linear Regressions" for how to run regressions in a loop.
-
-
-Saving a collection of different objects into a single list 
-also enables us to delete a bunch of objects at once.
-This way, at the end of some longer section of code in our script,
-we can delete all objects that aren't necessary for subsequent computations:
-
 ```{r}
+
+# Saving a collection of different objects into a single list 
+# also enables us to delete a bunch of objects at once.
+# This way, at the end of some longer section of code in our script,
+# we can delete all objects that aren't necessary for subsequent computations:
 
 a <- 4
 b <- 3
