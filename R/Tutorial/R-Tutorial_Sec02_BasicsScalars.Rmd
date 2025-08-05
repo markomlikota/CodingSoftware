@@ -3,6 +3,11 @@ title: 'R: Tutorial & Collection of Useful Commands'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
   html_document: 
     fig_width: 6
     fig_height: 3.75
@@ -13,11 +18,6 @@ output:
     toc_float: true
     number_sections: false
     css: style.css
-  pdf_document:
-    fig_width: 6
-    fig_height: 3.75
-    fig_caption: true
-    highlight: zenburn
 ---
 
 
@@ -71,7 +71,6 @@ Include these two commands at the beginning of your script. The first deletes ev
 
 rm(list = ls()) # delete everything in workspace/environment
 cat("\014")	# delete everything in console     
-
 
 ```
 

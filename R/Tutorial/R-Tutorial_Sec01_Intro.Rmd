@@ -4,6 +4,11 @@ subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 date: 'Created: January 2024. Last updated: April 2025'
 output:
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
   html_document: 
     fig_width: 6
     fig_height: 3.75
@@ -14,11 +19,6 @@ output:
     toc_float: true
     number_sections: false
     css: style.css
-  pdf_document:
-    fig_width: 6
-    fig_height: 3.75
-    fig_caption: true
-    highlight: zenburn
 ---
 
 
