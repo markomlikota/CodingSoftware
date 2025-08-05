@@ -1,0 +1,100 @@
+\documentclass[a4paper,11pt]{article}
+
+% Packages:
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+
+
+% Settings:
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\topmargin}{-.75in}
+\addtolength{\textheight}{1.75in}
+
+
+% Math Settings:
+
+\newcommand{\mean}{\mathbb{E}}
+
+
+% ---------------------------------------------------------------------------- %
+% ---------------------------------------------------------------------------- %
+% ---------------------------------------------------------------------------- %
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\lhead{Name}
+\rhead{\today}
+{\LARGE \bf \noindent Title}\\[5pt]
+{\large Subtitle}
+\vspace*{5pt}
+
+
+<<echo = FALSE, results = TRUE, message = FALSE, warning = FALSE, error = FALSE>>=
+	
+rm(list = ls())  # delete everything in workspace/environment
+cat("\014")      # delete everything in console
+
+
+# Specify some path:
+
+sDataPath <- "~//Dropbox/Coding/CodingSoftware/R/Templates"
+setwd(sDataPath)
+
+
+# Load some packages:
+
+library(readxl)
+
+@
+
+
+\section{Section}
+
+This is an .Rnw-file. It integrates Latex-text (incl. equations) and R-code.
+
+\subsection{Subsection}
+
+Some text. Some inline-equation: $\theta=2$.
+
+
+Another beautiful equation:
+$$ x_i = \theta + u_i \; , \quad \text{with} \quad \mean[u_i|\theta]=0 \; .$$
+
+\subsection{Another Subsection}
+
+{\bf Some text in bold.} 
+
+{\it Some text in italics.}
+	
+
+
+<<echo = TRUE, results = TRUE, message = FALSE, warning = FALSE, error = FALSE>>=
+	
+# A comment and some code:
+	
+a = 3
+b = 4
+a*b
+
+@
+
+\subsection{R-Markdown (.Rmd) vs Knitr (.Rnw)}
+
+Whereas .Rmd-files integrate Markdown-text and R-Code, .Rnw-files integrate latex-text and R-Code.
+I prefer .Rmd-files. 
+With them, you can generate both .html- and .pdf-files, whereas .Rnw only gives you .pdf-files.
+Also, I find the error messages of .Rmd-files easier to read. 
+In my experience, the only disadvantage of .Rmd-files relative to .Rnw-files is that they can't generate automatic enumerate-environments with R-code in between, but one has to write manually 1. , 2. , etc.
+
+More generally, I think that the integration of text and R-code in a single document is useful for reports where the focus is on the coding (e.g. problem set solutions, data exploration, etc.), for which Markdown is good enough. 
+For reports where the focus is on substance, there is typically no need to show your R-code integrated with latex-code in the document itself. Therefore, instead of using an .Rnw-file, you can set up a proper .tex-file and just include the output of your R-code (figures, tables, etc.) in it.
+	
+  
+\end{document}

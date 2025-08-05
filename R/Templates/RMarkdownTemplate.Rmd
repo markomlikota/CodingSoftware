@@ -1,0 +1,164 @@
+---
+title: 'Title'
+subtitle: 'Subtitle'
+author: "Author"
+date: '5 August 2025'
+output:
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+  html_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    highlight: zenburn
+  toc: yes
+  toc_depth: 2
+---
+
+<!-- 
+This is a comment in the .Rmd-file. 
+It won't be displayed when you publish ("Knit") the file to html or pdf.
+-->
+
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- SOME SETTINGS & NOTES -->
+<!-- ----------------------------------------------------------------------- -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+```{=html}
+(this is a longer comment in the .Rmd-file)
+
+Markdown notes:  
+
+ https://rmarkdown.rstudio.com/authoring_basics.html
+ https://medium.com/@delucmat/specify-latex-parameters-in-r-markdown-9804467caaf 
+
+- can comment out text by highlighting and pressing cmd+shift+C
+
+- cannot use itemize or enumerate and have well-indented R-chunks in-between. Then, need to use + or - or 1. (2., etc.) in front of sentences that need to be itemized, and indent R chunks properly (one more than the section where it should stand). This seems to be the cleanest way of dealing with lists + r-chunks. Note: need to have an empty line before and after 1., 2.
+Alternative: just use latex-enumerate/itemize and do not care about indentation.
+
+- set figure settings for single chunk as : {r ..., fig.height = 15*0.75, fig.width = 16*0.75} (important e.g. for multiple plots in one (e.g. patchwork package))
+
+```
+
+<!-- 
+Below we define some latex-settings (a new command in this case).
+-->
+
+\newcommand{\mean}{\mathbb{E}}
+
+<!-- 
+If you have a lot of such settings, it is best to write them in a separate file 
+and store it as a .sty-file (latex-package), e.g. "mysettings.sty".
+After that, you can add the following to your preamble (the very beginning of this document), 
+say right after the line "date: ..." :
+
+header-includes:
+   - \usepackage{mysettings}
+   
+-->
+
+
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- HERE THE DOCUMENT STARTS -->
+<!-- ----------------------------------------------------------------------- -->
+
+
+```{r libraries, echo = FALSE, warning=FALSE, message=FALSE}
+
+rm(list = ls())  # delete everything in workspace/environment
+cat("\014")      # delete everything in console
+
+
+# Specify some path:
+
+sDataPath <- "~//Dropbox/Coding/CodingSoftware/R/Templates"
+setwd(sDataPath)
+
+
+# Load some packages:
+
+library(readxl)
+
+
+```
+
+
+# Section
+
+This is an .Rmd-file. It integrates Markdown-text (incl. equations) and R-code.
+
+## Subsection
+
+Some text. Some inline-equation: $\theta=2$.
+
+Another beautiful equation:
+$$ x_i = \theta + u_i \; , \quad \text{with} \quad \mean[u_i|\theta]=0 \; .$$
+
+## Another Subsection
+
+**Some text in bold**
+
+*Some text in italics*
+
+```{r, echo=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
+
+# A comment and some code:
+
+a = 4
+b = 3
+
+a*b
+
+```
+
+
+1. First Item
+
+```{r, echo=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
+
+# A bit of code
+
+c = 5
+
+a*c
+
+```
+
+
+2. Second Item 
+
+```{r, echo=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
+
+# A bit of code
+
+d = 8
+
+a*d
+
+```
+
+
+## R-Markdown (.Rmd) vs Knitr (.Rnw)
+
+Whereas .Rmd-files integrate Markdown-text and R-Code, .Rnw-files integrate latex-text and R-Code.
+I prefer .Rmd-files. 
+With them, you can generate both .html- and .pdf-files, whereas .Rnw only gives you .pdf-files.
+Also, I find the error messages of .Rmd-files easier to read. 
+In my experience, the only disadvantage of .Rmd-files relative to .Rnw-files is that they can't generate automatic enumerate-environments with R-code in between, but one has to write manually 1. , 2. , etc.
+
+More generally, I think that the integration of text and R-code in a single document is useful for reports where the focus is on the coding (e.g. problem set solutions, data exploration, etc.), for which Markdown is good enough. 
+For reports where the focus is on substance, there is typically no need to show your R-code integrated with latex-code in the document itself. Therefore, instead of using an .Rnw-file, you can set up a proper .tex-file and just include the output of your R-code (figures, tables, etc.) in it.
+
