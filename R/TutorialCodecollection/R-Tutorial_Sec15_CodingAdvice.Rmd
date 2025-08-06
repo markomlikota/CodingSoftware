@@ -1,0 +1,108 @@
+---
+title: 'R: Tutorial & Command-Collection'
+author: "Marko Mlikota, https://markomlikota.github.io"
+output:
+  html_document: 
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    theme: "simple"
+    highlight: "zenburn"
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+  pdf_document:
+    fig_width: 6
+    fig_height: 3.75
+    fig_caption: true
+    theme: "simple"
+    highlight: "zenburn"
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
+---
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 16px;
+}
+pre {
+  font-size: 16px
+}
+h1 {
+  font-size: 35px;
+  margin: 60px 0px 30px 0px;
+}
+h2 {
+  font-size: 25px;
+}
+#TOC {
+  color: black; 
+}
+
+</style>
+
+<script>
+  var height=$('#primary').height(); // Calculate primary wrapper height
+  $('#secondary').height(height); // Set the height it to sidebar
+</script>
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(results=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+#knitr::opts_chunk$set(fig.width=5, fig.height=3)
+```
+
+
+# Coding Advice
+
+<br>
+
+## General Advice
+
+* Before you start coding, be clear on what you want to achieve and how to go about it (roughly).
+
+* Divide program into (many small) functions. This is easier to reuse, to test, and it (often) runs faster.
+
+* For standard problems (e.g. interpolation, kernel density estimation, etc.), before you do it yourself, see whether there is a library that does it.
+
+* For bigger projects, use Git to keep track of version changes.	
+
+* If you find yourself creating a newer version of some file, leave the old version's name as-is and attach a version-suffix (e.g. _v3) to the filename of the new version. This way there is a unique filename for every new version, and old versions can just be discarded in an "OldFiles"-folder and re-taken if needed without creating naming problems (which would arise if you deleted the version extension for the currently best version).
+
+* Think about optimization only once the code runs. And ask yourself whether an optimization (making code faster, graphs prettier, etc.) is really needed.
+
+
+<br>
+
+## Code Structure & Naming of Objects
+
+
+* Clearly structure your code using comments, lines and spaces to create sections, subsections, etc. This will make it much more readable (for your future self and for others).
+
+* At the top of your code, include a header/preamble with your name, contact information (email/website), the purpose of the code (title and a short description)
+
+* Start your code with some preliminary sections where you delete everything in the console and environment, specify options, load all packages necessary to run the script, define paths, and load external code. 
+
+* Adopt a naming convention, e.g.
+
+    + use the so-called lowerCamelCase
+
+    + start binary variables with "is" or "include" or other verb (e.g. isUtilityPositive or includeLimits)
+
+    + start functions with f (e.g. fCombineStrings)
+
+    + start object-names with v, a, m, i for vector, array, matrix, iterator, string (and combine, if necessary; e.g. vsVars is vector of strings

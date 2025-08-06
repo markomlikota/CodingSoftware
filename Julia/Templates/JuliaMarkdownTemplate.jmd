@@ -1,0 +1,126 @@
+---
+title: 'Title'
+author: 'Author'
+date: '5 August 2025'
+options:
+    md2html:
+        out_path : /Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates
+        fig_path : /Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates
+    md2pdf:
+        out_path : /Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates
+        fig_path : /Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates
+    fig_ext : .png
+---
+
+<!-- 
+This is a comment in the .Rmd-file. 
+It won't be displayed when you publish ("Knit") the file to html or pdf.
+-->
+
+
+<!-- 
+
+using Weave
+
+# To publish to html, type this in REPL:
+
+weave("/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd", doctype = "md2html")
+
+# Publishing to pdf should also work, with this command:
+
+weave("/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd", doctype = "md2pdf")
+
+-->
+
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- SOME SETTINGS & NOTES -->
+<!-- ----------------------------------------------------------------------- -->
+
+
+<!--
+Note: this file uses Julia-Markdown. It is not entirely the same as the Markdown used in, say, R-Markdown.
+https://docs.julialang.org/en/v1/stdlib/Markdown/#
+-->
+
+
+
+<!-- 
+Below we define some latex-settings (a new command in this case).
+-->
+
+
+``\newcommand{\mean}{\mathbb{E}}``
+
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- HERE THE DOCUMENT STARTS -->
+<!-- ----------------------------------------------------------------------- -->
+
+
+
+# Section
+
+This is an .jmd-file. It integrates Markdown-text (incl. equations) and Julia-code, 
+and its output can be published as an .html-file.
+This is done by typing the following in the REPL (command window on VS Code):
+
+    using Weave
+    weave("/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd", doctype = "md2html")
+
+Rendering the output as a .pdf-file should work, too. Just type "md2pdf" instead of "md2html".
+
+
+## Subsection
+
+Some text. Some inline-equation: $\theta=2$.
+
+Another beautiful equation:
+$$
+x_i = \theta + u_i \; , \quad \text{with} \quad \mean[u_i|\theta]=0 \; . 
+$$
+<!-- Note that it's important to write the Dollar-signs on separate lines -->
+
+## Another Subsection
+
+**Some text in bold**
+
+*Some text in italics*
+
+
+```{julia, wrap=true, echo=true, results=false, warning=false, message=false, tidy=true}
+
+# A comment and some code:
+
+a = 4
+b = 3
+
+a*b
+
+```
+
+
+1. First Item
+
+```{julia, wrap=true, echo=true, results=false, warning=false, message=false, tidy=true}
+
+# A bit of code
+
+c = 5
+
+a*c
+
+```
+
+
+2. Second Item 
+
+```{julia, wrap=true, echo=true, results=false, warning=false, message=false, tidy=true}
+
+# A bit of code
+
+d = 8
+
+a*d
+
+```

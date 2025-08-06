@@ -2,23 +2,28 @@
 title: 'R: Tutorial & Command-Collection'
 subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
-date: 'Created: January 2024. Last updated: April 2025'
+date: 'Created: January 2024. Last updated: August 2025'
 output:
   html_document: 
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
     toc: false
     toc_depth: 1
     toc_float: true
     number_sections: false
-    css: style.css
   pdf_document:
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
 ---
 
 
@@ -67,7 +72,7 @@ knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 
 # Introduction
 
-R is a rather flexible programming language. It allows you to easily implement methods, approaches and procedures that deviate from standard ones and are tailored to suit your specific needs. (This contrasts with e.g. Stata or EViews.)
+R is a rather flexible programming language. It allows you to easily implement methods, approaches and procedures that deviate from standard ones and are tailored to your specific needs. (This contrasts with e.g. Stata or EViews.)
 
 This script is meant to give an introduction to R and to collect useful commands for different programming tasks in one place. As such, it can be used as a lookup-table.
 Even people experienced with a programming language regularly consult google or previously written codes as part of their coding routine, even more so when they haven't used a programming language for a while or when switching back and forth between several languages.

@@ -3,7 +3,7 @@
 <HEAD>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Julia: Tutorial &amp; Collection of Useful Commands</title>
+  <title>Title</title>
   
 
   <script type="text/x-mathjax-config">
@@ -653,48 +653,136 @@ div.title {text-align: center;}
     <div class = "row">
       <div class = "col-md-12 twelve columns">
         <div class="title">
-          <h1 class="title">Julia: Tutorial &amp; Collection of Useful Commands</h1>
-          <h5>Marko Mlikota, https://markomlikota.github.io</h5>
-          <h5>Created: August 2025. Last updated: August 2025</h5>
+          <h1 class="title">Title</h1>
+          <h5>Author</h5>
+          <h5>5 August 2025</h5>
         </div>
 
         
 <!--  
-To publish to html, type this in REPL:
-weave(joinpath(dirname(pathof(Weave)), "/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia", "Julia-Tutorial.jmd"), out_path=:pwd, doctype = "md2html")
+This is a comment in the .Rmd-file. 
+It won't be displayed when you publish ("Knit") the file to html or pdf.
  -->
 
-<p>Normal markdown text here</p>
+
+<!--  
+
+using Weave
+
+# To publish to html, type this in REPL:
+
+weave("/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd", doctype = "md2html")
+
+# Publishing to pdf should also work, with this command:
+
+weave("/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd", doctype = "md2pdf")
+
+ -->
+
+
+<!--  -----------------------------------------------------------------------  -->
+
+
+<!--  SOME SETTINGS & NOTES  -->
+
+
+<!--  -----------------------------------------------------------------------  -->
+
+
+<!-- 
+Note: this file uses Julia-Markdown. It is not entirely the same as the Markdown used in, say, R-Markdown.
+https://docs.julialang.org/en/v1/stdlib/Markdown/#
+ -->
+
+
+<!--  
+Below we define some latex-settings (a new command in this case).
+ -->
+
+<p><span class="math">$\newcommand{\mean}{\mathbb{E}}$</span></p>
+
+<!--  -----------------------------------------------------------------------  -->
+
+
+<!--  HERE THE DOCUMENT STARTS  -->
+
+
+<!--  -----------------------------------------------------------------------  -->
+
+<h1>Section</h1>
+<p>This is an .jmd-file. It integrates Markdown-text &#40;incl. equations&#41; and Julia-code,  and its output can be published as an .html-file. This is done by typing the following in the REPL &#40;command window on VS Code&#41;:</p>
+<pre><code>using Weave
+weave&#40;&quot;/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd&quot;, doctype &#61; &quot;md2html&quot;&#41;</code></pre>
+<p>Rendering the output as a .pdf-file should work, too. Just type &quot;md2pdf&quot; instead of &quot;md2html&quot;.</p>
+<h2>Subsection</h2>
+<p>Some text. Some inline-equation: <span class="math">$\theta=2$</span>.</p>
+<p>Another beautiful equation:</p>
+<p class="math">\[
+x_i = \theta + u_i \; , \quad \text{with} \quad \mean[u_i|\theta]=0 \; . 
+\]</p>
+
+<!--  Note that it's important to write the Dollar-signs on separate lines  -->
+
+<h2>Another Subsection</h2>
+<p><strong>Some text in bold</strong></p>
+<p><em>Some text in italics</em></p>
 
 
 <pre class='hljl'>
-<span class='hljl-cs'>### PACKAGE LOADINGS HERE</span><span class='hljl-t'>
+<span class='hljl-cs'># A comment and some code:</span><span class='hljl-t'>
 
-    </span><span class='hljl-k'>using</span><span class='hljl-t'> </span><span class='hljl-n'>LinearAlgebra</span><span class='hljl-t'>
-    </span><span class='hljl-k'>using</span><span class='hljl-t'> </span><span class='hljl-n'>Weave</span>
+</span><span class='hljl-n'>a</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>4</span><span class='hljl-t'>
+</span><span class='hljl-n'>b</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>3</span><span class='hljl-t'>
+
+</span><span class='hljl-n'>a</span><span class='hljl-oB'>*</span><span class='hljl-n'>b</span>
 </pre>
 
 
+12
+
+
+<ol>
+<li><p>First Item</p>
+</li>
+</ol>
 
 
 <pre class='hljl'>
-<span class='hljl-cs'>### REST OF CODE HERE</span><span class='hljl-t'>
+<span class='hljl-cs'># A bit of code</span><span class='hljl-t'>
 
-    </span><span class='hljl-nf'>sqrt</span><span class='hljl-p'>(</span><span class='hljl-ni'>2</span><span class='hljl-p'>)</span>
+</span><span class='hljl-n'>c</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>5</span><span class='hljl-t'>
+
+</span><span class='hljl-n'>a</span><span class='hljl-oB'>*</span><span class='hljl-n'>c</span>
 </pre>
 
 
-<pre class="output">
-1.4142135623730951
+20
+
+
+<ol start="2">
+<li><p>Second Item </p>
+</li>
+</ol>
+
+
+<pre class='hljl'>
+<span class='hljl-cs'># A bit of code</span><span class='hljl-t'>
+
+</span><span class='hljl-n'>d</span><span class='hljl-t'> </span><span class='hljl-oB'>=</span><span class='hljl-t'> </span><span class='hljl-ni'>8</span><span class='hljl-t'>
+
+</span><span class='hljl-n'>a</span><span class='hljl-oB'>*</span><span class='hljl-n'>d</span>
 </pre>
+
+
+32
 
 
 
         <HR/>
         <div class="footer">
           <p>
-            Published from <a href="Julia-Tutorial.jmd">Julia-Tutorial.jmd</a>
-            using <a href="http://github.com/JunoLab/Weave.jl">Weave.jl</a> v0.10.12 on 2025-08-05.
+            Published from <a href="JuliaMarkdownTemplate.jmd">JuliaMarkdownTemplate.jmd</a>
+            using <a href="http://github.com/JunoLab/Weave.jl">Weave.jl</a> v0.10.12 on 2025-08-06.
           </p>
         </div>
       </div>

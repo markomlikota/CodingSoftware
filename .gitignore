@@ -2,7 +2,15 @@ R/ForInclusion
 R/z_old
 R/Misc
 R/Functions
+
 R/Templates/KnitrTemplate.synctex.gz
 R/Templates/KnitrTemplate.log
 R/Templates/KnitrTemplate-concordance.tex
 R/Templates/KnitrTemplate.tex
+
+Julia/ForInclusion
+Julia/z_old
+Julia/Misc
+Julia/Functions
+
+Julia/TutorialCodecollection

@@ -1,23 +1,27 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
   html_document: 
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
     toc: false
     toc_depth: 1
     toc_float: true
     number_sections: false
-    css: style.css
   pdf_document:
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
 ---
 
 
@@ -86,8 +90,13 @@ cat("\014")	# delete everything in console
 set.seed(50) # choose some (any) number here
 
 
+```
 
-# PRE-DEFINED UNIVARIATE DISTRIBUTIONS 
+<br>
+
+## Pre-Defined Univariate Distributions
+
+```{r results=FALSE}
 
 # Uniform distribution:
 
@@ -144,8 +153,13 @@ rinvgamma(3,10,2) # 5 draws from IG with shape 10 and rate 2
 # dinvgamma, pinvgamma, qinvgamma exist too; see ?rinvgamma
 
 
+```
 
-# PRE-DEFINED MULTIVARIATE DISTRIBUTIONS 
+<br>
+
+## Pre-Defined Multivariate Distributions
+
+```{r results=FALSE}
 
 
 # Multivariate Normal:
@@ -169,8 +183,15 @@ riwish(v = nu, S =  mS) #single draw
 # diwish exists too; see ?riwish
 
 
+```
 
-# MULTINOMIAL DISTRIBUTION (MANUALLY DEFINED UNIVARIATE DISTRIBUTION)
+<br>
+
+## Multinomial Distribution
+
+```{r results=FALSE}
+
+# The multinomial distribution is a manually defined, discrete-valued univariate distribution.
 
 
 # Define a discrete distribution with the following possible realizations (outcomes):

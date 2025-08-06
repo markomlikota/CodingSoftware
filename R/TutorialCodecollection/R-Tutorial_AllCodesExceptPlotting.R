@@ -1697,8 +1697,7 @@ dfData[,-1] = lapply(dfData[,-1], function(x) as.numeric(x))
 set.seed(50) # choose some (any) number here
 
 
-
-# PRE-DEFINED UNIVARIATE DISTRIBUTIONS 
+# --- Pre-Defined Univariate Distributions -------------------------------------
 
 # Uniform distribution:
 
@@ -1755,8 +1754,7 @@ rinvgamma(3,10,2) # 5 draws from IG with shape 10 and rate 2
 # dinvgamma, pinvgamma, qinvgamma exist too; see ?rinvgamma
 
 
-
-# PRE-DEFINED MULTIVARIATE DISTRIBUTIONS 
+# --- Pre-Defined Multivariate Distributions -----------------------------------
 
 
 # Multivariate Normal:
@@ -1780,8 +1778,9 @@ riwish(v = nu, S =  mS) #single draw
 # diwish exists too; see ?riwish
 
 
+# --- Multinomial Distribution  ------------------------------------------------
 
-# MULTINOMIAL DISTRIBUTION (MANUALLY DEFINED UNIVARIATE DISTRIBUTION)
+# The multinomial distribution is a manually defined, discrete-valued univariate distribution.
 
 
 # Define a discrete distribution with the following possible realizations (outcomes):
@@ -2501,5 +2500,5 @@ countrycode(vsC_cc2,"iso2c","country.name.fr")
 
 
 # ------------------------------------------------------------------------------
-# 15 GENERAL CODING ADVICE
+# 15 CODING ADVICE
 # ------------------------------------------------------------------------------

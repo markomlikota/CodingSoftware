@@ -1,23 +1,27 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
   html_document: 
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
     toc: false
     toc_depth: 1
     toc_float: true
     number_sections: false
-    css: style.css
   pdf_document:
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
 ---
 
 
@@ -203,8 +207,8 @@ SIC = (K/N)*log(N)+log(MSE)
 # Computing (manually) the t-statistic for testing whether a single coefficient 
 # equals some other value is trivial once the estimated parameter value and its SE are computed.
 
-We can also run other tests manually (e.g. F-test, Wald-test, etc.).
-For the F-test, we can also use the following package:
+# We can also run other tests manually (e.g. F-test, Wald-test, etc.).
+# For the F-test, we can also use the following package:
 
 # Test whether mpg and gear are jointly insignificant in our baseline regression,
 # using adjusted standard errors:

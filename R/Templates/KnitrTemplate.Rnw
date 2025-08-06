@@ -57,7 +57,8 @@ library(readxl)
 
 \section{Section}
 
-This is an .Rnw-file. It integrates Latex-text (incl. equations) and R-code.
+This is an .Rnw-file. It integrates Latex-text (incl. equations) and R-code, 
+and its output can be published as a .pdf-file (by clicking "Compile PDF" in the top-left panel in R-Studio).
 
 \subsection{Subsection}
 

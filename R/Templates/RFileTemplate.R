@@ -4,19 +4,54 @@
 
 # ------------------------------------------------------------------------------
 
+
+# Description of code (possibly).
+
+
+
+# ------------------------------------------------------------------------------
+# PRELIMINARY: OPTIONS, PACKAGES, PATHS, EXTERNAL FILES
+# ------------------------------------------------------------------------------
+
+
 rm(list = ls())  # delete everything in workspace/environment
 cat("\014")      # delete everything in console
 
 
-# Specify some path:
 
-sDataPath <- "~//Dropbox/Coding/CodingSoftware/R/Templates"
-setwd(sDataPath)
+# --- Specify Options ----------------------------------------------------------
 
 
-# Load some packages:
+# ... some code ...
 
-library(readxl)
+
+
+# --- Load Packages ------------------------------------------------------------
+
+
+#library(readxl)
+
+
+
+# --- Define Path --------------------------------------------------------------
+
+
+#sDataPath <- "~//Dropbox/Coding/CodingSoftware/R/Templates"
+#setwd(sDataPath)
+
+
+
+# --- Include External Files ---------------------------------------------------
+
+
+# ... some code ...
+
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
 
 
 # ------------------------------------------------------------------------------
@@ -25,6 +60,12 @@ library(readxl)
 
 # ... some code ...
 
+
 # --- some subsection ----------------------------------------------------------
+
+# ... some code ...
+
+
+# Caption for short code block
 
 # ... some code ...

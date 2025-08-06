@@ -8,14 +8,13 @@ output:
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    highlight: "zenburn"
   html_document:
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
-  toc: yes
-  toc_depth: 2
+    theme: "simple"
+    highlight: "zenburn"
 ---
 
 <!-- 
@@ -35,6 +34,7 @@ knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 #knitr::opts_chunk$set(fig.width=5, fig.height=3)
 ```
 
+<!-- 
 ```{=html}
 (this is a longer comment in the .Rmd-file)
 
@@ -51,6 +51,7 @@ Alternative: just use latex-enumerate/itemize and do not care about indentation.
 - set figure settings for single chunk as : {r ..., fig.height = 15*0.75, fig.width = 16*0.75} (important e.g. for multiple plots in one (e.g. patchwork package))
 
 ```
+-->
 
 <!-- 
 Below we define some latex-settings (a new command in this case).
@@ -98,7 +99,8 @@ library(readxl)
 
 # Section
 
-This is an .Rmd-file. It integrates Markdown-text (incl. equations) and R-code.
+This is an .Rmd-file. It integrates Markdown-text (incl. equations) and R-code, 
+and its output can be published as an .html- or .pdf-file (by clicking "Knit" in the top-left panel in R-Studio).
 
 ## Subsection
 
@@ -113,7 +115,7 @@ $$ x_i = \theta + u_i \; , \quad \text{with} \quad \mean[u_i|\theta]=0 \; .$$
 
 *Some text in italics*
 
-```{r, echo=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
+```{r, echo=TRUE, wrap=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
 
 # A comment and some code:
 
@@ -127,7 +129,7 @@ a*b
 
 1. First Item
 
-```{r, echo=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
+```{r, echo=TRUE, wrap=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
 
 # A bit of code
 
@@ -140,7 +142,7 @@ a*c
 
 2. Second Item 
 
-```{r, echo=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
+```{r, echo=TRUE, wrap=TRUE, results=FALSE, warning=FALSE, message=FALSE, tidy=TRUE, class.source="code"}
 
 # A bit of code
 

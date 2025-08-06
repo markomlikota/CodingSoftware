@@ -1,25 +1,28 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-subtitle: '(for applications in economics)'
 author: "Marko Mlikota, https://markomlikota.github.io"
 output:
   html_document: 
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
     toc: false
     toc_depth: 1
     toc_float: true
     number_sections: false
-    css: style.css
   pdf_document:
     fig_width: 6
     fig_height: 3.75
     fig_caption: true
-    highlight: zenburn
+    theme: "simple"
+    highlight: "zenburn"
+    toc: false
+    toc_depth: 1
+    toc_float: true
+    number_sections: false
 ---
-
 
 <style type="text/css">
 body, td {
