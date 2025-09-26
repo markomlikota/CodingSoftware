@@ -1,6 +1,9 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-author: "Marko Mlikota, https://markomlikota.github.io"
+author: | 
+  | Source: https://github.com/markomlikota/CodingSoftware 
+  | MIT License, © Marko Mlikota, https://markomlikota.github.io
+  
 output:
   html_document: 
     fig_width: 6

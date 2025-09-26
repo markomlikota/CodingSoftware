@@ -1,7 +1,9 @@
 # R: Tutorial & Code-Collection
 # (all codes in single .R-file)
 
-# Marko Mlikota, https://markomlikota.github.io
+# Source: https://github.com/markomlikota/CodingSoftware
+
+# MIT License, © Marko Mlikota, https://markomlikota.github.io
 
 
 # ------------------------------------------------------------------------------

@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Marko Mlikota, https://markomlikota.github.io" />
 
 
 <title>R: Tutorial &amp; Command-Collection</title>
@@ -251,8 +250,8 @@ pre code {
 
 
 <h1 class="title toc-ignore">R: Tutorial &amp; Command-Collection</h1>
-<h3 class="subtitle">(for applications in economics)</h3>
-<h4 class="author">Marko Mlikota, <a href="https://markomlikota.github.io" class="uri">https://markomlikota.github.io</a></h4>
+<h4 class="author"><div class="line-block">Source: <a href="https://github.com/markomlikota/CodingSoftware" class="uri">https://github.com/markomlikota/CodingSoftware</a><br />
+MIT License, © Marko Mlikota, <a href="https://markomlikota.github.io" class="uri">https://markomlikota.github.io</a></div></h4>
 
 </div>
 
@@ -330,289 +329,282 @@ h2 {
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can perform basic arithmetic operations with numbers as well as defined</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># objects/variables:</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span></span></code></pre></div>
-<pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 49</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">8</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b  <span class="co"># displays the result in console</span></span></code></pre></div>
-<pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">=</span> a <span class="sc">+</span> b  <span class="co"># saves the result to a new variable, &#39;c&#39;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Many standardly used functions are already implemented by default in R. For</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># example:</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(a)  <span class="co"># square-root</span></span></code></pre></div>
-<pre><code>## [1] 1.732051</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(a)  <span class="co"># natural log (ln)</span></span></code></pre></div>
-<pre><code>## [1] 1.098612</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(a)  <span class="co"># exponential</span></span></code></pre></div>
-<pre><code>## [1] 20.08554</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trigonometric functions:</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(a)</span></code></pre></div>
-<pre><code>## [1] -0.9899925</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(a)</span></code></pre></div>
-<pre><code>## [1] 0.14112</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tan</span>(a)</span></code></pre></div>
-<pre><code>## [1] -0.1425465</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(<span class="fl">3.4</span>)  <span class="co"># returns 4, the smallest integer larger than 3.4</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(<span class="fl">3.4</span>)  <span class="co"># returns 3, the largest integer smaller than 3.4</span></span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>b<span class="sc">%%</span>a  <span class="co">#computes the modulus; remainder of b/a</span></span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One can easily combine functions:</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">ceiling</span>(<span class="fl">8.9</span>))</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(a))</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To round a number to a desired number of digits:</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">342.347</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 342.35</code></pre>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">8</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b  <span class="co"># displays the result in console</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>c <span class="ot">=</span> a <span class="sc">+</span> b  <span class="co"># saves the result to a new variable, &#39;c&#39;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Many standardly used functions are already implemented by default in R. For</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># example:</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(a)  <span class="co"># square-root</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(a)  <span class="co"># natural log (ln)</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(a)  <span class="co"># exponential</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># trigonometric functions:</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(a)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(a)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="fu">tan</span>(a)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(<span class="fl">3.4</span>)  <span class="co"># returns 4, the smallest integer larger than 3.4</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(<span class="fl">3.4</span>)  <span class="co"># returns 3, the largest integer smaller than 3.4</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>b<span class="sc">%%</span>a  <span class="co">#computes the modulus; remainder of b/a</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co"># One can easily combine functions:</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">ceiling</span>(<span class="fl">8.9</span>))</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">exp</span>(a))</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co"># To round a number to a desired number of digits:</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">342.347</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="special-values-for-scalars" class="section level2">
 <h2>Special Values for Scalars</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A variable can also take on the value &#39;Inf&#39; or &#39;-Inf&#39; (positive or negative</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># infinity).  Any further operation with this variable gives again &#39;Inf&#39; or</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;-Inf&#39;.  For example,</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="cn">Inf</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(a)  <span class="co"># gives Inf</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="cn">Inf</span> <span class="sc">+</span> <span class="dv">4</span>  <span class="co"># gives -Inf</span></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A variable can also take on the value &#39;NA&#39; or &#39;NaN&#39; (not-a-number).  (This</span></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># happens, for example, if one loads an excel file with an empty cell into R,</span></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co"># as the value in such a cell needs to be distinguished from, say, zero.)</span></span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, any operation with an NA returns NA:</span></span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="cn">NA</span></span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(a)  <span class="co"># gives NA</span></span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">+</span> <span class="dv">4</span>  <span class="co"># gives NA</span></span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a><span class="co"># (The same results are obtained when a is &#39;NaN&#39; instead of &#39;NA&#39;.)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A variable can also take on the value &#39;Inf&#39; or &#39;-Inf&#39; (positive or negative</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># infinity).  Any further operation with this variable gives again &#39;Inf&#39; or</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;-Inf&#39;.  For example,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="cn">Inf</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(a)  <span class="co"># gives Inf</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="cn">Inf</span> <span class="sc">+</span> <span class="dv">4</span>  <span class="co"># gives -Inf</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># A variable can also take on the value &#39;NA&#39; or &#39;NaN&#39; (not-a-number).  (This</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># happens, for example, if one loads an excel file with an empty cell into R,</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># as the value in such a cell needs to be distinguished from, say, zero.)</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Again, any operation with an NA returns NA:</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(a)  <span class="co"># gives NA</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">+</span> <span class="dv">4</span>  <span class="co"># gives NA</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># (The same results are obtained when a is &#39;NaN&#39; instead of &#39;NA&#39;.)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="object-types" class="section level2">
 <h2>Object Types</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objects you create are stored by R as different &#39;types&#39;.  Numbers like the</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ones created above are of type &#39;double&#39; and &#39;numeric&#39;:</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">8</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)  <span class="co"># tells you the type of variable/object &#39;a&#39;</span></span></code></pre></div>
-<pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(a)  <span class="co"># verifies whether a is of type double</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(a)  <span class="co"># verifies whether a is a numeric</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The difference between a double and a numeric is typically irrelevant.  (You</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># can think of &#39;numeric&#39; being a larger category that encompasses both &#39;double&#39;</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and &#39;integer&#39; objects.)</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># to verify whether a is Inf or -Inf:</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.infinite</span>(a)</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to verify whether a is NA:</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(a)</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to verify whether a is NaN:</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(a)</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Throughout this tutorial, we&#39;ll discuss the types of different objects we</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create.  It is important to be aware that there are different types that R</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># uses to store objects because sometimes a command only works for a specific</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># type (or gives different results for different types), in which case one</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># needs to convert the object to the right type.</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objects you create are stored by R as different &#39;types&#39;.  Numbers like the</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ones created above are of type &#39;double&#39; and &#39;numeric&#39;:</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">8</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)  <span class="co"># tells you the type of variable/object &#39;a&#39;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(a)  <span class="co"># verifies whether a is of type double</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(a)  <span class="co"># verifies whether a is a numeric</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># The difference between a double and a numeric is typically irrelevant.  (You</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># can think of &#39;numeric&#39; being a larger category that encompasses both &#39;double&#39;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and &#39;integer&#39; objects.)</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># to verify whether a is Inf or -Inf:</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">is.infinite</span>(a)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># to verify whether a is NA:</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(a)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># to verify whether a is NaN:</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">is.nan</span>(a)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Throughout this tutorial, we&#39;ll discuss the types of different objects we</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># create.  It is important to be aware that there are different types that R</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># uses to store objects because sometimes a command only works for a specific</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># type (or gives different results for different types), in which case one</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># needs to convert the object to the right type.</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="logicals" class="section level2">
 <h2>Logicals</h2>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A logical is an object-type that can take on the values &#39;TRUE&#39;, &#39;FALSE&#39; or</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;NA&#39;.  It indicates whether some condition is true or false (or cannot even</span></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># be evaluated).</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Logicals are (usually) created using logical operators:</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>isAlargerB <span class="ot">=</span> a <span class="sc">&gt;</span> b</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(isAlargerB)</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Other logical operators:</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> b</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;=</span> b</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;=</span> b</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> b  <span class="co"># equal to</span></span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">!=</span> b  <span class="co"># not equal to</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparisons with Inf and NA:</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> <span class="cn">Inf</span>  <span class="co"># comparisons with Inf work</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> <span class="cn">NA</span>  <span class="co"># but comparisons with NA yield NA </span></span></code></pre></div>
-<pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logicals can be used in standard computations, whereby &#39;TRUE&#39; indicates a 1</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and &#39;FALSE&#39; indicates a 0:</span></span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="dv">3</span>  <span class="co"># gives 4</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="dv">1</span>  <span class="co"># gives TRUE</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nevertheless, the &#39;double&#39;-object 1 and the &#39;logical&#39;-object TRUE are not the</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing because their type differs, i.e. R stores them differently:</span></span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
-<pre><code>## [1] &quot;logical&quot;</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(b)</span></code></pre></div>
-<pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To check whether some object is a logical or a double, type:</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>isAlargerC <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(isAlargerB)</span></code></pre></div>
-<pre><code>## [1] &quot;logical&quot;</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(isAlargerC)</span></code></pre></div>
-<pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(isAlargerB)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(isAlargerC)</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(isAlargerC)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To convert numbers of type double to logicals or vice versa:</span></span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="dv">1</span>)  <span class="co"># convert number/double 1 into logical TRUE</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="cn">TRUE</span>)  <span class="co"># opposite: convert logical TRUE into number/double 1</span></span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="cn">TRUE</span>)  <span class="co"># same</span></span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Based on existing logicals (i.e. variables indicating whether a condition is</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># true or false), further logicals can be created that combine these underlying</span></span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co"># conditions using special operators.  For example:</span></span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>isXtrue <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>isYtrue <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="co"># negation of a logical: turns TRUE into FALSE (and FALSE into TRUE)</span></span>
-<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>isXnottrue <span class="ot">=</span> <span class="sc">!</span>isXtrue</span>
-<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a><span class="co"># gives true only if both are true:</span></span>
-<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>areBothTrue <span class="ot">=</span> isXtrue <span class="sc">&amp;</span> isYtrue</span>
-<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a><span class="co"># gives TRUE if only one of them is true and also if both are true:</span></span>
-<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a>isOneTrue <span class="ot">=</span> isXtrue <span class="sc">|</span> isYtrue</span>
-<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a><span class="co"># gives TRUE only if onle one of them is true (it gives FALSE if both are true)</span></span>
-<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>isExactlyOneTrue <span class="ot">=</span> <span class="fu">xor</span>(isXtrue, isYtrue)</span>
-<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note that these commands work even if you defined isXtrue and isYtrue as the</span></span>
-<span id="cb92-20"><a href="#cb92-20" aria-hidden="true" tabindex="-1"></a><span class="co"># double-types 1 and 0, respectively.  Therefore, in this particular case, the</span></span>
-<span id="cb92-21"><a href="#cb92-21" aria-hidden="true" tabindex="-1"></a><span class="co"># object type is irrelevant.)</span></span>
-<span id="cb92-22"><a href="#cb92-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-23"><a href="#cb92-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Further below, we will discuss vectors of logicals (i.e. vectors whose</span></span>
-<span id="cb92-24"><a href="#cb92-24" aria-hidden="true" tabindex="-1"></a><span class="co"># elements are logicals rather than numbers (of type double)).</span></span>
-<span id="cb92-25"><a href="#cb92-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-26"><a href="#cb92-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Moreover, logicals will be important when we talk about indexing different</span></span>
-<span id="cb92-27"><a href="#cb92-27" aria-hidden="true" tabindex="-1"></a><span class="co"># objects in which data is stored (a vector, matrix, array, list or dataframe).</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A logical is an object-type that can take on the values &#39;TRUE&#39;, &#39;FALSE&#39; or</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;NA&#39;.  It indicates whether some condition is true or false (or cannot even</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># be evaluated).</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Logicals are (usually) created using logical operators:</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>isAlargerB <span class="ot">=</span> a <span class="sc">&gt;</span> b</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(isAlargerB)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Other logical operators:</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> b</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&gt;=</span> b</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;=</span> b</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> b  <span class="co"># equal to</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>a <span class="sc">!=</span> b  <span class="co"># not equal to</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparisons with Inf and NA:</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> <span class="cn">Inf</span>  <span class="co"># comparisons with Inf work</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>a <span class="sc">&lt;</span> <span class="cn">NA</span>  <span class="co"># but comparisons with NA yield NA </span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Logicals can be used in standard computations, whereby &#39;TRUE&#39; indicates a 1</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co"># and &#39;FALSE&#39; indicates a 0:</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="dv">3</span>  <span class="co"># gives 4</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">==</span> <span class="dv">1</span>  <span class="co"># gives TRUE</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Nevertheless, the &#39;double&#39;-object 1 and the &#39;logical&#39;-object TRUE are not the</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing because their type differs, i.e. R stores them differently:</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(b)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="co"># To check whether some object is a logical or a double, type:</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>isAlargerC <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(isAlargerB)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(isAlargerC)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(isAlargerB)</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(isAlargerC)</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(isAlargerC)</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="co"># To convert numbers of type double to logicals or vice versa:</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="dv">1</span>)  <span class="co"># convert number/double 1 into logical TRUE</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="cn">TRUE</span>)  <span class="co"># opposite: convert logical TRUE into number/double 1</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="cn">TRUE</span>)  <span class="co"># same</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Based on existing logicals (i.e. variables indicating whether a condition is</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="co"># true or false), further logicals can be created that combine these underlying</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="co"># conditions using special operators.  For example:</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>isXtrue <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>isYtrue <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a><span class="co"># negation of a logical: turns TRUE into FALSE (and FALSE into TRUE)</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>isXnottrue <span class="ot">=</span> <span class="sc">!</span>isXtrue</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="co"># gives true only if both are true:</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>areBothTrue <span class="ot">=</span> isXtrue <span class="sc">&amp;</span> isYtrue</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="co"># gives TRUE if only one of them is true and also if both are true:</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>isOneTrue <span class="ot">=</span> isXtrue <span class="sc">|</span> isYtrue</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="co"># gives TRUE only if onle one of them is true (it gives FALSE if both are true)</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>isExactlyOneTrue <span class="ot">=</span> <span class="fu">xor</span>(isXtrue, isYtrue)</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note that these commands work even if you defined isXtrue and isYtrue as the</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="co"># double-types 1 and 0, respectively.  Therefore, in this particular case, the</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="co"># object type is irrelevant.)</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Further below, we will discuss vectors of logicals (i.e. vectors whose</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="co"># elements are logicals rather than numbers (of type double)).</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Moreover, logicals will be important when we talk about indexing different</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="co"># objects in which data is stored (a vector, matrix, array, list or dataframe).</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="strings" class="section level2">
 <h2>Strings</h2>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A string is an object that contains text. It is stored as type &#39;character&#39; in</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R.</span></span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="st">&quot;banana&quot;</span></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)  <span class="co"># returns &#39;character&#39;</span></span></code></pre></div>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(a)</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are many commands that are specific to strings:</span></span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(a)  <span class="co"># number of characters in string</span></span></code></pre></div>
-<pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(a, <span class="dv">1</span>, <span class="dv">3</span>)  <span class="co"># returns first three characters in string</span></span></code></pre></div>
-<pre><code>## [1] &quot;ban&quot;</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># String Conversion:</span></span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="dv">3</span>)  <span class="co"># convert the number 3 to the string &#39;3&#39;</span></span></code></pre></div>
-<pre><code>## [1] &quot;3&quot;</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="st">&quot;3&quot;</span>)  <span class="co"># opposite: convert the string &#39;3&#39; to the number (double) 3</span></span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="st">&quot;3&quot;</span>)  <span class="co"># same</span></span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="dv">3</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)  <span class="co"># convert the number 3 to the string &#39;3.00&#39;</span></span></code></pre></div>
-<pre><code>## [1] &quot;3.00&quot;</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The function &#39;paste()&#39; creates a string by combining a number (double) and a</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># string, e.g.:</span></span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span>, <span class="st">&quot;mouse&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;.&quot;</span>)  <span class="co">#returns &#39;1.mouse&#39;</span></span></code></pre></div>
-<pre><code>## [1] &quot;1.mouse&quot;</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span>, <span class="st">&quot;mouse&quot;</span>)  <span class="co"># if option &#39;sep&#39; is not specified, a space is put as separator</span></span></code></pre></div>
-<pre><code>## [1] &quot;1 mouse&quot;</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># String modification:</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mississippi&quot;</span>)  <span class="co">#replace i with X</span></span></code></pre></div>
-<pre><code>## [1] &quot;MXssXssXppX&quot;</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Strings allow for advanced printing commands, beyond &#39;print()&#39;:</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div>
-<pre><code>## [1] &quot;banana&quot;</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(a, <span class="st">&quot;ice cream&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;banana ice cream&quot;</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prints the specified string, inserting the number at &#39;%s&#39;:</span></span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">&quot;C(X) = [0,%s]&quot;</span>, <span class="fl">3.45</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;C(X) = [0,3.45]&quot;</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">&quot;%.0f&quot;</span>, <span class="fl">1e+08</span>)  <span class="co"># to avoid scientific notation</span></span></code></pre></div>
-<pre><code>## [1] &quot;100000000&quot;</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;hello</span><span class="sc">\n</span><span class="st">world</span><span class="sc">\n</span><span class="st">&quot;</span>)  <span class="co"># prints the string, adding line-breaks at \n</span></span></code></pre></div>
-<pre><code>## hello
-## world</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Further below, we will discuss vectors of strings (i.e. vectors whose</span></span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="co"># elements are strings rather than numbers (of type double) or logicals).</span></span>
-<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Moreover, strings will be important when we talk about indexing different</span></span>
-<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="co"># objects in which data is stored (a vector, matrix, array, list or dataframe).</span></span>
-<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a><span class="co"># They will also be important when we talk about representing dates.</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A string is an object that contains text. It is stored as type &#39;character&#39; in</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R.</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="st">&quot;banana&quot;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)  <span class="co"># returns &#39;character&#39;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(a)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># There are many commands that are specific to strings:</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(a)  <span class="co"># number of characters in string</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(a, <span class="dv">1</span>, <span class="dv">3</span>)  <span class="co"># returns first three characters in string</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># String Conversion:</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="dv">3</span>)  <span class="co"># convert the number 3 to the string &#39;3&#39;</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="st">&quot;3&quot;</span>)  <span class="co"># opposite: convert the string &#39;3&#39; to the number (double) 3</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="st">&quot;3&quot;</span>)  <span class="co"># same</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="dv">3</span>, <span class="at">nsmall =</span> <span class="dv">2</span>)  <span class="co"># convert the number 3 to the string &#39;3.00&#39;</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># The function &#39;paste()&#39; creates a string by combining a number (double) and a</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># string, e.g.:</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span>, <span class="st">&quot;mouse&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;.&quot;</span>)  <span class="co">#returns &#39;1.mouse&#39;</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span>, <span class="st">&quot;mouse&quot;</span>)  <span class="co"># if option &#39;sep&#39; is not specified, a space is put as separator</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># String modification:</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">&quot;i&quot;</span>, <span class="st">&quot;X&quot;</span>, <span class="st">&quot;Mississippi&quot;</span>)  <span class="co">#replace i with X</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Strings allow for advanced printing commands, beyond &#39;print()&#39;:</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(a, <span class="st">&quot;ice cream&quot;</span>))</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co"># prints the specified string, inserting the number at &#39;%s&#39;:</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">&quot;C(X) = [0,%s]&quot;</span>, <span class="fl">3.45</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="fu">sprintf</span>(<span class="st">&quot;%.0f&quot;</span>, <span class="fl">1e+08</span>)  <span class="co"># to avoid scientific notation</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;hello</span><span class="sc">\n</span><span class="st">world</span><span class="sc">\n</span><span class="st">&quot;</span>)  <span class="co"># prints the string, adding line-breaks at \n</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Further below, we will discuss vectors of strings (i.e. vectors whose</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="co"># elements are strings rather than numbers (of type double) or logicals).</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Moreover, strings will be important when we talk about indexing different</span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co"># objects in which data is stored (a vector, matrix, array, list or dataframe).</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="co"># They will also be important when we talk about representing dates.</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R is an open-source language, which means that there are many developers who</span></span>
-<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="co"># write their own packages that define specific commands (functions) not</span></span>
-<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="co"># included in R by default.  To highlight which commands belong to which</span></span>
-<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="co"># packages, we will load the packages only once these commands are needed.</span></span>
-<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="co"># However, in actual applications, it is best practice to have an initial</span></span>
-<span id="cb126-6"><a href="#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="co"># section where you load all packages.  To load a package, it first needs to be</span></span>
-<span id="cb126-7"><a href="#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="co"># installed.  You can install a package by using the &#39;Packages&#39; panel in</span></span>
-<span id="cb126-8"><a href="#cb126-8" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom-right window, or by typing e.g.</span></span>
-<span id="cb126-9"><a href="#cb126-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-10"><a href="#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  <span class="co"># to install package &#39;ggplot2&#39;</span></span>
-<span id="cb126-11"><a href="#cb126-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-12"><a href="#cb126-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-13"><a href="#cb126-13" aria-hidden="true" tabindex="-1"></a><span class="co"># A package needs to be installed only once on a given computer (though you may</span></span>
-<span id="cb126-14"><a href="#cb126-14" aria-hidden="true" tabindex="-1"></a><span class="co"># want to re-install packages when a new version is available).  In contrast,</span></span>
-<span id="cb126-15"><a href="#cb126-15" aria-hidden="true" tabindex="-1"></a><span class="co"># you have to load the package every time a script is ran anew.  To load the</span></span>
-<span id="cb126-16"><a href="#cb126-16" aria-hidden="true" tabindex="-1"></a><span class="co"># package, type</span></span>
-<span id="cb126-17"><a href="#cb126-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-18"><a href="#cb126-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb126-19"><a href="#cb126-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)  <span class="co"># to load package &#39;ggplot2&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R is an open-source language, which means that there are many developers who</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># write their own packages that define specific commands (functions) not</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># included in R by default.  To highlight which commands belong to which</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># packages, we will load the packages only once these commands are needed.</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># However, in actual applications, it is best practice to have an initial</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># section where you load all packages.  To load a package, it first needs to be</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># installed.  You can install a package by using the &#39;Packages&#39; panel in</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom-right window, or by typing e.g.</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)  <span class="co"># to install package &#39;ggplot2&#39;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># A package needs to be installed only once on a given computer (though you may</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># want to re-install packages when a new version is available).  In contrast,</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># you have to load the package every time a script is ran anew.  To load the</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># package, type</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)  <span class="co"># to load package &#39;ggplot2&#39;</span></span></code></pre></div>
 </div>
 </div>
 

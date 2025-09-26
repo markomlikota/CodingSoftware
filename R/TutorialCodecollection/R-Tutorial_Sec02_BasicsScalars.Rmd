@@ -1,6 +1,9 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-author: "Marko Mlikota, https://markomlikota.github.io"
+author: | 
+  | Source: https://github.com/markomlikota/CodingSoftware 
+  | MIT License, © Marko Mlikota, https://markomlikota.github.io
+  
 output:
   html_document: 
     fig_width: 6
@@ -123,7 +126,7 @@ rm(a) # rm stands for remove
 
 ## Basic Operations with (Numeric) Scalars
 
-```{r}
+```{r results=FALSE}
 
 # You can perform basic arithmetic operations with numbers as well as defined objects/variables:
 
@@ -204,7 +207,7 @@ NA + 4 # gives NA
 
 ## Object Types
 
-```{r}
+```{r results=FALSE}
 
 # Objects you create are stored by R as different "types". 
 # Numbers like the ones created above are of type "double" and "numeric":
@@ -239,7 +242,7 @@ is.nan(a)
 
 ## Logicals
 
-```{r}
+```{r results=FALSE}
 
 # A logical is an object-type that can take on the values "TRUE", "FALSE" or "NA". 
 # It indicates whether some condition is true or false (or cannot even be evaluated).
@@ -336,7 +339,7 @@ isExactlyOneTrue = xor(isXtrue,isYtrue)
 
 ## Strings
 
-```{r}
+```{r results=FALSE}
 
 # A string is an object that contains text. It is stored as type "character" in R. 
 

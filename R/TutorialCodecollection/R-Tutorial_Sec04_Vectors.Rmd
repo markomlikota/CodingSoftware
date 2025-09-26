@@ -1,6 +1,9 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-author: "Marko Mlikota, https://markomlikota.github.io"
+author: | 
+  | Source: https://github.com/markomlikota/CodingSoftware 
+  | MIT License, © Marko Mlikota, https://markomlikota.github.io
+  
 output:
   html_document: 
     fig_width: 6
@@ -87,7 +90,7 @@ cat("\014")	# delete everything in console
 
 ## Creation
 
-```{r}
+```{r results=FALSE}
 
 # There are many ways to create a vector in R:
 
@@ -313,7 +316,7 @@ mean(vx,na.rm=TRUE) # returns mean of remaining elements, ignoring NA-entries
 
 ```
 
-```{r error=TRUE}
+```{r results=FALSE, error=TRUE}
 
 # CAUTION! 
 # Some functions in R do not prevent you from performing operations with two vectors of different length, 
@@ -529,7 +532,7 @@ vsCountries[ grepl( "w" , vsCountries ) ]
 
 ```
 
-```{r error=TRUE}
+```{r results=FALSE, error=TRUE}
 
 # Working with dates:
 

@@ -1,6 +1,9 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-author: "Marko Mlikota, https://markomlikota.github.io"
+author: | 
+  | Source: https://github.com/markomlikota/CodingSoftware 
+  | MIT License, © Marko Mlikota, https://markomlikota.github.io
+  
 output:
   html_document: 
     fig_width: 6
@@ -106,3 +109,9 @@ knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
     + start functions with f (e.g. fCombineStrings)
 
     + start object-names with v, a, m, i for vector, array, matrix, iterator, string (and combine, if necessary; e.g. vsVars is vector of strings
+
+<br>
+
+See https://github.com/markomlikota/CodingSoftware for template .R-, .Rmd- and .Rnw-files
+
+<br>

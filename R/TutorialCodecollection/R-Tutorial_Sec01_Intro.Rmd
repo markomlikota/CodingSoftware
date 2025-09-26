@@ -1,8 +1,10 @@
 ---
 title: 'R: Tutorial & Command-Collection'
-subtitle: '(for applications in economics)'
-author: "Marko Mlikota, https://markomlikota.github.io"
-date: 'Created: January 2024. Last updated: August 2025'
+author: | 
+  | Source: https://github.com/markomlikota/CodingSoftware 
+  | MIT License, © Marko Mlikota, https://markomlikota.github.io
+
+date: 'Created: January 2024. Last updated: September 2025'
 output:
   html_document: 
     fig_width: 6

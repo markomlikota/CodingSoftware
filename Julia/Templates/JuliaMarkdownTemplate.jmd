@@ -20,10 +20,9 @@ It won't be displayed when you publish ("Knit") the file to html or pdf.
 
 <!-- 
 
-using Weave
-
 # To publish to html, type this in REPL:
 
+using Weave
 weave("/Users/markomlikota/Dropbox/Coding/CodingSoftware/Julia/Templates/JuliaMarkdownTemplate.jmd", doctype = "md2html")
 
 # Publishing to pdf should also work, with this command:
@@ -88,7 +87,7 @@ $$
 *Some text in italics*
 
 
-```{julia, wrap=true, echo=true, results=false, warning=false, message=false, tidy=true}
+```{julia, wrap=true, tidy=true, echo=true, results=false, warning=false, message=false}
 
 # A comment and some code:
 
@@ -102,7 +101,7 @@ a*b
 
 1. First Item
 
-```{julia, wrap=true, echo=true, results=false, warning=false, message=false, tidy=true}
+```{julia, wrap=true, tidy=true, echo=true, results=false, warning=false, message=false}
 
 # A bit of code
 
