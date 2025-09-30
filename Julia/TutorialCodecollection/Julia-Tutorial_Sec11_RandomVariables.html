@@ -7539,16 +7539,16 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Ramdom-Variables">Ramdom Variables<a class="anchor-link" href="#Ramdom-Variables">¶</a></h2>
+<h2 id="Random-Variables">Random Variables<a class="anchor-link" href="#Random-Variables">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=dbc66932-d0df-48e6-ba86-8bad20ac164c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dbc66932-d0df-48e6-ba86-8bad20ac164c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-julia"><pre><span></span><span class="c"># Let's install the new packages needed in this section:</span>
@@ -7557,6 +7557,64 @@ a.anchor-link {
 <span class="w">         </span><span class="s">"Random"</span><span class="p">]</span>
 <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="p">(</span><span class="n">vPkgs</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre><span class="ansi-green-intense-fg ansi-bold">   Resolving</span> package versions...
+<span class="ansi-green-intense-fg ansi-bold">  No Changes</span> to `/opt/conda/julia/environments/v1.10/Project.toml`
+<span class="ansi-green-intense-fg ansi-bold">  No Changes</span> to `/opt/conda/julia/environments/v1.10/Manifest.toml`
+<span class="ansi-green-intense-fg ansi-bold">Precompiling</span> project...
+<span class="ansi-red-intense-fg">  ✗ </span><span class="ansi-black-intense-fg">Roots → RootsSymPyExt</span>
+<span class="ansi-yellow-fg">  ? </span>Symbolics
+<span class="ansi-yellow-fg">  ? </span><span class="ansi-black-intense-fg">Symbolics → SymbolicsSymPyExt</span>
+<span class="ansi-yellow-fg">  ? </span><span class="ansi-black-intense-fg">Symbolics → SymbolicsPreallocationToolsExt</span>
+  0 dependencies successfully precompiled in 16 seconds. 481 already precompiled.
+  <span class="ansi-yellow-fg">3</span> dependencies failed but may be precompilable after restarting julia
+  <span class="ansi-yellow-fg">3</span> dependencies had output during precompilation:<span class="ansi-yellow-fg">
+┌ </span>Symbolics<span class="ansi-yellow-fg">
+│  </span>WARNING: Method definition getname(Symbol) in module SymbolicIndexingInterface at /opt/conda/julia/packages/SymbolicIndexingInterface/hhVqD/src/trait.jl:64 overwritten in module Symbolics at /opt/conda/julia/packages/Symbolics/GQNQy/src/wrapper-types.jl:20.<span class="ansi-yellow-fg">
+│  </span>ERROR: Method overwriting is not permitted during Module precompilation. Use `__precompile__(false)` to opt-out of precompilation.<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>Symbolics → SymbolicsSymPyExt<span class="ansi-yellow-fg">
+│  </span>WARNING: Method definition getname(Symbol) in module SymbolicIndexingInterface at /opt/conda/julia/packages/SymbolicIndexingInterface/hhVqD/src/trait.jl:64 overwritten in module Symbolics at /opt/conda/julia/packages/Symbolics/GQNQy/src/wrapper-types.jl:20.<span class="ansi-yellow-fg">
+│  </span>ERROR: Method overwriting is not permitted during Module precompilation. Use `__precompile__(false)` to opt-out of precompilation.<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>Symbolics → SymbolicsPreallocationToolsExt<span class="ansi-yellow-fg">
+│  </span>WARNING: Method definition getname(Symbol) in module SymbolicIndexingInterface at /opt/conda/julia/packages/SymbolicIndexingInterface/hhVqD/src/trait.jl:64 overwritten in module Symbolics at /opt/conda/julia/packages/Symbolics/GQNQy/src/wrapper-types.jl:20.<span class="ansi-yellow-fg">
+│  </span>ERROR: Method overwriting is not permitted during Module precompilation. Use `__precompile__(false)` to opt-out of precompilation.<span class="ansi-yellow-fg">
+└  </span>
+<span class="ansi-green-intense-fg ansi-bold">   Resolving</span> package versions...
+<span class="ansi-green-intense-fg ansi-bold">  No Changes</span> to `/opt/conda/julia/environments/v1.10/Project.toml`
+<span class="ansi-green-intense-fg ansi-bold">  No Changes</span> to `/opt/conda/julia/environments/v1.10/Manifest.toml`
+<span class="ansi-green-intense-fg ansi-bold">Precompiling</span> project...
+<span class="ansi-yellow-fg">  ? </span>Symbolics
+<span class="ansi-yellow-fg">  ? </span><span class="ansi-black-intense-fg">Symbolics → SymbolicsSymPyExt</span>
+<span class="ansi-yellow-fg">  ? </span><span class="ansi-black-intense-fg">Symbolics → SymbolicsPreallocationToolsExt</span>
+<span class="ansi-green-intense-fg ansi-bold">   Resolving</span> package versions...
+<span class="ansi-green-intense-fg ansi-bold">  No Changes</span> to `/opt/conda/julia/environments/v1.10/Project.toml`
+<span class="ansi-green-intense-fg ansi-bold">  No Changes</span> to `/opt/conda/julia/environments/v1.10/Manifest.toml`
+<span class="ansi-green-intense-fg ansi-bold">Precompiling</span> project...
+<span class="ansi-yellow-fg">  ? </span>Symbolics
+<span class="ansi-yellow-fg">  ? </span><span class="ansi-black-intense-fg">Symbolics → SymbolicsSymPyExt</span>
+<span class="ansi-yellow-fg">  ? </span><span class="ansi-black-intense-fg">Symbolics → SymbolicsPreallocationToolsExt</span>
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>3-element Vector{Nothing}:
+ nothing
+ nothing
+ nothing</pre>
 </div>
 </div>
 </div>
@@ -7728,7 +7786,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>0.5543888354889855</pre>
+<pre>0.03293736821324722</pre>
 </div>
 </div>
 </div>
@@ -7798,7 +7856,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>9</pre>
+<pre>3</pre>
 </div>
 </div>
 </div>
@@ -7828,7 +7886,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>0.0898719698595056</pre>
+<pre>0.038403305045092526</pre>
 </div>
 </div>
 </div>
@@ -7909,8 +7967,8 @@ Stacktrace:
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>2-element Vector{Float64}:
- 0.13428590744159596
- 0.9917666181077557</pre>
+ 0.08435215946230301
+ 0.92853171258019</pre>
 </div>
 </div>
 </div>
