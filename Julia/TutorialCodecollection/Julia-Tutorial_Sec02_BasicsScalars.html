@@ -7539,7 +7539,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Basics-&amp;-Scalars">Basics &amp; Scalars<a class="anchor-link" href="#Basics-&amp;-Scalars">¶</a></h2>
+<h2 id="2-Basics-&amp;-Scalars">2 Basics &amp; Scalars<a class="anchor-link" href="#2-Basics-&amp;-Scalars">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7552,24 +7552,24 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Very basics:</p>
 <ul>
-<li><p>To start Julia on VS Code, you need to run some Julia-code.</p>
+<li><p>To start Julia on VS Code, you either need to run some Julia-code or you need to type "julia" in the terminal.</p>
 </li>
-<li><p>To run a chunk of code, select it and press 'shift+enter' on a Mac or click on the 'play' button on the top-right of the script-window.</p>
+<li><p>To run a chunk of code, select it and press 'shift+enter' (Mac). To run a whole .jl-file (script), click on the 'Play' button on the top-right of the script-window.</p>
 </li>
 <li><p>To close Julia, execute the command <code>exit()</code>.</p>
 </li>
 </ul>
 <p>Still basics:</p>
 <ul>
+<li><p>Comments are chunks of code (or text) that are ignored when running. They start with a hashtag. To comment-out a line of code, select it and press 'cmd+/' (Mac)(i.e. cmd+shift+7 for my Swiss keyboard).</p>
+</li>
 <li><p>To highlight a whole line, click 'cmd+l'.</p>
 </li>
-<li><p>Comments are chunks of code (or text) that are ignored when running. They start with a hashtag, as here. To comment-out a line of code, on a Mac, select it and press 'cmd+/' (i.e. cmd+shift+7 for my Swiss keyboard).</p>
+<li><p>To request help with a command, type a question mark followed by the command in the REPL: e.g. <code>?sqrt</code> shows the help page for the command <code>sqrt()</code>.</p>
 </li>
-<li><p>To request help with a command, type the command with a question mark in front in the REPL. For example, <code>?sqrt</code> shows the help page for the command <code>sqrt()</code>.</p>
+<li><p>If you indent a section of code, you can hide it by clicking on the last non-indented line. To automatically hide all such sections, press 'cmd+k+0' (Mac).</p>
 </li>
-<li><p>If you indent a section of code, you can hide it by clicking on the last non-indented line. To automatically hide all such sections, press 'cmd+k+0'.</p>
-</li>
-<li><p>You can see further keybindings for VS Code under <a href="https://www.julia-vscode.org/docs/stable/userguide/keybindings/">https://www.julia-vscode.org/docs/stable/userguide/keybindings/</a></p>
+<li><p>You can see further keybindings for VS Code under <a href="https://www.julia-vscode.org/docs/stable/userguide/keybindings/">https://www.julia-vscode.org/docs/stable/userguide/keybindings/</a>.</p>
 </li>
 <li><p>If you already ran some commands in the REPL, you can use the up-arrow to go back to these commands.</p>
 </li>

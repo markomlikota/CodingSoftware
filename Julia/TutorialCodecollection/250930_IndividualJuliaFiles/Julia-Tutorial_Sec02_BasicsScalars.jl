@@ -18,28 +18,32 @@
 # -------------------------------------------------------------------------------
 
 
-    # To start Julia on VS Code, you need to run some Julia-code.
+    # To start Julia on VS Code, you need to run some Julia-code 
+    # or you need to type "julia" in the terminal.
 
-    # To run a chunk of code, select it and press 'shift+enter' on a Mac or 
+    # To run a chunk of code, select it and press 'shift+enter' (Mac).
+    # To run a whole .jl-file (script), 
     # click on the 'Play' button on the top-right of the script-window.
 
     # To close Julia, execute the command "exit()".
 
 
+    # Comments are chunks of code (or text) that are ignored when running.
+    # They start with a hashtag.  
+    # To comment-out a line of code, select it and press 'cmd+/' (Mac)
+    # (i.e. cmd+shift+7 for my Swiss keyboard).
+
     # To highlight a whole line, click 'cmd+l'.
 
-    # Comments are chunks of code (or text) that are ignored when running.
-    # They start with a hashtag, as here.  
-    # To comment-out a line of code, on a Mac, select it and press 'cmd+/' (i.e. cmd+shift+7).
 
-    # To request help with a command, type the command with a question mark in
-    # front in the REPL.  
-    # For example, '?sqrt' shows the help page for the command 'sqrt'.
+    # To request help with a command, type a question mark followed by the command in the REPL: 
+    # e.g. `'?sqrt' shows the help page for the command 'sqrt'.
 
     # If you indent a section of code, you can hide it by clicking on the last non-indented line.
-    # To automatically hide all such sections, press 'cmd+k+0'.
+    # To automatically hide all such sections, press 'cmd+k+0' (Mac).
 
-    # You can see further keybindings for VS Code under https://www.julia-vscode.org/docs/stable/userguide/keybindings/
+    # You can see further keybindings for VS Code under 
+    # https://www.julia-vscode.org/docs/stable/userguide/keybindings/.
 
     # If you already ran some commands in the REPL, you can use the up-arrow to go back to these commands. 
 

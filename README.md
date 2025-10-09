@@ -22,11 +22,11 @@ The folder "Julia" contains
 
 * folder "TutorialCodecollection", 
 
-    + with .jmd-files named as "Julia-Tutorial_SecXX_YZ.Rmd" and rendered to .html, one for each section of the Julia-tutorial
+    + with .html-files named as "Julia-Tutorial_SecXX_YZ.html, one for each section of the Julia-tutorial
 
-    + with .jl-files "Julia-Tutorial_AllCodes.jl" that compactly contain all codes from the Julia-tutorial and can be used to quickly look up commands when coding
+    + with .jl-file "Julia-Tutorial_AllCodes.jl" that compactly contains all codes from the Julia-tutorial and can be used to quickly look up commands when coding
 
-* folder "Templates", with templates for .jl-, and .jmd-files
+* folder "Templates", with templates for .jl- and .jmd-files
 
 
 -------------------------------------------------------------
